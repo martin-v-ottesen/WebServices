@@ -159,6 +159,3 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
-
-
-/Exercises/Exercise1Test/dist/
