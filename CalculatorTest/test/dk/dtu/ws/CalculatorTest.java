@@ -36,10 +36,68 @@ public class CalculatorTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void plus(){
+        int one = 2;
+        int two = 3;
+        int result = plus(one, two);
+        assertEquals(one + two, result);
+    }
+    
+    @Test
+    public void minus(){
+        int one = 2;
+        int two = 3;
+        int result = minus(one, two);
+        assertEquals(one - two, result);
+    }
+    
+    @Test
+    public void mult(){
+        int one = 2;
+        int two = 3;
+        int result = mult(one, two);
+        assertEquals(one * two, result);
+    }
+    
+    @Test
+    public void divNonZero(){
+        int one = 2;
+        int two = 3;
+        int result = div(one, two);
+        assertEquals(one / two, result);
+    }
+    
+    @Test
+    public void divZero(){
+        int zero = 0;
+        int one = 3;
+        int result = div(one, zero);
+        assertEquals(one / zero, result);
+    }
+    
+    private static int plus(int arg0, int arg1) {
+        dk.dtu.ws.CalculatorService service = new dk.dtu.ws.CalculatorService();
+        dk.dtu.ws.Calculator port = service.getCalculatorPort();
+        return port.plus(arg0, arg1);
+    }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    private static int minus(int arg0, int arg1) {
+        dk.dtu.ws.CalculatorService service = new dk.dtu.ws.CalculatorService();
+        dk.dtu.ws.Calculator port = service.getCalculatorPort();
+        return port.minus(arg0, arg1);
+    }
+
+    private static int mult(int arg0, int arg1) {
+        dk.dtu.ws.CalculatorService service = new dk.dtu.ws.CalculatorService();
+        dk.dtu.ws.Calculator port = service.getCalculatorPort();
+        return port.mult(arg0, arg1);
+    }
+    
+    private static int div(int arg0, int arg1) {
+        dk.dtu.ws.CalculatorService service = new dk.dtu.ws.CalculatorService();
+        dk.dtu.ws.Calculator port = service.getCalculatorPort();
+        return port.div(arg0, arg1);
+    }
 }
