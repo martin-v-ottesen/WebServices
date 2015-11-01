@@ -10,9 +10,15 @@
 
 # NetBeans Files #
 
-build
-nbproject
-dist
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
 build.xml
 
 
@@ -160,4 +166,3 @@ sympy-plots-for-*.tex/
 *.sav
 manifest.mf
 catalog.xml
-
