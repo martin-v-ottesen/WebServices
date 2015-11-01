@@ -162,3 +162,10 @@ sympy-plots-for-*.tex/
 *.sav
 manifest.mf
 catalog.xml
+/Exercises/NewFolder/HelloWorldBpelModule/nbproject/private/
+/Exercises/NewFolder/HelloWorldApp/nbproject/private/
+/Exercises/NewFolder/HelloWorldBpelModule/build/
+/Exercises/NewFolder/HelloWorldApp/src/jbiServiceUnits/
+/Exercises/NewFolder/HelloWorldApp/build/
+/Exercises/NewFolder/HelloWorldApp/dist/
+/Exercises/NewFolder/HelloWorldApp/test/results/
