@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/HelloWorldBpelModule/helloWorldBpelModule" xmlns:ns1="http://j2ee.netbeans.org/wsdl/HelloWorldBpelModule/src/HelloWorldWSDL" xmlns:ns2="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="HelloWorldWSDLPortTypeRole_myRole" interface-name="ns1:HelloWorldWSDLPortType" service-name="ns0:PartnerLink1">
+            <ns2:display-name>PartnerLink1</ns2:display-name>
+            <ns2:process-name>helloWorldBpelModule</ns2:process-name>
+            <ns2:file-path>helloWorldBpelModule.bpel</ns2:file-path>
+        </provides>
+    </services>
+</jbi>
