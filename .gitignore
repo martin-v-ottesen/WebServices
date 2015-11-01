@@ -10,7 +10,7 @@
 
 # NetBeans Files #
 
-nbproject/
+nbproject/private/
 build/
 nbbuild/
 dist/
