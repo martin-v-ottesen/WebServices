@@ -1,0 +1,50 @@
+ \include{preamble/preamble_ida12}						% Preamble indlæses
+\raggedbottom											% Sørger for at LaTeX ikke "strækker" teksten
+
+
+
+\begin{document}										% Starter dokumentet - obligatorisk
+\frontmatter											% Forindhold nummereres med romertal
+
+
+
+% \include{Chapters/Frontpage/frontpage}
+\cleardoublepage										% Indsætter tom side, så næste kapitel starter på højre side (hvis nødvendigt)
+
+
+
+% \include{Chapters/pre_ToC/pre_ToC}						% Forindhold
+\cleardoublepage
+
+
+%%%% Indholdsfortegnelse (TOC) %%%%
+\phantomsection											% Kunstigt afsnit, som hyperlinks kan 'holde fast i'
+\pdfbookmark[0]{Indholdsfortegnelse}{indhold}			% Tildeler en klikbar bookmark til den endelige PDF
+\tableofcontents*										% Indholdsfortegnelsen (kaldet ToC)
+
+
+
+\mainmatter												% Hovedindhold - nummereres fra side 1
+
+
+
+\include{Chapters/Introduction/Introduction}
+\include{Chapters/Coordination_Protocol/Coordination_Protocol}
+\include{Chapters/Web_Service_Implementations/Web_Service_Implementations}
+\include{Chapters/Web_Service_Discovery/Web_Service_Discovery}
+\include{Chapters/Advanced_Web_Service_Technology/Adv_web_service_tech}
+
+\include{Chapters/Comparison_Restful_And_Soap_Bpel_Web_Services/Comparison_Restful_And_Soap_Bpel_Web_Services}
+\include{Chapters/Conclusion/Conclusion}
+\include{Chapters/Who_Did_What/Who_Did_What}
+
+
+
+
+%%%% Fixme-listen %%%%
+%\newpage												% Ny side til Fixme-listen
+%\listoffixmes											% Fixme-listen - udkommenteres til sidst i projektet
+
+
+
+\end{document}											% Slutter dokumentet - obligatorisk
