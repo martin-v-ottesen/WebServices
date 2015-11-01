@@ -9,14 +9,12 @@
 *.ear
 
 # NetBeans Files #
+
+build
+nbproject
+dist
 build.xml
-*/build/*
-*/nbproject/*
-*/dist/*
-*/build.xml
-*/*/build/*
-*/*/nbproject/*
-*/*/dist/*
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -162,16 +160,4 @@ sympy-plots-for-*.tex/
 *.sav
 manifest.mf
 catalog.xml
-
-/Exercises/HelloWorldApp/src/jbiServiceUnits/
-/Exercises/HelloWorldAPP/src/jbiServiceUnits/
-/Exercises/HelloWorldAPP/test/results/
-
-/Exercises/NewFolder/HelloWorldBpelModule/nbproject/private/
-/Exercises/NewFolder/HelloWorldApp/nbproject/private/
-/Exercises/NewFolder/HelloWorldBpelModule/build/
-/Exercises/NewFolder/HelloWorldApp/src/jbiServiceUnits/
-/Exercises/NewFolder/HelloWorldApp/build/
-/Exercises/NewFolder/HelloWorldApp/dist/
-/Exercises/NewFolder/HelloWorldApp/test/results/
 
