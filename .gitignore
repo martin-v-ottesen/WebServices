@@ -162,3 +162,6 @@ sympy-plots-for-*.tex/
 *.sav
 manifest.mf
 catalog.xml
+/Exercises/HelloWorldApp/src/jbiServiceUnits/
+/Exercises/HelloWorldAPP/src/jbiServiceUnits/
+/Exercises/HelloWorldAPP/test/results/
