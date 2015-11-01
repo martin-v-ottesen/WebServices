@@ -13,6 +13,7 @@ build.xml
 */build/*
 */nbproject/*
 */dist/*
+*/build.xml
 */*/build/*
 */*/nbproject/*
 */*/dist/*
@@ -159,3 +160,5 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
+manifest.mf
+catalog.xml
