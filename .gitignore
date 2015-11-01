@@ -8,6 +8,11 @@
 *.war
 *.ear
 
+# NetBeans Files #
+build.xml
+*/build/*
+*/nbproject/*
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -150,3 +155,5 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
+
+
