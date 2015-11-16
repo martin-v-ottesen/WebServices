@@ -44,4 +44,6 @@ public class HotelBookingInformation {
         this.bookingNumber = bookingNumber;
     }
     
+    
+    
 }

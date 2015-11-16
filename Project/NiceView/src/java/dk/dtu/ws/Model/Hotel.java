@@ -5,53 +5,71 @@
  */
 package dk.dtu.ws.Model;
 
+import java.util.Date;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 /**
  *
  * @author dxong
  */
 public class Hotel {                                                        
     private String name;
+    private String city;
     private String address;
-    private int bookingNumber;
-    private double price;
+    private double dayPrice;
+    private Date vacantStart;
+    private Date vacantEnd;
 
-    public Hotel(String name, String address, int bookingNumber, double price) {
+    public Hotel(String name, String address, int bookingNumber, double dayPrice, String city, Date vacantStart, Date vacantEnd) {
         this.name = name;
+        this.city = city;
         this.address = address;
-        this.bookingNumber = bookingNumber;
-        this.price = price;
+
+        this.dayPrice = dayPrice;
+        this.vacantStart = vacantStart;
+        this.vacantEnd = vacantEnd;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public int getBookingNumber() {
-        return bookingNumber;
-    }
-
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getDayPrice() {
+        return dayPrice;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public Date getVacantStart() {
+        return vacantStart;
     }
 
-    public void setBookingNumber(int bookingNumber) {
-        this.bookingNumber = bookingNumber;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public Date getVacantEnd() {
+        return vacantEnd;
     }
     
+    public double priceOfStay(Date departure, Date arrival){
+        
+        Date d1 = arrival;
+	Date d2 = departure;
+        int days = 0;
+	try {
+		DateTime dt1 = new DateTime(d1);
+		DateTime dt2 = new DateTime(d2);
+                
+                days = Days.daysBetween(dt1, dt2).getDays();
+
+
+	 } catch (Exception e) {
+		e.printStackTrace();
+	 }
+        return getDayPrice() * (double) days;
+    }
 }
