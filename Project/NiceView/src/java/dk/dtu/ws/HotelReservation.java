@@ -15,6 +15,7 @@ import java.util.Date;
 public class HotelReservation {
     
     public String getHotels(String city,  Date arrival,  Date departure){
+        
         return "";
     }
     public String bookHotel(){
