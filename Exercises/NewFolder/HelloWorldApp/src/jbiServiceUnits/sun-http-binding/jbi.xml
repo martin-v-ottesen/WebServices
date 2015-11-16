@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="HelloWorldApp" xmlns:ns2="http://enterprise.netbeans.org/bpel/HelloWorldBpelModule/helloWorldBpelModule" xmlns:ns3="http://j2ee.netbeans.org/wsdl/HelloWorldBpelModule/src/HelloWorldWSDL" version="1.0">
+    <services binding-component="true">
+        <consumes endpoint-name="casaPort1" interface-name="ns3:HelloWorldWSDLPortType" service-name="ns1:HelloWorldAppService1"/>
+    </services>
+</jbi>

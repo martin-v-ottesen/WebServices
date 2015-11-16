@@ -9,14 +9,18 @@
 *.ear
 
 # NetBeans Files #
+
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
 build.xml
-*/build/*
-*/nbproject/*
-*/dist/*
-*/build.xml
-*/*/build/*
-*/*/nbproject/*
-*/*/dist/*
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
