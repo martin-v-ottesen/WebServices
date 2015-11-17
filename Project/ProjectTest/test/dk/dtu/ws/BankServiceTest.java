@@ -8,19 +8,16 @@ package dk.dtu.ws;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.AccountType;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
-import dk.dtu.imm.fastmoney.types.CreditCardInfoType.ExpirationDate;
 import org.junit.Test;
 import static org.junit.Assert.*;
-//import org.junit.Rule;
-//import org.junit.rules.ExpectedException;
 
 /**
  *
  * @author Martin
  */
-public class BankSecureServiceTest {
+public class BankServiceTest {
     
-    public BankSecureServiceTest() {
+    public BankServiceTest() {
     }
 //    @Rule
 //    public ExpectedException expectedEx = ExpectedException.none();
@@ -104,40 +101,56 @@ public class BankSecureServiceTest {
     }
     
     @Test
-    public void validate_1CreditCardValidFunds() throws CreditCardFaultMessage{
+    public void refundCreditCard() throws CreditCardFaultMessage{
         int group = 1;
-        int amount = 1000;
-        boolean result = validateCreditCard_1(group, validCard(), amount);
+        int amount = 1000;      
+        
+        boolean result = refundCreditCard(group, validCard(), amount, validAccount());
         assertEquals(true, result);
     }
     
     @Test
-    public void validate_1CreditCardInvalidFunds() throws CreditCardFaultMessage{       
+    public void refundInvalidCreditCard(){
         int group = 1;
-        int amount = 1000;
-        boolean result = validateCreditCard_1(group, validCardInsufficiantFunds(), amount);
-        // I don't understand this result
-        assertEquals(true, result);
-    }
-    
-    @Test
-    public void validate_1InvalidCreditCard() {
-        int group = 1;
-        int amount = 1000;
-        try {
-            boolean result = validateCreditCard_1(group, invalidCard(), amount);
+        int amount = 1000;      
+        
+        try{
+            boolean result = refundCreditCard(group, invalidCard(), amount, validAccount());
         } catch (CreditCardFaultMessage e) {
             assertEquals("Credit card does not exist", e.getMessage());
+        }
+    }
+    
+    @Test
+    public void refundCreditCardInvalidReciverAccount(){
+        int group = 1;
+        int amount = 1000;      
+        
+        try{
+            boolean result = refundCreditCard(group, validCard(), amount, invalidAccount());
+        } catch (CreditCardFaultMessage e) {
+            assertEquals("Account does not exist", e.getMessage());
         }       
     }
     
+    @Test
+    public void refundCreditInvalidCardAndInvalidReciverAccount(){
+        int group = 1;
+        int amount = 1000;      
+        
+        try{
+            boolean result = refundCreditCard(group, invalidCard(), amount, invalidAccount());
+        } catch (CreditCardFaultMessage e) {
+            assertEquals("Credit card does not exist", e.getMessage());
+        }
+    }
     
     private CreditCardInfoType validCard(){
         CreditCardInfoType testCard = new CreditCardInfoType();
         testCard.setName("Thor-Jensen Claus");
         testCard.setNumber("50408825");
         
-        ExpirationDate expirationDate = new ExpirationDate();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
         expirationDate.setYear(9);
         expirationDate.setMonth(5);
         testCard.setExpirationDate(expirationDate);
@@ -150,7 +163,7 @@ public class BankSecureServiceTest {
         testCard.setName("Thor-Jensen Claus");
         testCard.setNumber("50408825");
         
-        ExpirationDate expirationDate = new ExpirationDate();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
         expirationDate.setYear(5);
         expirationDate.setMonth(9);
         testCard.setExpirationDate(expirationDate);
@@ -163,7 +176,7 @@ public class BankSecureServiceTest {
         testCard.setName("Anne Strandberg");
         testCard.setNumber("50408816");
         
-        ExpirationDate expirationDate = new ExpirationDate();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
         expirationDate.setYear(9);
         expirationDate.setMonth(5);
         testCard.setExpirationDate(expirationDate);
@@ -186,20 +199,22 @@ public class BankSecureServiceTest {
     }
 
     private static boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
-        dk.dtu.imm.fastmoney.BankSecureService service = new dk.dtu.imm.fastmoney.BankSecureService();
-        dk.dtu.imm.fastmoney.BankPortType port = service.getBankSecurePort();
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
     }
 
     private static boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
-        dk.dtu.imm.fastmoney.BankSecureService service = new dk.dtu.imm.fastmoney.BankSecureService();
-        dk.dtu.imm.fastmoney.BankPortType port = service.getBankSecurePort();
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private static boolean validateCreditCard_1(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
-        dk.dtu.imm.fastmoney.BankSecureService service = new dk.dtu.imm.fastmoney.BankSecureService();
-        dk.dtu.imm.fastmoney.BankPortType port = service.getBankSecurePort();
-        return port.validateCreditCard(group, creditCardInfo, amount);
+    private static boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
+        return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
+    
+    
 }
