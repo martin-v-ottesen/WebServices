@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="shipper" targetNamespace="http://shipper.ws"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://shipper.ws" xmlns:ns="urn:orderData" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://shipper.ws">
+            <xsd:import namespace="urn:orderData" schemaLocation="orderData.xsd"/>
+            <xsd:element name="shipOrderFailure" type="xsd:string"></xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="shipOrderRequest">
+        <part name="customer" type="ns:customerType"/>
+        <part name="order" type="ns:orderType"/>
+    </message>
+    <message name="shipOrderResponse">
+        <part name="result" type="xsd:string"/>
+    </message>
+    <message name="cancelShipmentRequest">
+        <part name="customer" type="ns:customerIDType"/>
+        <part name="order" type="ns:orderIDType"/>
+    </message>
+    <message name="cancelShipmentResponse">
+        <part name="result" type="xsd:string"/>
+    </message>
+    <message name="shipOrderFailure">
+        <part name="part1" element="tns:shipOrderFailure"/>
+    </message>
+    <portType name="shipperPortType">
+        <operation name="shipOrder">
+            <input name="input1" message="tns:shipOrderRequest"/>
+            <output name="output1" message="tns:shipOrderResponse"/>
+            <fault name="fault1" message="tns:shipOrderFailure"/>
+        </operation>
+        <operation name="cancelShipment">
+            <input name="input2" message="tns:cancelShipmentRequest"/>
+            <output name="output2" message="tns:cancelShipmentResponse"/>
+        </operation>
+    </portType>
+    <binding name="shipperPortTypeBinding" type="tns:shipperPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="shipOrder">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="http://shipper.ws"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="http://shipper.ws"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" namespace="http://shipper.ws"/>
+            </fault>
+        </operation>
+        <operation name="cancelShipment">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal" namespace="http://shipper.ws"/>
+            </input>
+            <output name="output2">
+                <soap:body use="literal" namespace="http://shipper.ws"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="shipperService">
+        <port name="shipperPortTypeBindingPort" binding="tns:shipperPortTypeBinding">
+            <soap:address location="http://localhost:8080/Shipper/shipperService"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="shipper">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="shipperPortTypeRole" portType="tns:shipperPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
+
+
+
+
+

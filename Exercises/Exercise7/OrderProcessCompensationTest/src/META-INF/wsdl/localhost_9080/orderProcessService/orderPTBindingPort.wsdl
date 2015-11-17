@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="urn:orderData" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:orderProcess" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="orderProcess" targetNamespace="urn:orderProcess">
+  <types>
+    <xsd:schema targetNamespace="urn:orderProcess">
+            <xsd:import namespace="urn:orderData" schemaLocation="http://192.168.1.48:9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd"/>
+            <xsd:complexType name="resultType">
+                <xsd:sequence>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="customemrID" type="ns1:customerIDType"/>
+                    <xsd:element name="orderID" type="ns1:orderIDType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="noitems" type="xsd:string"/>
+        </xsd:schema>
+  </types>
+  <message name="receiveOrderRequest">
+    <part name="customer" type="ns1:customerType">
+    </part>
+    <part name="order" type="ns1:orderType">
+    </part>
+  </message>
+  <message name="receiveOrderResponse">
+    <part name="result" type="tns:resultType">
+    </part>
+  </message>
+  <message name="cancelOrderRequest">
+    <part name="customerId" type="ns1:customerIDType">
+    </part>
+    <part name="orderId" type="ns1:orderIDType">
+    </part>
+  </message>
+  <message name="payResponse">
+    <part name="result" type="tns:resultType">
+    </part>
+  </message>
+  <message name="payRequest">
+    <part name="customerID" type="ns1:customerIDType">
+    </part>
+    <part name="orderID" type="ns1:customerIDType">
+    </part>
+    <part name="creditcard" type="ns1:creditcardType">
+    </part>
+  </message>
+  <message name="cancelOrderResponse">
+    <part name="result" type="xsd:string">
+    </part>
+  </message>
+  <message name="receiveOrderFault">
+    <part element="tns:noitems" name="part1">
+    </part>
+  </message>
+  <portType name="orderPT">
+    <operation name="receiveOrder">
+      <input message="tns:receiveOrderRequest" name="input1">
+    </input>
+      <output message="tns:receiveOrderResponse" name="output1">
+    </output>
+      <fault message="tns:receiveOrderFault" name="fault1">
+    </fault>
+    </operation>
+    <operation name="pay">
+      <input message="tns:payRequest" name="input2">
+    </input>
+      <output message="tns:payResponse" name="output2">
+    </output>
+    </operation>
+    <operation name="cancelOrder">
+      <input message="tns:cancelOrderRequest" name="input3">
+    </input>
+      <output message="tns:cancelOrderResponse" name="output3">
+    </output>
+    </operation>
+  </portType>
+  <binding name="orderPTBinding" type="tns:orderPT">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="receiveOrder">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </input>
+      <output name="output1">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </output>
+      <fault name="fault1">
+        <soap:fault name="fault1" namespace="urn:orderProcess" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="pay">
+      <soap:operation/>
+      <input name="input2">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </input>
+      <output name="output2">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </output>
+    </operation>
+    <operation name="cancelOrder">
+      <input name="input3">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </input>
+      <output name="output3">
+        <soap:body namespace="urn:orderProcess" use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="orderProcessService">
+    <port binding="tns:orderPTBinding" name="orderPTBindingPort">
+      <soap:address location="http://192.168.1.48:9080/orderProcessService/orderPTBindingPort"/>
+    </port>
+  </service>
+    <plnk:partnerLinkType name="orderProcess">
+        <plnk:role name="orderPTRole" portType="tns:orderPT"/>
+    </plnk:partnerLinkType>
+    <vprop:property name="CustomerId" type="ns1:customerIDType"/>
+    <vprop:property name="OrderId" type="ns1:orderIDType"/>
+    <vprop:propertyAlias messageType="tns:payRequest" part="customerID" propertyName="tns:CustomerId"/>
+    <vprop:propertyAlias messageType="tns:payRequest" part="orderID" propertyName="tns:OrderId"/>
+    <vprop:propertyAlias messageType="tns:receiveOrderRequest" part="customer" propertyName="tns:CustomerId">
+        <vprop:query>ns1:id</vprop:query>
+    </vprop:propertyAlias>
+    <vprop:propertyAlias messageType="tns:receiveOrderRequest" part="order" propertyName="tns:OrderId">
+        <vprop:query>ns1:id</vprop:query>
+    </vprop:propertyAlias>
+    <vprop:propertyAlias messageType="tns:cancelOrderRequest" part="customerId" propertyName="tns:CustomerId"/>
+    <vprop:propertyAlias messageType="tns:cancelOrderRequest" part="orderId" propertyName="tns:OrderId"/>
+</definitions>

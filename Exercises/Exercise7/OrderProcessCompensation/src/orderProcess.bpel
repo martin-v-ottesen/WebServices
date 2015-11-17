@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="orderProcess"
+    targetNamespace="urn:orderProcessBPEL"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:tns="urn:orderProcessBPEL" xmlns:ns0="urn:orderProcess" xmlns:ns1="urn:orderData" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns2="http://shipper.ws" xmlns:ns3="http://bank.ws">
+    <import namespace="urn:orderProcess" location="orderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://shipper.ws" location="shipper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://bank.ws" location="bank.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PartnerLink2" xmlns:tns="http://bank.ws" partnerLinkType="tns:bank" partnerRole="bankPortTypeRole"/>
+        <partnerLink name="PartnerLink1" partnerLinkType="ns2:shipper" partnerRole="shipperPortTypeRole"/>
+        <partnerLink name="orderRequest" xmlns:tns="urn:orderProcess" partnerLinkType="tns:orderProcess" myRole="orderPTRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="DebitCreditCardOut" xmlns:tns="http://bank.ws" messageType="tns:debitCreditCardResponse"/>
+        <variable name="DebitCreditCardIn" xmlns:tns="http://bank.ws" messageType="tns:debitCreditCardRequest"/>
+        <variable name="ShipOrderOut" messageType="ns2:shipOrderResponse"/>
+        <variable name="ShipOrderIn" messageType="ns2:shipOrderRequest"/>
+        <variable name="PayOut" xmlns:tns="urn:orderProcess" messageType="tns:payResponse"/>
+        <variable name="PayIn" xmlns:tns="urn:orderProcess" messageType="tns:payRequest"/>
+        <variable name="ReceiveOrderOut" xmlns:tns="urn:orderProcess" messageType="tns:receiveOrderResponse"/>
+        <variable name="ReceiveOrderIn" xmlns:tns="urn:orderProcess" messageType="tns:receiveOrderRequest"/>
+    </variables>
+    <correlationSets>
+        <correlationSet name="PaymentCorrelation" properties="ns0:CustomerId ns0:OrderId"/>
+    </correlationSets>
+    <sequence>
+        <receive name="ReceiveOrderRequest" createInstance="yes" partnerLink="orderRequest" operation="receiveOrder" portType="ns0:orderPT" variable="ReceiveOrderIn">
+            <correlations>
+                    <correlation set="PaymentCorrelation" initiate="yes"/>
+                </correlations>
+        </receive>
+        <assign name="Assign1">
+            <copy>
+                    <from>'ok'</from>
+                        <to>$ReceiveOrderOut.result/status</to>
+                </copy>
+                <copy>
+                    <from>$ReceiveOrderIn.customer/ns1:id</from>
+                        <to>$ReceiveOrderOut.result/customemrID</to>
+                </copy>
+                <copy>
+                    <from>$ReceiveOrderIn.order/ns1:id</from>
+                        <to>$ReceiveOrderOut.result/orderID</to>
+                </copy>
+        </assign>
+        <reply name="Reply3" partnerLink="orderRequest" operation="receiveOrder" portType="ns0:orderPT" variable="ReceiveOrderOut"/>
+        <receive name="Receive1" partnerLink="orderRequest" operation="pay" portType="ns0:orderPT" createInstance="no" variable="PayIn">
+            <correlations>
+                <correlation set="PaymentCorrelation" initiate="no"/>
+            </correlations>
+        </receive>
+        <assign name="Assign5">
+            <copy>
+                    <from variable="ReceiveOrderIn" part="customer"/>
+                        <to variable="DebitCreditCardIn" part="customer"/>
+                </copy>
+                <copy>
+                    <from variable="PayIn" part="creditcard"/>
+                        <to variable="DebitCreditCardIn" part="creditcard"/>
+                </copy>
+                <copy>
+                    <from>1000.0</from>
+                        <to variable="DebitCreditCardIn" part="amount"/>
+                </copy>
+        </assign>
+        <invoke name="Invoke2" partnerLink="PartnerLink2" operation="debitCreditCard" portType="ns3:bankPortType" inputVariable="DebitCreditCardIn" outputVariable="DebitCreditCardOut"/>
+        <assign name="Assign2">
+            <copy>
+                    <from variable="DebitCreditCardOut" part="result"/>
+                        <to>$PayOut.result/status</to>
+                </copy>
+                <copy>
+                    <from variable="PayIn" part="customerID"/>
+                        <to>$PayOut.result/customemrID</to>
+                </copy>
+                <copy>
+                    <from variable="PayIn" part="orderID"/>
+                        <to>$PayOut.result/orderID</to>
+                </copy>
+        </assign>
+        <assign name="Assign4">
+            <copy>
+                    <from variable="ReceiveOrderIn" part="customer"/>
+                        <to variable="ShipOrderIn" part="customer"/>
+                </copy>
+                <copy>
+                    <from variable="ReceiveOrderIn" part="order"/>
+                        <to variable="ShipOrderIn" part="order"/>
+                </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="PartnerLink1" operation="shipOrder" portType="ns2:shipperPortType" inputVariable="ShipOrderIn" outputVariable="ShipOrderOut"/>
+        <reply name="Reply1" partnerLink="orderRequest" operation="pay" portType="ns0:orderPT" variable="PayOut"/>
+    </sequence>
+</process>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

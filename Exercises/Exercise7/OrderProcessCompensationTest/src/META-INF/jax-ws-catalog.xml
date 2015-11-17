@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:9080/orderProcessService/orderPTBindingPort?wsdl" uri="wsdl/localhost_9080/orderProcessService/orderPTBindingPort.wsdl"/>
+    <system systemId="http://huba:9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd" uri="wsdl/huba_9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd"/>
+    <system systemId="http://192.168.1.76:9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd" uri="wsdl/192.168.1.76_9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd"/>
+    <system systemId="http://192.168.1.64:9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd" uri="wsdl/192.168.1.64_9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd"/>
+    <system systemId="http://192.168.1.66:9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd" uri="wsdl/192.168.1.66_9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd"/>
+    <system systemId="http://10.16.132.209:9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd" uri="wsdl/10.16.132.209_9080/CorrelationSetOrderExampleApplication-sun-http-binding/CorrelationSetOrderExample/orderData.xsd"/>
+    <system systemId="http://10.16.129.213:9080/OrderProcessApp-sun-http-binding/OrderProcess/orderData.xsd" uri="wsdl/10.16.129.213_9080/OrderProcessApp-sun-http-binding/OrderProcess/orderData.xsd"/>
+    <system systemId="http://192.168.1.125:9080/OrderProcessApp-sun-http-binding/OrderProcess/orderData.xsd" uri="wsdl/192.168.1.125_9080/OrderProcessApp-sun-http-binding/OrderProcess/orderData.xsd"/>
+    <system systemId="http://192.168.1.157:9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd" uri="wsdl/192.168.1.157_9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd"/>
+    <system systemId="http://imm-nbhuba.imm.dtu.dk:9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd" uri="wsdl/imm-nbhuba.imm.dtu.dk_9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd"/>
+    <system systemId="http://192.168.1.48:9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd" uri="wsdl/192.168.1.48_9080/OrderProcessCompensationApp-sun-http-binding/OrderProcessCompensation/orderData.xsd"/>
+</catalog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
