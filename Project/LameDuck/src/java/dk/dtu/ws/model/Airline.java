@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.dtu.ws;
+package dk.dtu.ws.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import org.joda.time.DateTime;
 import org.jvnet.staxex.util.FinalArrayList;
 
@@ -17,8 +15,8 @@ import org.jvnet.staxex.util.FinalArrayList;
  */
 public class Airline {
 
-    String name;
-    ArrayList<Flightinformation> flights;
+    private String name;
+    private ArrayList<Flightinformation> flights;
     
     public Airline(String name) {
         this.name = name;

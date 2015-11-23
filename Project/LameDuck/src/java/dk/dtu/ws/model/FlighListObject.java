@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.dtu.ws;
+package dk.dtu.ws.model;
 
 /**
  *

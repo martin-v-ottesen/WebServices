@@ -1,12 +1,13 @@
 package dk.dtu.ws;
 
+import dk.dtu.ws.model.Airline;
+import dk.dtu.ws.model.Bookings;
+import dk.dtu.ws.model.FlighListObject;
+import dk.dtu.ws.model.Flightinformation;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.xml.ws.WebServiceRef;
 import org.joda.time.*;
 
@@ -32,13 +33,13 @@ public class AirlineReservation {
     public boolean setFightData(int bookingNumber, String airlineName, String airlineReservationService, String startDestination, String endDestination, DateTime departureTime, DateTime arrivalTime, int bookingPrice) throws FileNotFoundException {
         Flightinformation info = new Flightinformation(bookingNumber, startDestination, endDestination, departureTime, arrivalTime, bookingPrice);
         for (Airline airline : airlines) {
-            if (airline.name.equals(airlineName.toLowerCase())) {
-                airline.flights.add(info);
+            if (airline.getName().equals(airlineName.toLowerCase())) {
+                airline.getFlights().add(info);
                 return true;
             }
         }
         Airline airline = new Airline(airlineName.toLowerCase());
-        airline.flights.add(info);
+        airline.getFlights().add(info);
         airlines.add(airline);
         return true;
     }

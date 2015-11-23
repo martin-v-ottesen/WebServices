@@ -1,7 +1,5 @@
-package dk.dtu.ws;
+package dk.dtu.ws.model;
 
-import java.util.Calendar;
-import java.util.Date;
 import org.joda.time.DateTime;
 
 /**

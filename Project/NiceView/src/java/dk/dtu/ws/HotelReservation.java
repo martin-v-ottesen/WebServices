@@ -5,9 +5,12 @@
  */
 package dk.dtu.ws;
 
+import dk.dtu.imm.fastmoney.BankService;
+import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.ws.Model.HotelBookingInformation;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -15,6 +18,8 @@ import java.util.Date;
  */
 @javax.jws.WebService
 public class HotelReservation {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
+    private BankService service;
     
     ArrayList<HotelBookingInformation> hotelList = new ArrayList<HotelBookingInformation>();
     
@@ -40,12 +45,33 @@ public class HotelReservation {
         }
         return vacantHotel;
     }
-    public String bookHotel(int bookingNumber , String creditCardNumber){
+    public String bookHotel(int bookingNumber , dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo){
         //if()
         return "";
     }
-    public String cancelHotel(){
+    public String cancelHotel(int bookingNumber , dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo){
         return "";
+    }
+
+    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
+        return port.validateCreditCard(group, creditCardInfo, amount);
+    }
+
+    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
+        return port.chargeCreditCard(group, creditCardInfo, amount, account);
+    }
+
+    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
+        return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
     
 }
