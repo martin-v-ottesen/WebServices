@@ -6,13 +6,14 @@
 package dk.dtu.ws.model;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Martin
  */
-public class Bookings {
+public class Bookings implements Serializable{
     private dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo;
     private ArrayList<FlightListObject> flights;    
 

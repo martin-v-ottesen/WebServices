@@ -5,6 +5,7 @@
  */
 package dk.dtu.ws.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import org.joda.time.DateTime;
 
@@ -12,7 +13,7 @@ import org.joda.time.DateTime;
  *
  * @author Martin
  */
-public class Airline {
+public class Airline implements Serializable{
 
     private String name;
     private ArrayList<FlightInformation> flights;

@@ -1,12 +1,13 @@
 package dk.dtu.ws.model;
 
+import java.io.Serializable;
 import org.joda.time.DateTime;
 
 /**
  *
  * @author Martin
  */
-public class FlightInformation {
+public class FlightInformation implements Serializable{
     private int bookingNumber;
     private String startDestination;
     private String endDestination;

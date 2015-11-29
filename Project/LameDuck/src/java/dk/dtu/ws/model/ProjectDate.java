@@ -5,13 +5,14 @@
  */
 package dk.dtu.ws.model;
 
+import java.io.Serializable;
 import org.joda.time.DateTime;
 
 /**
  *
  * @author jacobmulvad
  */
-public class ProjectDate {
+public class ProjectDate implements Serializable{
     private int year;
     private int month;
     private int day;

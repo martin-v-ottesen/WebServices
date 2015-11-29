@@ -5,11 +5,13 @@
  */
 package dk.dtu.ws.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Martin
  */
-public class FlightListObject {
+public class FlightListObject implements Serializable{
     private String airline;
     private FlightInformation flight;
     private String reservationService = "LameDuck";

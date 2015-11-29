@@ -8,6 +8,7 @@ import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.ws.model.ProjectDate;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.xml.ws.WebServiceRef;
 import org.joda.time.*;
@@ -17,7 +18,7 @@ import org.joda.time.*;
  * @author Martin
  */
 @javax.jws.WebService
-public class AirlineReservation {
+public class AirlineReservation implements Serializable {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
 
