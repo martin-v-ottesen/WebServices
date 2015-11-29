@@ -43,6 +43,18 @@ public class AirlineReservation {
         airlines.add(airline);
         return true;
     }
+    
+    //For testpurposes ONLY!
+    public boolean clear(){
+        try{
+            this.airlines.clear();
+            this.bookingList.clear();
+            this.bookingObjects.clear();
+        } catch(Exception e){
+            return false;
+        }
+        return true;        
+    }
 
     public ArrayList<FlighListObject> getFlights(String Start, String Destination, DateTime date) {
         ArrayList<FlighListObject> eligibleFlights = null;
