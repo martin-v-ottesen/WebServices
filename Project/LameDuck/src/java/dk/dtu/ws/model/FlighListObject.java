@@ -12,6 +12,7 @@ package dk.dtu.ws.model;
 public class FlighListObject {
     private String airline;
     private Flightinformation flight;
+    private String reservationService = "LameDuck";
 
     public FlighListObject(String airline, Flightinformation flight) {
         this.airline = airline;
@@ -24,5 +25,9 @@ public class FlighListObject {
 
     public Flightinformation getFlight() {
         return flight;
+    }
+    
+    public String getReservationService(){
+        return this.reservationService;
     }
 }

@@ -43,6 +43,18 @@ public class AirlineReservation {
         airlines.add(airline);
         return true;
     }
+    
+    //For testpurposes ONLY!
+    public boolean clear(){
+        try{
+            this.airlines.clear();
+            this.bookingList.clear();
+            this.bookingObjects.clear();
+        } catch(Exception e){
+            return false;
+        }
+        return true;        
+    }
 
     public ArrayList<FlighListObject> getFlights(String Start, String Destination, DateTime date) {
         ArrayList<FlighListObject> eligibleFlights = null;
@@ -74,22 +86,21 @@ public class AirlineReservation {
         return false;
     }
 
-    public boolean cancelFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
-        if(validateCreditCard(1, creditCardInfo, 0)){
-            for(FlighListObject bookingObject : bookingObjects){
-                refundCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice()/2, BankAccount.validAccount()); 
-                if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
-                    for (Bookings booking : bookingList){
-                        if (booking.getCreditCardInfo().equals(creditCardInfo)){
-                            booking.removeFlight(bookingObject);
-                            return true;
-                        }
+    public boolean cancelFlight(int bookingNumber, int price, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
+        refundCreditCard(1, creditCardInfo,  price/2, BankAccount.validAccount());
+        
+        for(FlighListObject bookingObject : bookingObjects){
+            if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
+                for (Bookings booking : bookingList){
+                    if (booking.getCreditCardInfo().equals(creditCardInfo)){
+                        booking.removeFlight(bookingObject);
+                        return true;
                     }
-                    return true;                
                 }
+                return true;                
             }
-        }        
-        return false;
+        }
+        return true;
     }
 
     private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
