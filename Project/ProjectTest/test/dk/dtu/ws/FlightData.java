@@ -5,40 +5,84 @@
  */
 package dk.dtu.ws;
 
-import org.joda.time.DateTime;
-
 public class FlightData {
     static final FlightInformation Flight1(){
-        DateTime departureTime = new DateTime(2015, 11, 29, 22, 0, 0, 0);
-        DateTime arrivalTime = new DateTime(2015, 11, 30, 12, 0, 0, 0);
+        ProjectDate departureTime = new ProjectDate();
+        departureTime.setYear(2015);
+        departureTime.setMonth(11);
+        departureTime.setDay(29);
+        ProjectDate arrivalTime = new ProjectDate();
+        arrivalTime.setYear(2015);
+        arrivalTime.setMonth(11);
+        arrivalTime.setDay(30);
+        
         FlightInformation flight1 = new FlightInformation();
         flight1.setBookingNumber(1001);
         flight1.setStartDestination("Copenhagen");
         flight1.setEndDestination("Bruxelles");
-        //flight1.setDepartureTime(departureTime);
-        //flight1.setArrivalTime();
+        flight1.setDepartureTime(departureTime);
         flight1.setBookingPrice(1500);
         
         return flight1;
     }
     
+    static final FlightInformation Flight4(){
+        ProjectDate departureTime = new ProjectDate();
+        departureTime.setYear(2015);
+        departureTime.setMonth(11);
+        departureTime.setDay(29);
+        ProjectDate arrivalTime = new ProjectDate();
+        arrivalTime.setYear(2015);
+        arrivalTime.setMonth(11);
+        arrivalTime.setDay(30);
+        
+        FlightInformation flight1 = new FlightInformation();
+        flight1.setBookingNumber(1004);
+        flight1.setStartDestination("Copenhagen");
+        flight1.setEndDestination("Bruxelles");
+        flight1.setDepartureTime(departureTime);
+        flight1.setBookingPrice(700);
+        
+        return flight1;
+    }
+    
     static final FlightInformation Flight2(){
+        ProjectDate departureTime = new ProjectDate();
+        departureTime.setYear(2015);
+        departureTime.setMonth(12);
+        departureTime.setDay(5);
+        ProjectDate arrivalTime = new ProjectDate();
+        arrivalTime.setYear(2015);
+        arrivalTime.setMonth(12);
+        arrivalTime.setDay(6);
         
+        FlightInformation flight1 = new FlightInformation();
+        flight1.setBookingNumber(1002);
+        flight1.setStartDestination("Bruxelles");
+        flight1.setEndDestination("Copenhagen");
+        flight1.setDepartureTime(departureTime);
+        flight1.setBookingPrice(1200);
         
-        FlightInformation flight2 = new FlightInformation();
-        flight2.setBookingNumber(1002);
-        flight2.setStartDestination("Bruxelles");
-        flight2.setEndDestination("Copenhagen");
-        return flight2;
+        return flight1;
     }
     
     static final FlightInformation Flight3(){
+        ProjectDate departureTime = new ProjectDate();
+        departureTime.setYear(2015);
+        departureTime.setMonth(12);
+        departureTime.setDay(8);
+        ProjectDate arrivalTime = new ProjectDate();
+        arrivalTime.setYear(2015);
+        arrivalTime.setMonth(12);
+        arrivalTime.setDay(9);
         
+        FlightInformation flight1 = new FlightInformation();
+        flight1.setBookingNumber(1003);
+        flight1.setStartDestination("Copenhagen");
+        flight1.setEndDestination("London");
+        flight1.setDepartureTime(departureTime);
+        flight1.setBookingPrice(3500);
         
-        FlightInformation flight3 = new FlightInformation();
-        flight3.setBookingNumber(1002);
-        flight3.setStartDestination("Bruxelles");
-        flight3.setEndDestination("Copenhagen");
-        return flight3;
+        return flight1;
     }
 }

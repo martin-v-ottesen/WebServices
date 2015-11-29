@@ -28,9 +28,6 @@
 <message name="setFightDataResponse">
 <part name="parameters" element="tns:setFightDataResponse"/>
 </message>
-<message name="FileNotFoundException">
-<part name="fault" element="tns:FileNotFoundException"/>
-</message>
 <message name="getFlights">
 <part name="parameters" element="tns:getFlights"/>
 </message>
@@ -64,7 +61,6 @@
 <operation name="setFightData">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/setFightDataRequest" message="tns:setFightData"/>
 <output wsam:Action="http://ws.dtu.dk/AirlineReservation/setFightDataResponse" message="tns:setFightDataResponse"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://ws.dtu.dk/AirlineReservation/setFightData/Fault/FileNotFoundException"/>
 </operation>
 <operation name="getFlights">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/getFlightsRequest" message="tns:getFlights"/>
@@ -109,9 +105,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
 </operation>
 <operation name="getFlights">
 <soap:operation soapAction=""/>
