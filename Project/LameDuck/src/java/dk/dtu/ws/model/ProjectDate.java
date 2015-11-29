@@ -11,21 +11,21 @@ import org.joda.time.DateTime;
  *
  * @author jacobmulvad
  */
-public class Date {
+public class ProjectDate {
     private int year;
     private int month;
     private int day;
     
-    public Date(){
+    public ProjectDate(){
     }
     
-    public Date(org.joda.time.DateTime date){
+    public ProjectDate(org.joda.time.DateTime date){
         this.year = date.getYear();
         this.month = date.getMonthOfYear();
         this.day = date.getDayOfMonth();
     }
     
-    public Date(int year, int month, int day){
+    public ProjectDate(int year, int month, int day){
         setYear(year);
         setMonth(month);
         setDay(day);
@@ -61,7 +61,7 @@ public class Date {
         } else this.day = 1;
     }
     
-    public DateTime getJodaTime(Date date){
+    public DateTime getJodaTime(ProjectDate date){
         org.joda.time.DateTime dateAndTime = new DateTime(date.year, date.month, date.day, 12, 0, 0, 0);
         
         return dateAndTime;

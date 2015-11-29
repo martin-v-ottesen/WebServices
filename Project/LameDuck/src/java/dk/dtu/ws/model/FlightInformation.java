@@ -10,12 +10,12 @@ public class FlightInformation {
     private int bookingNumber;
     private String startDestination;
     private String endDestination;
-    private DateTime departureTime;
-    private DateTime arrivalTime;
+    private ProjectDate departureTime;
+    private ProjectDate arrivalTime;
     //private String carrier;
     private int bookingPrice;
 
-    public FlightInformation(int bookingNumber, String startDestination, String endDestination, DateTime departureTime, DateTime arrivalTime, /*String carrier,*/ int bookingPrice) {
+    public FlightInformation(int bookingNumber, String startDestination, String endDestination, ProjectDate departureTime, ProjectDate arrivalTime, /*String carrier,*/ int bookingPrice) {
         this.bookingNumber = bookingNumber;
         this.startDestination = startDestination;
         this.endDestination = endDestination;
@@ -25,11 +25,11 @@ public class FlightInformation {
         this.bookingPrice = bookingPrice;
     }
 
-    public DateTime getArrivalTime() {
+    public ProjectDate getArrivalTime() {
         return arrivalTime;
     }
     
-    public void setArrivalTime(DateTime ArrivalTime) {
+    public void setArrivalTime(ProjectDate ArrivalTime) {
         this.arrivalTime = ArrivalTime;
     }
 
@@ -48,11 +48,11 @@ public class FlightInformation {
         this.bookingPrice = bookingPrice;
     }
 
-    public DateTime getDepartureTime() {
+    public ProjectDate getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(DateTime departureTime) {
+    public void setDepartureTime(ProjectDate departureTime) {
         this.departureTime = departureTime;
     }
 

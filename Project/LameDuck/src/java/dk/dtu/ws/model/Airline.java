@@ -34,13 +34,13 @@ public class Airline {
         return flights;
     }
 
-    public ArrayList<FlightInformation> getFlights(String Start, String Destination, Date date) {
+    public ArrayList<FlightInformation> getFlights(String Start, String Destination, ProjectDate date) {
         ArrayList<FlightInformation> eligibleFlights = new ArrayList<>();
-        DateTime JDate = date.getJodaTime(date);
+        //DateTime JDate = date.getJodaTime(date);
         for (FlightInformation fligth : flights) {
             if (fligth.getStartDestination().toLowerCase().equals(Start.toLowerCase()) 
                     && fligth.getEndDestination().toLowerCase().equals(Destination.toLowerCase())
-                    && fligth.getDepartureTime().dayOfYear().equals(JDate.dayOfYear())) {
+                    && fligth.getDepartureTime().equals(date)) {
                 eligibleFlights.add(fligth);
             }
         }

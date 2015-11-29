@@ -6,7 +6,7 @@ import dk.dtu.ws.model.FlightListObject;
 import dk.dtu.ws.model.FlightInformation;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
-import dk.dtu.ws.model.Date;
+import dk.dtu.ws.model.ProjectDate;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.xml.ws.WebServiceRef;
@@ -21,9 +21,9 @@ public class AirlineReservation {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
 
-    private ArrayList<Airline> airlines;
-    private ArrayList<FlightListObject> bookingObjects;
-    private ArrayList<Bookings> bookingList;
+    private ArrayList<Airline> airlines = new ArrayList<Airline>();
+    private ArrayList<FlightListObject> bookingObjects = new ArrayList<>();
+    private ArrayList<Bookings> bookingList = new ArrayList<>();
 
     public boolean createAirline(String airlineName) {
         Airline airline = new Airline(airlineName.toLowerCase());
@@ -57,11 +57,11 @@ public class AirlineReservation {
         return true;        
     }
 
-    public ArrayList<FlightListObject> getFlights(String Start, String Destination, DateTime date) {
+    public ArrayList<FlightListObject> getFlights(String Start, String Destination, ProjectDate date) {
         ArrayList<FlightListObject> eligibleFlights = null;
         for (Airline airline : airlines) {
-            Date thisDate = new Date(date);
-            ArrayList<FlightInformation> flights = airline.getFlights(Start, Destination, thisDate);
+            //ProjectDate thisDate = new ProjectDate(date);
+            ArrayList<FlightInformation> flights = airline.getFlights(Start, Destination, date);
             for(FlightInformation flight : flights){
                 FlightListObject booking = new FlightListObject(Start, flight);
                 bookingObjects.add(booking);

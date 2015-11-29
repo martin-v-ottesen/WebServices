@@ -22,9 +22,30 @@ public class FlightListObject {
     public String getAirline() {
         return airline;
     }
+    
+    //Attempt by JGM
+    public void setAirLine(String airlineName){
+        if(!airlineName.isEmpty()){
+            this.airline = airlineName;
+        }
+    }
 
     public FlightInformation getFlight() {
         return flight;
+    }
+    
+    //Attempt by JGM
+    public void setFlight(FlightInformation flight){
+        if(flight != null){
+            this.flight = flight;
+        }
+    }
+    
+    public void setAirline(String name){
+        if(!name.isEmpty()){
+            this.airline = name;
+        }
+        else this.airline = "defaultName";
     }
     
     public String getReservationService(){
