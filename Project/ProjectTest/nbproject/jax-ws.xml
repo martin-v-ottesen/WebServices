@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://joshua:8080/LameDuck/AirlineReservationService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/LameDuck/AirlineReservationService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -54,7 +54,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://joshua:8080/NiceView/HotelReservationService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/NiceView/HotelReservationService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AirlineReservationService", targetNamespace = "http://ws.dtu.dk/", wsdlLocation = "http://joshua:8080/LameDuck/AirlineReservationService?wsdl")
+@WebServiceClient(name = "AirlineReservationService", targetNamespace = "http://ws.dtu.dk/", wsdlLocation = "http://localhost:8080/LameDuck/AirlineReservationService?wsdl")
 public class AirlineReservationService
     extends Service
 {
@@ -30,7 +30,7 @@ public class AirlineReservationService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://joshua:8080/LameDuck/AirlineReservationService?wsdl");
+            url = new URL("http://localhost:8080/LameDuck/AirlineReservationService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

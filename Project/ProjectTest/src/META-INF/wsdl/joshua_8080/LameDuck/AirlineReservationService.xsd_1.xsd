@@ -1,4 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.dtu.dk/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.dtu.dk/">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.dtu.dk/" xmlns:ns1="http://types.fastmoney.imm.dtu.dk" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.dtu.dk/">
+
+<xs:import namespace="http://types.fastmoney.imm.dtu.dk" schemaLocation="http://joshua:8080/LameDuck/AirlineReservationService?xsd=2"/>
+
+<xs:element name="FileNotFoundException" type="tns:FileNotFoundException"/>
 
 <xs:element name="bookFlight" type="tns:bookFlight"/>
 
@@ -8,37 +12,124 @@
 
 <xs:element name="cancelFlightResponse" type="tns:cancelFlightResponse"/>
 
+<xs:element name="createAirline" type="tns:createAirline"/>
+
+<xs:element name="createAirlineResponse" type="tns:createAirlineResponse"/>
+
 <xs:element name="getFlights" type="tns:getFlights"/>
 
 <xs:element name="getFlightsResponse" type="tns:getFlightsResponse"/>
 
+<xs:element name="setFightData" type="tns:setFightData"/>
+
+<xs:element name="setFightDataResponse" type="tns:setFightDataResponse"/>
+
+<xs:complexType name="createAirline">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createAirlineResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getFlights">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="tns:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dateTime" final="extension restriction">
+<xs:complexContent>
+<xs:extension base="tns:baseDateTime">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="baseDateTime" abstract="true">
+<xs:complexContent>
+<xs:extension base="tns:abstractDateTime">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="abstractDateTime" abstract="true">
+<xs:complexContent>
+<xs:extension base="tns:abstractInstant">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="abstractInstant" abstract="true">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="getFlightsResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:flighListObject" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="cancelFlight">
+<xs:complexType name="flighListObject">
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="cancelFlightResponse">
+<xs:complexType name="setFightData">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+<xs:element name="arg3" type="xs:string" minOccurs="0"/>
+<xs:element name="arg4" type="xs:string" minOccurs="0"/>
+<xs:element name="arg5" type="tns:dateTime" minOccurs="0"/>
+<xs:element name="arg6" type="tns:dateTime" minOccurs="0"/>
+<xs:element name="arg7" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setFightDataResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FileNotFoundException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="bookFlight">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="ns1:creditCardInfoType" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="bookFlightResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelFlight">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="ns1:creditCardInfoType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelFlightResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

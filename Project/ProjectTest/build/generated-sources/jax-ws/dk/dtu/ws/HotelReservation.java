@@ -1,13 +1,17 @@
 
 package dk.dtu.ws;
 
+import java.util.List;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Action;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 
 
 /**
@@ -18,37 +22,37 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "HotelReservation", targetNamespace = "http://ws.dtu.dk/")
 @XmlSeeAlso({
-    ObjectFactory.class
+    dk.dtu.imm.fastmoney.types.ObjectFactory.class,
+    dk.dtu.ws.ObjectFactory.class
 })
 public interface HotelReservation {
 
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
      * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "cancelHotel", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelHotel")
-    @ResponseWrapper(localName = "cancelHotelResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelHotelResponse")
-    @Action(input = "http://ws.dtu.dk/HotelReservation/cancelHotelRequest", output = "http://ws.dtu.dk/HotelReservation/cancelHotelResponse")
-    public String cancelHotel();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
+     *     returns java.util.List<dk.dtu.ws.HotelBookingInformation>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getHotels", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetHotels")
     @ResponseWrapper(localName = "getHotelsResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetHotelsResponse")
     @Action(input = "http://ws.dtu.dk/HotelReservation/getHotelsRequest", output = "http://ws.dtu.dk/HotelReservation/getHotelsResponse")
-    public String getHotels();
+    public List<HotelBookingInformation> getHotels(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        XMLGregorianCalendar arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        XMLGregorianCalendar arg2);
 
     /**
      * 
+     * @param arg1
+     * @param arg0
      * @return
      *     returns java.lang.String
      */
@@ -57,6 +61,30 @@ public interface HotelReservation {
     @RequestWrapper(localName = "bookHotel", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookHotel")
     @ResponseWrapper(localName = "bookHotelResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookHotelResponse")
     @Action(input = "http://ws.dtu.dk/HotelReservation/bookHotelRequest", output = "http://ws.dtu.dk/HotelReservation/bookHotelResponse")
-    public String bookHotel();
+    public String bookHotel(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        CreditCardInfoType arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "cancelHotel", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelHotel")
+    @ResponseWrapper(localName = "cancelHotelResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelHotelResponse")
+    @Action(input = "http://ws.dtu.dk/HotelReservation/cancelHotelRequest", output = "http://ws.dtu.dk/HotelReservation/cancelHotelResponse")
+    public String cancelHotel(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        CreditCardInfoType arg1);
+
+    public String getHotels();
 
 }

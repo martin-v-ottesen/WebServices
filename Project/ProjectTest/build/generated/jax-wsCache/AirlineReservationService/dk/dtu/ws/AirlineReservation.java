@@ -1,13 +1,17 @@
 
 package dk.dtu.ws;
 
+import java.util.List;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 
 
 /**
@@ -18,45 +22,134 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "AirlineReservation", targetNamespace = "http://ws.dtu.dk/")
 @XmlSeeAlso({
-    ObjectFactory.class
+    dk.dtu.imm.fastmoney.types.ObjectFactory.class,
+    dk.dtu.imm.fastmoney.ObjectFactory.class,
+    dk.dtu.ws.ObjectFactory.class
 })
 public interface AirlineReservation {
 
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
      * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "cancelFlight", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelFlight")
-    @ResponseWrapper(localName = "cancelFlightResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelFlightResponse")
-    @Action(input = "http://ws.dtu.dk/AirlineReservation/cancelFlightRequest", output = "http://ws.dtu.dk/AirlineReservation/cancelFlightResponse")
-    public String cancelFlight();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "bookFlight", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookFlight")
-    @ResponseWrapper(localName = "bookFlightResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookFlightResponse")
-    @Action(input = "http://ws.dtu.dk/AirlineReservation/bookFlightRequest", output = "http://ws.dtu.dk/AirlineReservation/bookFlightResponse")
-    public String bookFlight();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
+     *     returns java.util.List<dk.dtu.ws.FlighListObject>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getFlights", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlights")
     @ResponseWrapper(localName = "getFlightsResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlightsResponse")
     @Action(input = "http://ws.dtu.dk/AirlineReservation/getFlightsRequest", output = "http://ws.dtu.dk/AirlineReservation/getFlightsResponse")
-    public String getFlights();
+    public List<FlighListObject> getFlights(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        DateTime arg2);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws CreditCardFaultMessage
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "bookFlight", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookFlight")
+    @ResponseWrapper(localName = "bookFlightResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.BookFlightResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/bookFlightRequest", output = "http://ws.dtu.dk/AirlineReservation/bookFlightResponse", fault = {
+        @FaultAction(className = CreditCardFaultMessage.class, value = "http://ws.dtu.dk/AirlineReservation/bookFlight/Fault/CreditCardFaultMessage")
+    })
+    public boolean bookFlight(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        CreditCardInfoType arg1)
+        throws CreditCardFaultMessage
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws CreditCardFaultMessage
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "cancelFlight", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelFlight")
+    @ResponseWrapper(localName = "cancelFlightResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CancelFlightResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/cancelFlightRequest", output = "http://ws.dtu.dk/AirlineReservation/cancelFlightResponse", fault = {
+        @FaultAction(className = CreditCardFaultMessage.class, value = "http://ws.dtu.dk/AirlineReservation/cancelFlight/Fault/CreditCardFaultMessage")
+    })
+    public boolean cancelFlight(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        CreditCardInfoType arg1)
+        throws CreditCardFaultMessage
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createAirline", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CreateAirline")
+    @ResponseWrapper(localName = "createAirlineResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.CreateAirlineResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/createAirlineRequest", output = "http://ws.dtu.dk/AirlineReservation/createAirlineResponse")
+    public boolean createAirline(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg7
+     * @param arg6
+     * @return
+     *     returns boolean
+     * @throws FileNotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "setFightData", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.SetFightData")
+    @ResponseWrapper(localName = "setFightDataResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.SetFightDataResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/setFightDataRequest", output = "http://ws.dtu.dk/AirlineReservation/setFightDataResponse", fault = {
+        @FaultAction(className = FileNotFoundException_Exception.class, value = "http://ws.dtu.dk/AirlineReservation/setFightData/Fault/FileNotFoundException")
+    })
+    public boolean setFightData(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        String arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        DateTime arg5,
+        @WebParam(name = "arg6", targetNamespace = "")
+        DateTime arg6,
+        @WebParam(name = "arg7", targetNamespace = "")
+        int arg7)
+        throws FileNotFoundException_Exception
+    ;
 
 }

@@ -19,7 +19,7 @@
     <target name="wsimport-client-AirlineReservationService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/AirlineReservationService"/>
         <property name="wsdl-AirlineReservationService" location="xml-resources/web-service-references/AirlineReservationService/wsdl/joshua_8080/LameDuck/AirlineReservationService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AirlineReservationService" destdir="${build.generated.dir}/jax-wsCache/AirlineReservationService" wsdl="${wsdl-AirlineReservationService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://joshua:8080/LameDuck/AirlineReservationService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AirlineReservationService" destdir="${build.generated.dir}/jax-wsCache/AirlineReservationService" wsdl="${wsdl-AirlineReservationService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/LameDuck/AirlineReservationService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-AirlineReservationService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/AirlineReservationService"/>
         </wsimport>
@@ -36,7 +36,7 @@
     <target name="wsimport-client-HotelReservationService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/HotelReservationService"/>
         <property name="wsdl-HotelReservationService" location="xml-resources/web-service-references/HotelReservationService/wsdl/joshua_8080/NiceView/HotelReservationService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HotelReservationService" destdir="${build.generated.dir}/jax-wsCache/HotelReservationService" wsdl="${wsdl-HotelReservationService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://joshua:8080/NiceView/HotelReservationService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HotelReservationService" destdir="${build.generated.dir}/jax-wsCache/HotelReservationService" wsdl="${wsdl-HotelReservationService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/NiceView/HotelReservationService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-HotelReservationService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/HotelReservationService"/>
         </wsimport>
