@@ -34,10 +34,23 @@ public class TravelAgentsy {
     public void post(){
         
     }
-    
-    
 
-    
-    
-    
+    private static java.util.List<dk.dtu.ws.FlighListObject> getFlights(java.lang.String arg0, java.lang.String arg1, dk.dtu.ws.DateTime arg2) {
+        dk.dtu.ws.AirlineReservationService service = new dk.dtu.ws.AirlineReservationService();
+        dk.dtu.ws.AirlineReservation port = service.getAirlineReservationPort();
+        return port.getFlights(arg0, arg1, arg2);
+    }
+
+    private static boolean bookFlight(int arg0, dk.dtu.imm.fastmoney.types.CreditCardInfoType arg1) throws CreditCardFaultMessage {
+        dk.dtu.ws.AirlineReservationService service = new dk.dtu.ws.AirlineReservationService();
+        dk.dtu.ws.AirlineReservation port = service.getAirlineReservationPort();
+        return port.bookFlight(arg0, arg1);
+    }
+
+    private static boolean cancelFlight(int arg0, dk.dtu.imm.fastmoney.types.CreditCardInfoType arg1) throws CreditCardFaultMessage {
+        dk.dtu.ws.AirlineReservationService service = new dk.dtu.ws.AirlineReservationService();
+        dk.dtu.ws.AirlineReservation port = service.getAirlineReservationPort();
+        return port.cancelFlight(arg0, arg1);
+    }
+       
 }
