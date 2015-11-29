@@ -6,6 +6,7 @@ import dk.dtu.ws.model.FlightListObject;
 import dk.dtu.ws.model.FlightInformation;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
+import dk.dtu.ws.model.Date;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.xml.ws.WebServiceRef;
@@ -30,7 +31,8 @@ public class AirlineReservation {
         return true;
     }
 
-    public boolean setFightData(String airlineName, FlightInformation info) throws FileNotFoundException {
+    //For test purposes only
+    public boolean setFightData(String airlineName, FlightInformation info) {
         for (Airline airline : airlines) {
             if (airline.getName().equals(airlineName.toLowerCase())) {
                 airline.getFlights().add(info);
@@ -58,7 +60,8 @@ public class AirlineReservation {
     public ArrayList<FlightListObject> getFlights(String Start, String Destination, DateTime date) {
         ArrayList<FlightListObject> eligibleFlights = null;
         for (Airline airline : airlines) {
-            ArrayList<FlightInformation> flights = airline.getFlights(Start, Destination, date);
+            Date thisDate = new Date(date);
+            ArrayList<FlightInformation> flights = airline.getFlights(Start, Destination, thisDate);
             for(FlightInformation flight : flights){
                 FlightListObject booking = new FlightListObject(Start, flight);
                 bookingObjects.add(booking);

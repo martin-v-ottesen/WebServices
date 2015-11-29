@@ -88,22 +88,22 @@
 
 <xs:complexType name="getFlightsResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:flighListObject" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:flightListObject" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="flighListObject">
+<xs:complexType name="flightListObject">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="setFightData">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
-<xs:element name="arg1" type="tns:flightinformation" minOccurs="0"/>
+<xs:element name="arg1" type="tns:flightInformation" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="flightinformation">
+<xs:complexType name="flightInformation">
 <xs:sequence>
 <xs:element name="arrivalTime" type="tns:dateTime" minOccurs="0"/>
 <xs:element name="bookingNumber" type="xs:int"/>

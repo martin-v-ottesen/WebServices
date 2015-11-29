@@ -16,23 +16,6 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-HotelReservationService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/HotelReservationService"/>
-        <property name="wsdl-HotelReservationService" location="xml-resources/web-service-references/HotelReservationService/wsdl/joshua_8080/NiceView/HotelReservationService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HotelReservationService" destdir="${build.generated.dir}/jax-wsCache/HotelReservationService" wsdl="${wsdl-HotelReservationService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/NiceView/HotelReservationService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${wsdl-HotelReservationService}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/HotelReservationService"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/HotelReservationService">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-HotelReservationService" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/HotelReservationService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/dk/dtu/ws"/>
-    </target>
     <target name="wsimport-client-BankSecureService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/BankSecureService"/>
         <property name="wsdl-BankSecureService" location="xml-resources/web-service-references/BankSecureService/wsdl/fastmoney.imm.dtu.dk_8080/BankSecureService.wsdl"/>
@@ -84,5 +67,5 @@
         <delete dir="${build.generated.dir}/jax-wsCache/AirlineReservationService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/dk/dtu/ws"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-HotelReservationService, wsimport-client-BankSecureService, wsimport-client-BankService, wsimport-client-AirlineReservationService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-BankSecureService, wsimport-client-BankService, wsimport-client-AirlineReservationService"/>
 </project>
