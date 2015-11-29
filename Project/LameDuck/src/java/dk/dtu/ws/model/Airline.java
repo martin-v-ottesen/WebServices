@@ -7,7 +7,6 @@ package dk.dtu.ws.model;
 
 import java.util.ArrayList;
 import org.joda.time.DateTime;
-import org.jvnet.staxex.util.FinalArrayList;
 
 /**
  *
