@@ -25,30 +25,24 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _SetFightData_QNAME = new QName("http://ws.dtu.dk/", "setFightData");
-    private final static QName _SetFightDataResponse_QNAME = new QName("http://ws.dtu.dk/", "setFightDataResponse");
     private final static QName _BookFlight_QNAME = new QName("http://ws.dtu.dk/", "bookFlight");
     private final static QName _CancelFlight_QNAME = new QName("http://ws.dtu.dk/", "cancelFlight");
-    private final static QName _CancelFlightResponse_QNAME = new QName("http://ws.dtu.dk/", "cancelFlightResponse");
     private final static QName _CreateAirlineResponse_QNAME = new QName("http://ws.dtu.dk/", "createAirlineResponse");
     private final static QName _GetFlights_QNAME = new QName("http://ws.dtu.dk/", "getFlights");
-    private final static QName _BookFlightResponse_QNAME = new QName("http://ws.dtu.dk/", "bookFlightResponse");
     private final static QName _CreateAirline_QNAME = new QName("http://ws.dtu.dk/", "createAirline");
-    private final static QName _GetFlightsResponse_QNAME = new QName("http://ws.dtu.dk/", "getFlightsResponse");
     private final static QName _FileNotFoundException_QNAME = new QName("http://ws.dtu.dk/", "FileNotFoundException");
+    private final static QName _Clear_QNAME = new QName("http://ws.dtu.dk/", "clear");
+    private final static QName _SetFightDataResponse_QNAME = new QName("http://ws.dtu.dk/", "setFightDataResponse");
+    private final static QName _CancelFlightResponse_QNAME = new QName("http://ws.dtu.dk/", "cancelFlightResponse");
+    private final static QName _BookFlightResponse_QNAME = new QName("http://ws.dtu.dk/", "bookFlightResponse");
+    private final static QName _GetFlightsResponse_QNAME = new QName("http://ws.dtu.dk/", "getFlightsResponse");
+    private final static QName _ClearResponse_QNAME = new QName("http://ws.dtu.dk/", "clearResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: dk.dtu.ws
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link BookFlightResponse }
-     * 
-     */
-    public BookFlightResponse createBookFlightResponse() {
-        return new BookFlightResponse();
     }
 
     /**
@@ -65,14 +59,6 @@ public class ObjectFactory {
      */
     public GetFlights createGetFlights() {
         return new GetFlights();
-    }
-
-    /**
-     * Create an instance of {@link CancelFlightResponse }
-     * 
-     */
-    public CancelFlightResponse createCancelFlightResponse() {
-        return new CancelFlightResponse();
     }
 
     /**
@@ -100,14 +86,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SetFightDataResponse }
-     * 
-     */
-    public SetFightDataResponse createSetFightDataResponse() {
-        return new SetFightDataResponse();
-    }
-
-    /**
      * Create an instance of {@link FileNotFoundException }
      * 
      */
@@ -116,11 +94,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Clear }
+     * 
+     */
+    public Clear createClear() {
+        return new Clear();
+    }
+
+    /**
      * Create an instance of {@link CreateAirline }
      * 
      */
     public CreateAirline createCreateAirline() {
         return new CreateAirline();
+    }
+
+    /**
+     * Create an instance of {@link BookFlightResponse }
+     * 
+     */
+    public BookFlightResponse createBookFlightResponse() {
+        return new BookFlightResponse();
+    }
+
+    /**
+     * Create an instance of {@link CancelFlightResponse }
+     * 
+     */
+    public CancelFlightResponse createCancelFlightResponse() {
+        return new CancelFlightResponse();
+    }
+
+    /**
+     * Create an instance of {@link SetFightDataResponse }
+     * 
+     */
+    public SetFightDataResponse createSetFightDataResponse() {
+        return new SetFightDataResponse();
+    }
+
+    /**
+     * Create an instance of {@link ClearResponse }
+     * 
+     */
+    public ClearResponse createClearResponse() {
+        return new ClearResponse();
     }
 
     /**
@@ -148,21 +166,20 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Flightinformation }
+     * 
+     */
+    public Flightinformation createFlightinformation() {
+        return new Flightinformation();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetFightData }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "setFightData")
     public JAXBElement<SetFightData> createSetFightData(SetFightData value) {
         return new JAXBElement<SetFightData>(_SetFightData_QNAME, SetFightData.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SetFightDataResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "setFightDataResponse")
-    public JAXBElement<SetFightDataResponse> createSetFightDataResponse(SetFightDataResponse value) {
-        return new JAXBElement<SetFightDataResponse>(_SetFightDataResponse_QNAME, SetFightDataResponse.class, null, value);
     }
 
     /**
@@ -184,15 +201,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CancelFlightResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "cancelFlightResponse")
-    public JAXBElement<CancelFlightResponse> createCancelFlightResponse(CancelFlightResponse value) {
-        return new JAXBElement<CancelFlightResponse>(_CancelFlightResponse_QNAME, CancelFlightResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateAirlineResponse }{@code >}}
      * 
      */
@@ -211,21 +219,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BookFlightResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "bookFlightResponse")
-    public JAXBElement<BookFlightResponse> createBookFlightResponse(BookFlightResponse value) {
-        return new JAXBElement<BookFlightResponse>(_BookFlightResponse_QNAME, BookFlightResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateAirline }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "createAirline")
     public JAXBElement<CreateAirline> createCreateAirline(CreateAirline value) {
         return new JAXBElement<CreateAirline>(_CreateAirline_QNAME, CreateAirline.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FileNotFoundException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "FileNotFoundException")
+    public JAXBElement<FileNotFoundException> createFileNotFoundException(FileNotFoundException value) {
+        return new JAXBElement<FileNotFoundException>(_FileNotFoundException_QNAME, FileNotFoundException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Clear }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "clear")
+    public JAXBElement<Clear> createClear(Clear value) {
+        return new JAXBElement<Clear>(_Clear_QNAME, Clear.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetFightDataResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "setFightDataResponse")
+    public JAXBElement<SetFightDataResponse> createSetFightDataResponse(SetFightDataResponse value) {
+        return new JAXBElement<SetFightDataResponse>(_SetFightDataResponse_QNAME, SetFightDataResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelFlightResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "cancelFlightResponse")
+    public JAXBElement<CancelFlightResponse> createCancelFlightResponse(CancelFlightResponse value) {
+        return new JAXBElement<CancelFlightResponse>(_CancelFlightResponse_QNAME, CancelFlightResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link BookFlightResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "bookFlightResponse")
+    public JAXBElement<BookFlightResponse> createBookFlightResponse(BookFlightResponse value) {
+        return new JAXBElement<BookFlightResponse>(_BookFlightResponse_QNAME, BookFlightResponse.class, null, value);
     }
 
     /**
@@ -238,12 +282,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FileNotFoundException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClearResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "FileNotFoundException")
-    public JAXBElement<FileNotFoundException> createFileNotFoundException(FileNotFoundException value) {
-        return new JAXBElement<FileNotFoundException>(_FileNotFoundException_QNAME, FileNotFoundException.class, null, value);
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "clearResponse")
+    public JAXBElement<ClearResponse> createClearResponse(ClearResponse value) {
+        return new JAXBElement<ClearResponse>(_ClearResponse_QNAME, ClearResponse.class, null, value);
     }
 
 }

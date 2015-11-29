@@ -31,24 +31,15 @@ public interface AirlineReservation {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
      * @return
-     *     returns java.util.List<dk.dtu.ws.FlighListObject>
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getFlights", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlights")
-    @ResponseWrapper(localName = "getFlightsResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlightsResponse")
-    @Action(input = "http://ws.dtu.dk/AirlineReservation/getFlightsRequest", output = "http://ws.dtu.dk/AirlineReservation/getFlightsResponse")
-    public List<FlighListObject> getFlights(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        DateTime arg2);
+    @RequestWrapper(localName = "clear", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Clear")
+    @ResponseWrapper(localName = "clearResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.ClearResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/clearRequest", output = "http://ws.dtu.dk/AirlineReservation/clearResponse")
+    public boolean clear();
 
     /**
      * 
@@ -75,6 +66,7 @@ public interface AirlineReservation {
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return
@@ -92,9 +84,32 @@ public interface AirlineReservation {
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        CreditCardInfoType arg1)
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        CreditCardInfoType arg2)
         throws CreditCardFaultMessage
     ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<dk.dtu.ws.FlighListObject>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getFlights", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlights")
+    @ResponseWrapper(localName = "getFlightsResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.GetFlightsResponse")
+    @Action(input = "http://ws.dtu.dk/AirlineReservation/getFlightsRequest", output = "http://ws.dtu.dk/AirlineReservation/getFlightsResponse")
+    public List<FlighListObject> getFlights(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        DateTime arg2);
 
     /**
      * 
@@ -113,14 +128,8 @@ public interface AirlineReservation {
 
     /**
      * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
      * @param arg1
      * @param arg0
-     * @param arg7
-     * @param arg6
      * @return
      *     returns boolean
      * @throws FileNotFoundException_Exception
@@ -134,28 +143,10 @@ public interface AirlineReservation {
     })
     public boolean setFightData(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
+        String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        String arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        DateTime arg5,
-        @WebParam(name = "arg6", targetNamespace = "")
-        DateTime arg6,
-        @WebParam(name = "arg7", targetNamespace = "")
-        int arg7)
+        Flightinformation arg1)
         throws FileNotFoundException_Exception
     ;
-
-    public String getFlights();
-
-    public String bookFlight();
-
-    public String cancelFlight();
 
 }

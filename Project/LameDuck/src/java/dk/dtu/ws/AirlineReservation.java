@@ -30,8 +30,7 @@ public class AirlineReservation {
         return true;
     }
 
-    public boolean setFightData(int bookingNumber, String airlineName, String airlineReservationService, String startDestination, String endDestination, DateTime departureTime, DateTime arrivalTime, int bookingPrice) throws FileNotFoundException {
-        Flightinformation info = new Flightinformation(bookingNumber, startDestination, endDestination, departureTime, arrivalTime, bookingPrice);
+    public boolean setFightData(String airlineName, Flightinformation info) throws FileNotFoundException {
         for (Airline airline : airlines) {
             if (airline.getName().equals(airlineName.toLowerCase())) {
                 airline.getFlights().add(info);

@@ -18,7 +18,8 @@ import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="arg1" type="{http://types.fastmoney.imm.dtu.dk}creditCardInfoType" minOccurs="0"/>
+ *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="arg2" type="{http://types.fastmoney.imm.dtu.dk}creditCardInfoType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,12 +31,14 @@ import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "cancelFlight", propOrder = {
     "arg0",
-    "arg1"
+    "arg1",
+    "arg2"
 })
 public class CancelFlight {
 
     protected int arg0;
-    protected CreditCardInfoType arg1;
+    protected int arg1;
+    protected CreditCardInfoType arg2;
 
     /**
      * Gets the value of the arg0 property.
@@ -56,25 +59,41 @@ public class CancelFlight {
     /**
      * Gets the value of the arg1 property.
      * 
-     * @return
-     *     possible object is
-     *     {@link CreditCardInfoType }
-     *     
      */
-    public CreditCardInfoType getArg1() {
+    public int getArg1() {
         return arg1;
     }
 
     /**
      * Sets the value of the arg1 property.
      * 
+     */
+    public void setArg1(int value) {
+        this.arg1 = value;
+    }
+
+    /**
+     * Gets the value of the arg2 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CreditCardInfoType }
+     *     
+     */
+    public CreditCardInfoType getArg2() {
+        return arg2;
+    }
+
+    /**
+     * Sets the value of the arg2 property.
+     * 
      * @param value
      *     allowed object is
      *     {@link CreditCardInfoType }
      *     
      */
-    public void setArg1(CreditCardInfoType value) {
-        this.arg1 = value;
+    public void setArg2(CreditCardInfoType value) {
+        this.arg2 = value;
     }
 
 }
