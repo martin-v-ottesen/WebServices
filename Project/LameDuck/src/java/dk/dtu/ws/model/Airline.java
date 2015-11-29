@@ -20,7 +20,7 @@ public class Airline {
     
     public Airline(String name) {
         this.name = name;
-        this.flights = new FinalArrayList<>();
+        this.flights = new ArrayList<>();
     }
     
     public String getName() {
