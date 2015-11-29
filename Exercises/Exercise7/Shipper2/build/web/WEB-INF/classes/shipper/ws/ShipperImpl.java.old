@@ -1,0 +1,29 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package shipper.ws;
+
+import javax.jws.WebService;
+
+/**
+ *
+ * @author hub
+ */
+@WebService(serviceName = "shipperService", portName = "shipperPortTypeBindingPort", endpointInterface = "ws.shipper.ShipperPortType", targetNamespace = "http://shipper.ws", wsdlLocation = "WEB-INF/wsdl/ShipperImpl/shipper.wsdl")
+public class ShipperImpl {
+
+    public java.lang.String shipOrder(orderdata.CustomerType customer, orderdata.OrderType order) throws InterruptedException {
+        System.out.println(String.format("shipOrder(%s,%s) start", customer.getName(),order.getId()));
+        Thread.sleep(10000);
+        System.out.println(String.format("shipOrder(%s,%s) stop", customer.getName(),order.getId()));
+        return "OK";
+    }
+
+    public java.lang.String cancelShipment(java.lang.String customer, java.lang.String order) {
+        System.out.println(String.format("cancelShipment(%s,%s)",customer,order));
+        return "canceled";
+    }
+
+}

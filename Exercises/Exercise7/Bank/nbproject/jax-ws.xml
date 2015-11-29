@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="BankImpl">
+      <implementation-class>bank.ws.BankImpl</implementation-class>
+      <wsdl-url>file:/Users/hub/NetBeansProjects/OrderProcessCompensation/OrderProcessCompensation/src/bank.wsdl</wsdl-url>
+      <local-wsdl-file>bank.wsdl</local-wsdl-file>
+      <service-name>bankService</service-name>
+      <port-name>bankPortTypeBindingPort</port-name>
+      <package-name>ws.bank</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>false</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>

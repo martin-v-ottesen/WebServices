@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="urn:orderData"
+    xmlns:tns="urn:orderData"
+    elementFormDefault="qualified">
+    <xsd:element name="customer" type="tns:customerType"/>
+    <xsd:complexType name="customerType">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="id" type="tns:customerIDType"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="order" type="tns:orderType"/>
+    <xsd:complexType name="orderType">
+        <xsd:sequence>
+            <xsd:element name="id" type="tns:orderIDType"></xsd:element>
+            <xsd:element name="item" maxOccurs="unbounded" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"></xsd:element>
+                        <xsd:element name="quantity" type="xsd:integer"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="creditcard" type="tns:creditcardType"/>
+    <xsd:complexType name="creditcardType">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="number" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="orderIDType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="customerIDType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="creditcardNumberType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="urn:orderProcess" xmlns:ns2="urn:orderProcessBPEL" xmlns:ns3="http://shipper.ws" xmlns:ns4="http://bank.ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>OrderProcessCompensationApp</name>
+            <description>Represents the Service Assembly of OrderProcessCompensationApp</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>OrderProcessCompensationApp-OrderProcessCompensation</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>OrderProcessCompensation.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>OrderProcessCompensationApp-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="orderPTBindingPort" service-name="ns1:orderProcessService"/>
+                <provider endpoint-name="orderPTRole_myRole" service-name="ns2:orderRequest"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="shipperPortTypeRole_partnerRole" service-name="ns2:PartnerLink1"/>
+                <provider endpoint-name="shipperPortTypeBindingPort" service-name="ns3:shipperService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="bankPortTypeRole_partnerRole" service-name="ns2:PartnerLink2"/>
+                <provider endpoint-name="bankPortTypeBindingPort" service-name="ns4:bankService"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>
