@@ -2,8 +2,8 @@ package dk.dtu.ws;
 
 import dk.dtu.ws.model.Airline;
 import dk.dtu.ws.model.Bookings;
-import dk.dtu.ws.model.FlighListObject;
-import dk.dtu.ws.model.Flightinformation;
+import dk.dtu.ws.model.FlightListObject;
+import dk.dtu.ws.model.FlightInformation;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import java.io.FileNotFoundException;
@@ -21,7 +21,7 @@ public class AirlineReservation {
     private BankService service;
 
     private ArrayList<Airline> airlines;
-    private ArrayList<FlighListObject> bookingObjects;
+    private ArrayList<FlightListObject> bookingObjects;
     private ArrayList<Bookings> bookingList;
 
     public boolean createAirline(String airlineName) {
@@ -30,7 +30,7 @@ public class AirlineReservation {
         return true;
     }
 
-    public boolean setFightData(String airlineName, Flightinformation info) throws FileNotFoundException {
+    public boolean setFightData(String airlineName, FlightInformation info) throws FileNotFoundException {
         for (Airline airline : airlines) {
             if (airline.getName().equals(airlineName.toLowerCase())) {
                 airline.getFlights().add(info);
@@ -55,12 +55,12 @@ public class AirlineReservation {
         return true;        
     }
 
-    public ArrayList<FlighListObject> getFlights(String Start, String Destination, DateTime date) {
-        ArrayList<FlighListObject> eligibleFlights = null;
+    public ArrayList<FlightListObject> getFlights(String Start, String Destination, DateTime date) {
+        ArrayList<FlightListObject> eligibleFlights = null;
         for (Airline airline : airlines) {
-            ArrayList<Flightinformation> flights = airline.getFlights(Start, Destination, date);
-            for(Flightinformation flight : flights){
-                FlighListObject booking = new FlighListObject(Start, flight);
+            ArrayList<FlightInformation> flights = airline.getFlights(Start, Destination, date);
+            for(FlightInformation flight : flights){
+                FlightListObject booking = new FlightListObject(Start, flight);
                 bookingObjects.add(booking);
             }
         }
@@ -69,7 +69,7 @@ public class AirlineReservation {
 
     public boolean bookFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
         if(validateCreditCard(1, creditCardInfo, 10000)){
-            for(FlighListObject bookingObject : bookingObjects){
+            for(FlightListObject bookingObject : bookingObjects){
                 if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
                     for (Bookings booking : bookingList){
                         if (booking.getCreditCardInfo().equals(creditCardInfo)){
@@ -88,7 +88,7 @@ public class AirlineReservation {
     public boolean cancelFlight(int bookingNumber, int price, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
         refundCreditCard(1, creditCardInfo,  price/2, BankAccount.validAccount());
         
-        for(FlighListObject bookingObject : bookingObjects){
+        for(FlightListObject bookingObject : bookingObjects){
             if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
                 for (Bookings booking : bookingList){
                     if (booking.getCreditCardInfo().equals(creditCardInfo)){

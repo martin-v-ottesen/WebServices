@@ -14,23 +14,23 @@ import java.util.ArrayList;
  */
 public class Bookings {
     private dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo;
-    private ArrayList<FlighListObject> flights;    
+    private ArrayList<FlightListObject> flights;    
 
-    public Bookings(CreditCardInfoType creditCardInfo, ArrayList<FlighListObject> flights) {
+    public Bookings(CreditCardInfoType creditCardInfo, ArrayList<FlightListObject> flights) {
         this.creditCardInfo = creditCardInfo;
         this.flights = flights;
     }
 
-    public ArrayList<FlighListObject> getFlights() {
+    public ArrayList<FlightListObject> getFlights() {
         return flights;
     }
     
-    public boolean addFlight(FlighListObject flight){
+    public boolean addFlight(FlightListObject flight){
         flights.add(flight);
         return true;
     }
     
-    public boolean removeFlight(FlighListObject flight){
+    public boolean removeFlight(FlightListObject flight){
         flights.remove(flight);
         return true;
     } 

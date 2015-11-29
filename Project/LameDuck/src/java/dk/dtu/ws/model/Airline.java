@@ -15,7 +15,7 @@ import org.joda.time.DateTime;
 public class Airline {
 
     private String name;
-    private ArrayList<Flightinformation> flights;
+    private ArrayList<FlightInformation> flights;
     
     public Airline(String name) {
         this.name = name;
@@ -30,13 +30,13 @@ public class Airline {
         this.name = name;
     }
     
-    public ArrayList<Flightinformation> getFlights() {
+    public ArrayList<FlightInformation> getFlights() {
         return flights;
     }
 
-    public ArrayList<Flightinformation> getFlights(String Start, String Destination, DateTime date) {
-        ArrayList<Flightinformation> eligibleFlights = new ArrayList<>();
-        for (Flightinformation fligth : flights) {
+    public ArrayList<FlightInformation> getFlights(String Start, String Destination, DateTime date) {
+        ArrayList<FlightInformation> eligibleFlights = new ArrayList<>();
+        for (FlightInformation fligth : flights) {
             if (fligth.getStartDestination().toLowerCase().equals(Start.toLowerCase()) 
                     && fligth.getEndDestination().toLowerCase().equals(Destination.toLowerCase())
                     && fligth.getDepartureTime().dayOfYear().equals(date.dayOfYear())) {
@@ -46,15 +46,15 @@ public class Airline {
         return eligibleFlights;
     }
     
-    public Flightinformation getFlight(int index) {
+    public FlightInformation getFlight(int index) {
         return flights.get(index);
     }
 
-    public boolean addFlight(Flightinformation flight) {
+    public boolean addFlight(FlightInformation flight) {
         return flights.add(flight);
     }
 
-    public boolean removeFlight(Flightinformation flight) {
+    public boolean removeFlight(FlightInformation flight) {
         return flights.remove(flight);
     }
     

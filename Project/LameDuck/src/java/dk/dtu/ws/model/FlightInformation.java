@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
  *
  * @author Martin
  */
-public class Flightinformation {
+public class FlightInformation {
     private int bookingNumber;
     private String startDestination;
     private String endDestination;
@@ -15,7 +15,7 @@ public class Flightinformation {
     //private String carrier;
     private int bookingPrice;
 
-    public Flightinformation(int bookingNumber, String startDestination, String endDestination, DateTime departureTime, DateTime arrivalTime, /*String carrier,*/ int bookingPrice) {
+    public FlightInformation(int bookingNumber, String startDestination, String endDestination, DateTime departureTime, DateTime arrivalTime, /*String carrier,*/ int bookingPrice) {
         this.bookingNumber = bookingNumber;
         this.startDestination = startDestination;
         this.endDestination = endDestination;

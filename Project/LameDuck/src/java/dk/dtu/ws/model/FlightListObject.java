@@ -9,12 +9,12 @@ package dk.dtu.ws.model;
  *
  * @author Martin
  */
-public class FlighListObject {
+public class FlightListObject {
     private String airline;
-    private Flightinformation flight;
+    private FlightInformation flight;
     private String reservationService = "LameDuck";
 
-    public FlighListObject(String airline, Flightinformation flight) {
+    public FlightListObject(String airline, FlightInformation flight) {
         this.airline = airline;
         this.flight = flight;
     }
@@ -23,7 +23,7 @@ public class FlighListObject {
         return airline;
     }
 
-    public Flightinformation getFlight() {
+    public FlightInformation getFlight() {
         return flight;
     }
     

@@ -18,39 +18,60 @@ import javax.xml.ws.WebServiceRef;
  */
 @javax.jws.WebService
 public class HotelReservation {
+
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
     
+    private ArrayList hotels;
+    private ArrayList bookingObjects;
+    private ArrayList<Bookings> bookingList;
+
     ArrayList<HotelBookingInformation> hotelList = new ArrayList<HotelBookingInformation>();
-    
-    public HotelReservation(ArrayList<HotelBookingInformation> hotelList){
+
+    public HotelReservation(ArrayList<HotelBookingInformation> hotelList) {
         this.hotelList = hotelList;
     }
-    
-    public ArrayList<HotelBookingInformation> getHotels(String city,  Date arrival,  Date departure){
+
+    public ArrayList<HotelBookingInformation> getHotels(String city, Date arrival, Date departure) {
         ArrayList<HotelBookingInformation> vacantHotel = new ArrayList<HotelBookingInformation>();
-        
-        for(HotelBookingInformation hotelBookingInformation : hotelList){
-            if(hotelBookingInformation.getHotel().getCity().equals(city)) {
-                if(hotelBookingInformation.getHotel().getVacantStart().equals(arrival) || 
-                        hotelBookingInformation.getHotel().getVacantStart().after(arrival) && 
-                        hotelBookingInformation.getHotel().getVacantEnd().before(departure) ||
-                                hotelBookingInformation.getHotel().getVacantEnd().equals(departure)){
+
+        for (HotelBookingInformation hotelBookingInformation : hotelList) {
+            if (hotelBookingInformation.getHotel().getCity().equals(city)) {
+                if (hotelBookingInformation.getHotel().getVacantStart().equals(arrival)
+                        || hotelBookingInformation.getHotel().getVacantStart().after(arrival)
+                        && hotelBookingInformation.getHotel().getVacantEnd().before(departure)
+                        || hotelBookingInformation.getHotel().getVacantEnd().equals(departure)) {
                     //Get Price for the whole stay
                     hotelBookingInformation.setPriceOfStay(hotelBookingInformation.getHotel().priceOfStay(departure, arrival));
                     vacantHotel.add(hotelBookingInformation);
-                
+
                 }
             }
         }
         return vacantHotel;
     }
-    public String bookHotel(int bookingNumber , dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo){
+
+    public String bookHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) {
         //if()
         return "";
     }
-    public String cancelHotel(int bookingNumber , dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo){
-        return "";
+
+    public String cancelHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
+        if(validateCreditCard(1, creditCardInfo, 0)){
+            for(FlighListObject bookingObject : bookingObjects){
+                if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
+                    for (Bookings booking : bookingList){
+                        if (booking.getCreditCardInfo().equals(creditCardInfo)){
+                            booking.removeFlight(bookingObject);
+                            refundCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice()/2, BankAccount.validAccount()); 
+                            return true;
+                        }
+                    }
+                    return true;                
+                }
+            }
+        }        
+        return false;
     }
 
     private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
@@ -73,5 +94,5 @@ public class HotelReservation {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
-    
+
 }
