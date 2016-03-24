@@ -99,6 +99,38 @@ public class CalendarServiceJUnitTest {
         System.out.println("resultAppointment:  " + resultAppointment);
     }
 
+    @Test
+    public void addAppointment_InputTwoDifferentAppointmentsWithDifferentDates_WhatHappens() throws ParseException{
+        //Arrange
+        String insertAppointmentFIRST = "Tis og Lort";
+        String insertAppointmentSECOND = "HOLD NU";
+        final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(df.parse("24/03/2016"));
+        Date expectedDate = calendar.getTime();
+
+        XMLGregorianCalendar expectedXMLDate = toXMLGregorianCalendar(expectedDate);
+        Exception expectedException = null; 
+        try {
+            //Act
+            addAppointment(insertAppointmentFIRST, expectedXMLDate);
+            addAppointment(insertAppointmentSECOND, expectedXMLDate);
+        } catch (Exception e) {
+            //Assert
+            System.out.println("Adding Appointment failed");
+            expectedException = e;
+        }
+        //Assert
+        /*Enten returneres der null hvis der ikke forefindes en Value for den angivne
+          Key. I dette tilfælde overskrives den første, derfor forventes
+          insertAppointmentSECOND = "HOLD NU";
+        */
+        assertNotSame(insertAppointmentFIRST, getAppointment(expectedXMLDate));
+        //Nedenstående Assert vil fejle som forventet.
+        //assertEquals(insertAppointmentFIRST, getAppointment(expectedXMLDate));
+        
+    }
+    
     private static void addAppointment(java.lang.String appointment, javax.xml.datatype.XMLGregorianCalendar date) {
         org.netbeans.j2ee.wsdl.calendarwebservice.java.calendarservicewsdl.CalendarServiceService service = new org.netbeans.j2ee.wsdl.calendarwebservice.java.calendarservicewsdl.CalendarServiceService();
         org.netbeans.j2ee.wsdl.calendarwebservice.java.calendarservicewsdl.CalendarServicePortType port = service.getCalendarServicePort();
