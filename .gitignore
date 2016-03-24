@@ -165,3 +165,6 @@ sympy-plots-for-*.tex/
 *.bak
 *.sav
 /Project/TravelGood/dist/
+
+#MAC OSX System files ignore
+*.DS_Store
