@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarWebServiceWSDL" xmlns:ns="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="calendarServiceWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL">
+<wsdl:import namespace="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL" location="calendarServiceWSDL.wsdl"/>
+<wsdl:binding name="calendarServiceBinding" type="ns:calendarServicePortType">
+<soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+<wsdl:operation name="addAppointment">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="addAppointment_action"/>
+<wsdl:input name="input1">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL" use="literal"/>
+</wsdl:input>
+</wsdl:operation>
+<wsdl:operation name="getAppointment">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="getAppointment_action"/>
+<wsdl:input name="input2">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="output1">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="calendarServiceService">
+<wsdl:port name="calendarServicePort" binding="ns:calendarServiceBinding">
+<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="REPLACE_WITH_ACTUAL_URL"/>
+</wsdl:port>
+</wsdl:service>
+</definitions>

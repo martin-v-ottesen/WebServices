@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/CalendarWebservice/calendarServiceService?wsdl" uri="xml-resources/web-service-references/calendarServiceService/wsdl/localhost_8080/CalendarWebservice/calendarServiceService.wsdl"/>
+    <system systemId="http://localhost:8080/CalendarWebservice/calendarServiceService?wsdl=1" uri="xml-resources/web-service-references/calendarServiceService/wsdl/localhost_8080/CalendarWebservice/calendarServiceService.wsdl_1.wsdl"/>
+</catalog>

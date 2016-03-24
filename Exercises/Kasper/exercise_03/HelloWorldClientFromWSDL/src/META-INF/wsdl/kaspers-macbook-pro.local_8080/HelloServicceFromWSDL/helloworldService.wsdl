@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://helloworld.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="helloworld" targetNamespace="http://helloworld.ws">
+    <types/>
+    <message name="helloworldRequest">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="helloworldResponse">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <portType name="helloworldPortType">
+        <operation name="helloworld">
+            <input name="input1" message="tns:helloworldRequest"/>
+            <output name="output1" message="tns:helloworldResponse"/>
+        </operation>
+    </portType>
+    <binding name="helloworldPortTypeBinding" type="tns:helloworldPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="helloworld">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="helloworldService">
+        <port name="helloworldPort" binding="tns:helloworldPortTypeBinding">
+            <soap:address location="http://kaspers-macbook-pro.local:8080/HelloServicceFromWSDL/helloworldService"/>
+        </port>
+    </service>
+</definitions>

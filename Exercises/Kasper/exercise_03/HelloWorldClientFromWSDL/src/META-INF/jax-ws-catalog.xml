@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://kaspers-macbook-pro.local:8080/HelloServicceFromWSDL/helloworldService?wsdl" uri="wsdl/kaspers-macbook-pro.local_8080/HelloServicceFromWSDL/helloworldService.wsdl"/>
+</catalog>

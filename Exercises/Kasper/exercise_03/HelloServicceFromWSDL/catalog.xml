@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/Users/dxong/DTU/Development_of_Web_Services/WebServices/Exercises/Kasper/exercise_03/HelloServicceFromWSDL/src/java/helloworld.wsdl" uri="src/conf/xml-resources/web-services/HelloWorld/wsdl/helloworld.wsdl"/>
+</catalog>
