@@ -1,0 +1,210 @@
+Wireshark NIC (Network Interface Card): Loopback: Io0
+Wireshark filter: http localhost port 8080
+
+------------DIVIDE REQUEST:
+E`@@<'RR1
+22POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/divideRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 202
+
+------------DIVIDE ARGS
+E@@>5'RR1o
+22<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:divide xmlns:ns2="http://CalcPackage/"><arg0>20</arg0><arg1>5</arg1></ns2:divide></S:Body></S:Envelope>
+
+------------DIVIDE RESPONSE
+EA.@@'RS>1
+2271
+<ns2:divideResponse xmlns:ns2="http://CalcPackage/"><return>4</return></ns2:divideResponse></S:Body></S:Envelope>
+
+------------DIVIDE (by zero) REQUEST
+E@@>'RT%1
+272POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/divideRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 202
+
+------------DIVIDE (by zero) ARGS
+E8@@@u'RT%1o
+272<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:divide xmlns:ns2="http://CalcPackage/"><arg0>20</arg0><arg1>0</arg1></ns2:divide></S:Body></S:Envelope>
+
+E@@'RT%A?1Z
+2827HTTP/1.1 500 Internal Server Error
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Connection: close
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------DIVIDE (by zero) RESPONSE
+EW@@'RUA?1Z
+2828af
+<S:Fault xmlns:ns4="http://www.w3.org/2003/05/soap-envelope"><faultcode>S:Server</faultcode><faultstring>Divide by zero exception</faultstring></S:Fault></S:Body></S:Envelope>
+
+------------ADD REQUEST
+EE@@0Mq1
+2]2]POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/addRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 196
+
+------------ADD ARGS
+E\@@Mq1i
+2]2]<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:add xmlns:ns2="http://CalcPackage/"><arg0>-3</arg0><arg1>5</arg1></ns2:add></S:Body></S:Envelope>
+
+Eu;@@Mqg14
+2^2]HTTP/1.1 200 OK
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------ADD REPONSE
+E@@Mrg1
+2^2^6b
+<ns2:addResponse xmlns:ns2="http://CalcPackage/"><return>2</return></ns2:addResponse></S:Body></S:Envelope>
+
+------------SUBTRACT REQUEST
+E[@@gMs1
+2p2^POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/subtractRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 205
+
+------------SUBTRACT ARGS
+E"@@Ms1r
+2p2^<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:subtract xmlns:ns2="http://CalcPackage/"><arg0>5</arg0><arg1>3</arg1></ns2:subtract></S:Body></S:Envelope>
+
+EQ@@Ms14
+2q2pHTTP/1.1 200 OK
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------SUBTRACT RESPONSE
+En@@Mt1
+2q2q75
+<ns2:subtractResponse xmlns:ns2="http://CalcPackage/"><return>2</return></ns2:subtractResponse></S:Body></S:Envelope>
+
+------------MULTIPLY REQUEST
+E}@@Mu*1
+22qPOST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/multiplyRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 205
+
+------------MULTIPLY ARGS
+ET@@$Mu*1r
+22q<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:multiply xmlns:ns2="http://CalcPackage/"><arg0>3</arg0><arg1>5</arg1></ns2:multiply></S:Body></S:Envelope>
+
+E&@@Mu*14
+22HTTP/1.1 200 OK
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------MULTIPLY RESPONSE
+E
+@@Mv1!
+2276
+<ns2:multiplyResponse xmlns:ns2="http://CalcPackage/"><return>15</return></ns2:multiplyResponse></S:Body></S:Envelope>
+
+------------ADD REQUEST
+EA@@Mw:1
+22POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/addRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 195
+
+------------ADD ARGS
+E|l@@dMw:1h
+22<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:add xmlns:ns2="http://CalcPackage/"><arg0>3</arg0><arg1>5</arg1></ns2:add></S:Body></S:Envelope>
+
+E@@Mw:'14
+22HTTP/1.1 200 OK
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------ADD RESPONSE
+E[r@@Mx'1
+226b
+<ns2:addResponse xmlns:ns2="http://CalcPackage/"><return>8</return></ns2:addResponse></S:Body></S:Envelope>
+
+------------HELLO REQUEST
+E@@'My?1
+22POST /WebServices_Exc01/CalculatorService HTTP/1.1
+Accept: text/xml, multipart/related
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://CalcPackage/CalculatorService/helloRequest"
+User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e
+Host: Jacobs-MacBook-Pro.local:8080
+Connection: keep-alive
+Content-Length: 189
+
+------------HELLO ARGS
+E@@My?1b
+22<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:hello xmlns:ns2="http://CalcPackage/"><name>Jacob</name></ns2:hello></S:Body></S:Envelope>
+
+E@@My?Y1~4
+22HTTP/1.1 200 OK
+Server: GlassFish Server Open Source Edition  4.1
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1  Java/Oracle Corporation/1.8)
+Content-Type: text/xml; charset=utf-8
+Date: Sun, 20 Mar 2016 14:41:41 GMT
+Transfer-Encoding: chunked
+
+6e
+<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body>
+
+------------HELLO RESPONSE
+E&@@MzY1~&
+227b
+<ns2:helloResponse xmlns:ns2="http://CalcPackage/"><return>Hello Jacob !</return></ns2:helloResponse></S:Body></S:Envelope>
