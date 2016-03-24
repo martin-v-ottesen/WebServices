@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/Users/hub/NetBeansProjects/OrderProcessCompensation/OrderProcessCompensation/src/bank.wsdl" uri="src/conf/xml-resources/web-services/BankImpl/wsdl/bank.wsdl"/>
     <system systemId="file:/Users/hub/NetBeansProjects/OrderProcessCompensation/OrderProcessCompensation/src/orderData.xsd" uri="src/conf/xml-resources/web-services/BankImpl/wsdl/orderData.xsd"/>
+    <system systemId="http://joshua:8080/LameDuck/AirlineReservationService?wsdl" uri="src/conf/xml-resources/web-service-references/AirlineReservationService/wsdl/joshua_8080/LameDuck/AirlineReservationService.wsdl"/>
+    <system systemId="http://joshua:8080/LameDuck/AirlineReservationService?xsd=1" uri="src/conf/xml-resources/web-service-references/AirlineReservationService/wsdl/joshua_8080/LameDuck/AirlineReservationService.xsd_1.xsd"/>
+    <system systemId="http://joshua:8080/LameDuck/AirlineReservationService?xsd=2" uri="src/conf/xml-resources/web-service-references/AirlineReservationService/wsdl/joshua_8080/LameDuck/AirlineReservationService.xsd_2.xsd"/>
+    <system systemId="http://joshua:8080/LameDuck/AirlineReservationService?xsd=3" uri="src/conf/xml-resources/web-service-references/AirlineReservationService/wsdl/joshua_8080/LameDuck/AirlineReservationService.xsd_3.xsd"/>
 </catalog>

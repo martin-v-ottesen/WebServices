@@ -16,11 +16,26 @@
 <message name="clearResponse">
 <part name="parameters" element="tns:clearResponse"/>
 </message>
+<message name="bookFlight">
+<part name="parameters" element="tns:bookFlight"/>
+</message>
+<message name="bookFlightResponse">
+<part name="parameters" element="tns:bookFlightResponse"/>
+</message>
+<message name="CreditCardFaultMessage">
+<part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
+</message>
 <message name="createAirline">
 <part name="parameters" element="tns:createAirline"/>
 </message>
 <message name="createAirlineResponse">
 <part name="parameters" element="tns:createAirlineResponse"/>
+</message>
+<message name="cancelFlight">
+<part name="parameters" element="tns:cancelFlight"/>
+</message>
+<message name="cancelFlightResponse">
+<part name="parameters" element="tns:cancelFlightResponse"/>
 </message>
 <message name="setFightData">
 <part name="parameters" element="tns:setFightData"/>
@@ -34,29 +49,24 @@
 <message name="getFlightsResponse">
 <part name="parameters" element="tns:getFlightsResponse"/>
 </message>
-<message name="bookFlight">
-<part name="parameters" element="tns:bookFlight"/>
-</message>
-<message name="bookFlightResponse">
-<part name="parameters" element="tns:bookFlightResponse"/>
-</message>
-<message name="CreditCardFaultMessage">
-<part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
-</message>
-<message name="cancelFlight">
-<part name="parameters" element="tns:cancelFlight"/>
-</message>
-<message name="cancelFlightResponse">
-<part name="parameters" element="tns:cancelFlightResponse"/>
-</message>
 <portType name="AirlineReservation">
 <operation name="clear">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/clearRequest" message="tns:clear"/>
 <output wsam:Action="http://ws.dtu.dk/AirlineReservation/clearResponse" message="tns:clearResponse"/>
 </operation>
+<operation name="bookFlight">
+<input wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlightRequest" message="tns:bookFlight"/>
+<output wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlightResponse" message="tns:bookFlightResponse"/>
+<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlight/Fault/CreditCardFaultMessage"/>
+</operation>
 <operation name="createAirline">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/createAirlineRequest" message="tns:createAirline"/>
 <output wsam:Action="http://ws.dtu.dk/AirlineReservation/createAirlineResponse" message="tns:createAirlineResponse"/>
+</operation>
+<operation name="cancelFlight">
+<input wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlightRequest" message="tns:cancelFlight"/>
+<output wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlightResponse" message="tns:cancelFlightResponse"/>
+<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlight/Fault/CreditCardFaultMessage"/>
 </operation>
 <operation name="setFightData">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/setFightDataRequest" message="tns:setFightData"/>
@@ -65,16 +75,6 @@
 <operation name="getFlights">
 <input wsam:Action="http://ws.dtu.dk/AirlineReservation/getFlightsRequest" message="tns:getFlights"/>
 <output wsam:Action="http://ws.dtu.dk/AirlineReservation/getFlightsResponse" message="tns:getFlightsResponse"/>
-</operation>
-<operation name="bookFlight">
-<input wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlightRequest" message="tns:bookFlight"/>
-<output wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlightResponse" message="tns:bookFlightResponse"/>
-<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://ws.dtu.dk/AirlineReservation/bookFlight/Fault/CreditCardFaultMessage"/>
-</operation>
-<operation name="cancelFlight">
-<input wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlightRequest" message="tns:cancelFlight"/>
-<output wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlightResponse" message="tns:cancelFlightResponse"/>
-<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://ws.dtu.dk/AirlineReservation/cancelFlight/Fault/CreditCardFaultMessage"/>
 </operation>
 </portType>
 <binding name="AirlineReservationPortBinding" type="tns:AirlineReservation">
@@ -88,6 +88,18 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="bookFlight">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="CreditCardFaultMessage">
+<soap:fault name="CreditCardFaultMessage" use="literal"/>
+</fault>
+</operation>
 <operation name="createAirline">
 <soap:operation soapAction=""/>
 <input>
@@ -96,6 +108,18 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="cancelFlight">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="CreditCardFaultMessage">
+<soap:fault name="CreditCardFaultMessage" use="literal"/>
+</fault>
 </operation>
 <operation name="setFightData">
 <soap:operation soapAction=""/>
@@ -114,30 +138,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-</operation>
-<operation name="bookFlight">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="CreditCardFaultMessage">
-<soap:fault name="CreditCardFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="cancelFlight">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="CreditCardFaultMessage">
-<soap:fault name="CreditCardFaultMessage" use="literal"/>
-</fault>
 </operation>
 </binding>
 <service name="AirlineReservationService">

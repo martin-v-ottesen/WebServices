@@ -7,6 +7,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -23,24 +24,6 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface Calculator {
 
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "plus", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Plus")
-    @ResponseWrapper(localName = "plusResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.PlusResponse")
-    @Action(input = "http://ws.dtu.dk/Calculator/plusRequest", output = "http://ws.dtu.dk/Calculator/plusResponse")
-    public int plus(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
 
     /**
      * 
@@ -69,10 +52,10 @@ public interface Calculator {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "minus", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Minus")
-    @ResponseWrapper(localName = "minusResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.MinusResponse")
-    @Action(input = "http://ws.dtu.dk/Calculator/minusRequest", output = "http://ws.dtu.dk/Calculator/minusResponse")
-    public int minus(
+    @RequestWrapper(localName = "plus", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Plus")
+    @ResponseWrapper(localName = "plusResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.PlusResponse")
+    @Action(input = "http://ws.dtu.dk/Calculator/plusRequest", output = "http://ws.dtu.dk/Calculator/plusResponse")
+    public int plus(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
@@ -84,13 +67,36 @@ public interface Calculator {
      * @param arg0
      * @return
      *     returns int
+     * @throws DivideByZerroException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "div", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Div")
     @ResponseWrapper(localName = "divResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.DivResponse")
-    @Action(input = "http://ws.dtu.dk/Calculator/divRequest", output = "http://ws.dtu.dk/Calculator/divResponse")
+    @Action(input = "http://ws.dtu.dk/Calculator/divRequest", output = "http://ws.dtu.dk/Calculator/divResponse", fault = {
+        @FaultAction(className = DivideByZerroException_Exception.class, value = "http://ws.dtu.dk/Calculator/div/Fault/DivideByZerroException")
+    })
     public int div(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1)
+        throws DivideByZerroException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "minus", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.Minus")
+    @ResponseWrapper(localName = "minusResponse", targetNamespace = "http://ws.dtu.dk/", className = "dk.dtu.ws.MinusResponse")
+    @Action(input = "http://ws.dtu.dk/Calculator/minusRequest", output = "http://ws.dtu.dk/Calculator/minusResponse")
+    public int minus(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")

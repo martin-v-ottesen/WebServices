@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _Minus_QNAME = new QName("http://ws.dtu.dk/", "minus");
     private final static QName _Div_QNAME = new QName("http://ws.dtu.dk/", "div");
     private final static QName _Plus_QNAME = new QName("http://ws.dtu.dk/", "plus");
+    private final static QName _DivideByZerroException_QNAME = new QName("http://ws.dtu.dk/", "DivideByZerroException");
     private final static QName _MinusResponse_QNAME = new QName("http://ws.dtu.dk/", "minusResponse");
     private final static QName _MultResponse_QNAME = new QName("http://ws.dtu.dk/", "multResponse");
     private final static QName _PlusResponse_QNAME = new QName("http://ws.dtu.dk/", "plusResponse");
@@ -97,6 +98,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DivideByZerroException }
+     * 
+     */
+    public DivideByZerroException createDivideByZerroException() {
+        return new DivideByZerroException();
+    }
+
+    /**
      * Create an instance of {@link Plus }
      * 
      */
@@ -147,6 +156,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "plus")
     public JAXBElement<Plus> createPlus(Plus value) {
         return new JAXBElement<Plus>(_Plus_QNAME, Plus.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DivideByZerroException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.dtu.dk/", name = "DivideByZerroException")
+    public JAXBElement<DivideByZerroException> createDivideByZerroException(DivideByZerroException value) {
+        return new JAXBElement<DivideByZerroException>(_DivideByZerroException_QNAME, DivideByZerroException.class, null, value);
     }
 
     /**

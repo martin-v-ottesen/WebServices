@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dk.dtu.ws;
 
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
-import dk.dtu.ws.Model.HotelBookingInformation;
+import dk.dtu.ws.Model.*;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.xml.ws.WebServiceRef;
 
 /**
@@ -22,54 +17,88 @@ public class HotelReservation {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
     
-    private ArrayList hotels;
-    private ArrayList bookingObjects;
-    private ArrayList<Bookings> bookingList;
+    private ArrayList<Hotel> hotels;
+    private ArrayList<Bookings> bookingObjects;
 
-    ArrayList<HotelBookingInformation> hotelList = new ArrayList<HotelBookingInformation>();
+    ArrayList<RoomListObject> hotelList = new ArrayList<RoomListObject>();
 
-    public HotelReservation(ArrayList<HotelBookingInformation> hotelList) {
+    public HotelReservation(ArrayList<RoomListObject> hotelList) {
         this.hotelList = hotelList;
     }
+    
+    public boolean createAirline(Hotel hotel) {        
+        hotels.add(hotel);
+        return true;
+    }
 
-    public ArrayList<HotelBookingInformation> getHotels(String city, Date arrival, Date departure) {
-        ArrayList<HotelBookingInformation> vacantHotel = new ArrayList<HotelBookingInformation>();
-
-        for (HotelBookingInformation hotelBookingInformation : hotelList) {
-            if (hotelBookingInformation.getHotel().getCity().equals(city)) {
-                if (hotelBookingInformation.getHotel().getVacantStart().equals(arrival)
-                        || hotelBookingInformation.getHotel().getVacantStart().after(arrival)
-                        && hotelBookingInformation.getHotel().getVacantEnd().before(departure)
-                        || hotelBookingInformation.getHotel().getVacantEnd().equals(departure)) {
-                    //Get Price for the whole stay
-                    hotelBookingInformation.setPriceOfStay(hotelBookingInformation.getHotel().priceOfStay(departure, arrival));
-                    vacantHotel.add(hotelBookingInformation);
-
-                }
+    public boolean setRoomData(Hotel thisHotel, Room info) throws FileNotFoundException {
+        for (Hotel hotel : hotels) {
+            if (hotel.equals(thisHotel)) {
+                hotel.getRooms().add(info);
+                return true;
             }
         }
-        return vacantHotel;
+        Hotel hotel = thisHotel;
+        hotel.getRooms().add(info);
+        hotels.add(hotel);
+        return true;
+    }
+    
+    //For testpurposes ONLY!
+    public boolean clear(){
+        try{
+            this.hotels.clear();
+            this.bookingObjects.clear();
+        } catch(Exception e){
+            return false;
+        }
+        return true;        
     }
 
-    public String bookHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) {
-        //if()
-        return "";
+    public ArrayList<RoomListObject> getHotels(String city, ProjectDate arrival, ProjectDate departure) {
+        ArrayList<RoomListObject> vacantHotelRooms = new ArrayList<>();        
+        hotels.stream().forEach((hotel) -> {
+            vacantHotelRooms.addAll(hotel.getVacendRooms(arrival, departure));
+        });
+        return vacantHotelRooms;
     }
 
-    public String cancelHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
+    public boolean bookHotel(String bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
+        if(validateCreditCard(1, creditCardInfo, 10000)){
+            return true;
+            
+            
+//            for(FlightListObject bookingObject : bookingObjects){
+//                if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
+//                    for (Bookings booking : bookingList){
+//                        if (booking.getCreditCardInfo().equals(creditCardInfo)){
+//                            booking.addFlight(bookingObject);
+//                            return chargeCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice(), BankAccount.validAccount());
+//                        }
+//                    }
+//                    Bookings newCostumer = new Bookings(creditCardInfo, bookingObjects);
+//                    return chargeCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice(), BankAccount.validAccount());                 
+//                }
+//            }
+        }        
+        return false;
+    }
+
+    public boolean cancelHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage {
         if(validateCreditCard(1, creditCardInfo, 0)){
-            for(FlighListObject bookingObject : bookingObjects){
-                if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
-                    for (Bookings booking : bookingList){
-                        if (booking.getCreditCardInfo().equals(creditCardInfo)){
-                            booking.removeFlight(bookingObject);
-                            refundCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice()/2, BankAccount.validAccount()); 
-                            return true;
-                        }
-                    }
-                    return true;                
-                }
-            }
+            return true;
+//            for(FlighListObject bookingObject : bookingObjects){
+//                if (bookingObject.getFlight().getBookingNumber() == bookingNumber){
+//                    for (Bookings booking : bookingList){
+//                        if (booking.getCreditCardInfo().equals(creditCardInfo)){
+//                            booking.removeFlight(bookingObject);
+//                            refundCreditCard(1, creditCardInfo,  bookingObject.getFlight().getBookingPrice()/2, BankAccount.validAccount()); 
+//                            return true;
+//                        }
+//                    }
+//                    return true;                
+//                }
+//            }
         }        
         return false;
     }

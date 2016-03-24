@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * @author jacobmulvad
  */
 public class VacantHotel {
-    private ArrayList<HotelBookingInformation> hotelList;
+    private ArrayList<RoomListObject> hotelList;
     private String nameOfHotelBookingService;
     
-    public VacantHotel(String nameOfHotelBookingService, ArrayList<HotelBookingInformation> hotelList) {
+    public VacantHotel(String nameOfHotelBookingService, ArrayList<RoomListObject> hotelList) {
         this.nameOfHotelBookingService = nameOfHotelBookingService;
         this.hotelList = hotelList;
     }
@@ -24,7 +24,7 @@ public class VacantHotel {
         this.nameOfHotelBookingService = name;
     }
     
-    public void setHotelList(ArrayList<HotelBookingInformation> hotelList) {
+    public void setHotelList(ArrayList<RoomListObject> hotelList) {
         this.hotelList = hotelList;
     }
     
@@ -32,7 +32,7 @@ public class VacantHotel {
         return nameOfHotelBookingService;
     }
     
-    public ArrayList<HotelBookingInformation> getHotelList() {
+    public ArrayList<RoomListObject> getHotelList() {
         return hotelList;
     }
 }

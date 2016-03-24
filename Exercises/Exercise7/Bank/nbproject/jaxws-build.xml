@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-service-BankImpl" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/service/BankImpl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/BankImpl" destdir="${build.generated.dir}/jax-wsCache/service/BankImpl" wsdl="${basedir}/${conf-dir}xml-resources/web-services/BankImpl/wsdl/bank.wsdl" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/BankImpl" destdir="${build.generated.dir}/jax-wsCache/service/BankImpl" wsdl="${basedir}/${conf-dir}xml-resources/web-services/BankImpl/wsdl/bank.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" xnocompile="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-services/BankImpl/wsdl/bank.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/service/BankImpl"/>
         </wsimport>

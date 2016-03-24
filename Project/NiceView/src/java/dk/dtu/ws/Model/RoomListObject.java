@@ -11,17 +11,17 @@ import java.util.Date;
  *
  * @author jacobmulvad
  */
-public class HotelBookingInformation {
+public class RoomListObject {
     
     private double priceOfStay;
     private Hotel hotel;
-    private int bookingNumber;
+    private String bookingNumber;
     private boolean creditcardGuarantee;
     
-    public HotelBookingInformation(double priceOfStay, Hotel hotel, int bookingNumber) {
-        this.priceOfStay = priceOfStay;
+    public RoomListObject(Hotel hotel, Room room, ProjectDate arrival, int days) {
+        this.priceOfStay = days * room.getDayPrice();
         this.hotel = hotel;
-        this.bookingNumber = bookingNumber;
+        this.bookingNumber = hotel.getName()+":"+hotel.getCity()+":"+room.getNr()+":"+arrival.toString()+":"+days;
     }
     
     public double getPriceOfStay() {
@@ -36,11 +36,11 @@ public class HotelBookingInformation {
         return hotel;
     }
 
-    public int getBookingNumber() {
+    public String getBookingNumber() {
         return bookingNumber;
     }
 
-    public void setBookingNumber(int bookingNumber) {
+    public void setBookingNumber(String bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
     

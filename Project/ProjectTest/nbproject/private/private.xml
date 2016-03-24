@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jacobmulvad/Documents/WebServicesExamProject/WebServices/Project/ProjectTest/test/dk/dtu/ws/FlightData.java</file>
-            <file>file:/Users/jacobmulvad/Documents/WebServicesExamProject/WebServices/Project/ProjectTest/test/dk/dtu/ws/AirlineReservationServiceTest.java</file>
-            <file>file:/Users/jacobmulvad/Documents/WebServicesExamProject/WebServices/Project/ProjectTest/test/dk/dtu/ws/BankData.java</file>
+            <file>file:/C:/Users/Martin/Documents/DTU/WebServices/Project/ProjectTest/test/dk/dtu/ws/HotelReservationServiceTest.java</file>
+            <file>file:/C:/Users/Martin/Documents/DTU/WebServices/Project/ProjectTest/build/generated-sources/jax-ws/dk/dtu/ws/FlightInformation.java</file>
         </group>
     </open-files>
 </project-private>
