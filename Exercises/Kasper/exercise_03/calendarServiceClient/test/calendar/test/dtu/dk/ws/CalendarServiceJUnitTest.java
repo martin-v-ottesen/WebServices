@@ -100,7 +100,7 @@ public class CalendarServiceJUnitTest {
     }
 
     @Test
-    public void addAppointment_InputTwoDifferentAppointmentsWithDifferentDates_WhatHappens() throws ParseException{
+    public void addAppointment_InputTwoDifferentAppointmentsWithIdenticalDates_WhatHappens() throws ParseException{
         //Arrange
         String insertAppointmentFIRST = "Tis og Lort";
         String insertAppointmentSECOND = "HOLD NU";

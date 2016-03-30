@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepaperService.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="whitepaperService" targetNamespace="http://whitepaperService.ws">
+    <types>
+        <xsd:schema xmlns:tns="http://whitepaperService.ws" targetNamespace="http://whitepaperService.ws">
+        <xsd:complexType name="Address">
+                <xsd:sequence>
+                    <xsd:element name="City" type="xsd:string"/>
+                    <xsd:element name="Postcode" type="xsd:string"/>
+                    <xsd:element name="Street" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="wpfault">
+                <xsd:sequence>
+                    <xsd:element name="errorMessage" type="xsd:string"/>
+                    <xsd:element ref="tns:Person"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Person">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Address" type="tns:Address"/>
+                    </xsd:sequence>
+                    <xsd:attribute name="firstName" type="xsd:string"/>
+                    <xsd:attribute name="lastName" type="xsd:string"/>
+                    <xsd:attribute name="Phone" type="xsd:string"/>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AddPersonStatus" type="xsd:string"/>
+            <xsd:element name="PersonAlreadyExistsError">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="faultcode" type="xsd:string"/>
+                        <xsd:element name="faultstring" type="xsd:string"/>
+                        <xsd:element name="detail" type="tns:wpfault"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="whitepaperServiceOperationRequest">
+        <part name="person" element="tns:Person"/>
+    </message>
+    <message name="whitepaperServiceOperationResponse">
+        <part name="status" element="tns:AddPersonStatus"/>
+    </message>
+    <message name="PersonExistsFault">
+        <part name="personerror" element="tns:PersonAlreadyExistsError"/>
+    </message>
+    <portType name="whitepaperServicePortType">
+        <operation name="AddPerson">
+            <input name="input1" message="tns:whitepaperServiceOperationRequest"/>
+            <output name="output1" message="tns:whitepaperServiceOperationResponse"/>
+            <fault name="fault1" message="tns:PersonExistsFault"/>
+        </operation>
+    </portType>
+    <binding name="whitepaperServicePortTypeBinding" type="tns:whitepaperServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="AddPerson">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="whitepaperServiceService">
+        <port name="whitepaperServicePortTypeBindingPort" binding="tns:whitepaperServicePortTypeBinding">
+            <soap:address location="http://localhost:8080/WhitePageService/whitepaperServiceService"/>
+        </port>
+    </service>
+</definitions>

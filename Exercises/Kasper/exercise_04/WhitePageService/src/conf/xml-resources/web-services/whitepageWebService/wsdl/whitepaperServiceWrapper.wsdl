@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepaperService.ws" name="whitepaperService" targetNamespace="http://whitepaperService.ws">
+<wsdl:import namespace="http://whitepaperService.ws" location="whitepaperService.wsdl"/>
+<wsdl:binding name="whitepaperServiceBinding" type="tns:whitepaperServicePortType">
+<soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="AddPerson">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="AddPerson_action"/>
+<wsdl:input name="input1">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+</wsdl:input>
+<wsdl:output name="output1">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+</wsdl:output>
+<wsdl:fault name="fault1">
+<soap:fault xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="fault1" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="whitepaperServiceService">
+<wsdl:port name="whitepaperServicePort" binding="tns:whitepaperServiceBinding">
+<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="REPLACE_WITH_ACTUAL_URL"/>
+</wsdl:port>
+</wsdl:service>
+</definitions>

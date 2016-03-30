@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="whitepageServiceWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/WhitePageService/java/whitepageServiceWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/WhitePageService/java/whitepageServiceWSDL" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/WhitePageService/java/whitepageServiceWSDL" xmlns:tns="http://j2ee.netbeans.org/wsdl/WhitePageService/java/whitepageServiceWSDL">
+            <xsd:complexType name="Address">
+                <xsd:sequence>
+                    <xsd:element name="City" type="xsd:string"></xsd:element>
+                    <xsd:element name="Postcode" type="xsd:string"></xsd:element>
+                    <xsd:element name="Street" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="Person">
+                <xsd:sequence>
+                    <xsd:element name="Address" type="tns:Address"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="Firstname" type="xsd:string"/>
+                <xsd:attribute name="Lastname" type="xsd:string"/>
+                <xsd:attribute name="Phone" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="PersonExistsFault">
+                <xsd:sequence>
+                    <xsd:element name="Faultcode" type="xsd:string"></xsd:element>
+                    <xsd:element name="Faultstring" type="xsd:string"></xsd:element>
+                    <xsd:element name="Detail" type="tns:Detail"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="Detail">
+                <xsd:sequence>
+                    <xsd:element name="newElement" type="tns:wpfault"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="wpfault">
+                <xsd:sequence>
+                    <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
+                    <xsd:element name="Person" type="tns:Person"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>      
+    </types>
+    <message name="whitepageServiceAddPersonRequest">
+        <part name="part1" type="tns:Person"/>
+    </message>
+    <message name="whitepageServiceAddPersonResponse">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="PersonAlreadyExistsFault">
+        <part name="part1" type="tns:PersonExistsFault"/>
+    </message>
+    <message name="whitepageServiceWSDLOperationRequest">
+        <part name="part1" type="tns:Person"/>
+    </message>
+    <message name="whitepageServiceWSDLOperationResponse">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="PersonAlreadyExistsError">
+        <part name="part1" type="tns:PersonExistsFault"/>
+    </message>
+    <portType name="whitepageServiceWSDLPortType">
+        <operation name="AddPerson">
+            <input name="input1" message="tns:whitepageServiceWSDLOperationRequest"/>
+            <output name="output1" message="tns:whitepageServiceWSDLOperationResponse"/>
+            <fault name="fault1" message="tns:PersonAlreadyExistsError"/>
+        </operation>
+    </portType>
+    <binding name="whitepageServiceWSDLPortTypeBinding" type="tns:whitepageServiceWSDLPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="AddPerson">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="whitepageServiceWSDLService">
+        <port name="whitepageServiceWSDLPortTypeBindingPort" binding="tns:whitepageServiceWSDLPortTypeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
+</definitions>

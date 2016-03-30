@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="whitepaperService" targetNamespace="http://whitepaperService.ws"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepaperService.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://whitepaperService.ws" xmlns:tns="http://whitepaperService.ws">
+        <xsd:complexType name="Address">
+                <xsd:sequence>
+                    <xsd:element name="City" type="xsd:string"></xsd:element>
+                    <xsd:element name="Postcode" type="xsd:string"></xsd:element>
+                    <xsd:element name="Street" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="wpfault">
+                <xsd:sequence>
+                    <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
+                    <xsd:element ref="tns:Person"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Person">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Address" type="tns:Address"></xsd:element>
+                    </xsd:sequence>
+                    <xsd:attribute name="firstName" type="xsd:string"/>
+                    <xsd:attribute name="lastName" type="xsd:string"/>
+                    <xsd:attribute name="Phone" type="xsd:string"/>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AddPersonStatus" type="xsd:string"></xsd:element>
+            <xsd:element name="PersonAlreadyExistsError">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="faultcode" type="xsd:string"></xsd:element>
+                        <xsd:element name="faultstring" type="xsd:string"></xsd:element>
+                        <xsd:element name="detail" type="tns:wpfault"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="whitepaperServiceOperationRequest">
+        <part name="person" element="tns:Person"/>
+    </message>
+    <message name="whitepaperServiceOperationResponse">
+        <part name="status" element="tns:AddPersonStatus"/>
+    </message>
+    <message name="PersonExistsFault">
+        <part name="personerror" element="tns:PersonAlreadyExistsError"/>
+    </message>
+    <portType name="whitepaperServicePortType">
+        <operation name="AddPerson">
+            <input name="input1" message="tns:whitepaperServiceOperationRequest"/>
+            <output name="output1" message="tns:whitepaperServiceOperationResponse"/>
+            <fault name="fault1" message="tns:PersonExistsFault"/>
+        </operation>
+    </portType>
+    <binding name="whitepaperServicePortTypeBinding" type="tns:whitepaperServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="AddPerson">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="whitepaperServiceService">
+        <port name="whitepaperServicePortTypeBindingPort" binding="tns:whitepaperServicePortTypeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
+</definitions>

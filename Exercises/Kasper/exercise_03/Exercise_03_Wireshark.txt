@@ -11,7 +11,26 @@ User-Agent: JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e
 Host: localhost:8080
 Connection: keep-alive
 Content-Length: 285
+-----
+eXtensible Markup Language
+    <?xml
+        version="1.0"
+        ?>
+    <S:Envelope
+        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <S:Body>
+            <ns2:getAppointment
+                xmlns:ns2="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL">
+                <date>
+                    2016-03-24T00:00:00.000+01:00
+                    </date>
+                </ns2:getAppointment>
+            </S:Body>
+        </S:Envelope>
+
 
 -------------------getAppointmentResponse-------------------
 <ns2:getAppointmentResponse xmlns:ns2="http://j2ee.netbeans.org/wsdl/CalendarWebservice/java/calendarServiceWSDL"><appointment>Tis og Lort</appointment></ns2:getAppointmentResponse></S:Body></S:Envelope>
+-----
+
 ------------------------------------------------------------

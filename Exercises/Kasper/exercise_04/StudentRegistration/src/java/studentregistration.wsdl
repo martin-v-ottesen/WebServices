@@ -2,14 +2,53 @@
 <definitions name="studenregistration" targetNamespace="http://studentregistration"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://studentregistration">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://studentregistration" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://studentregistration" xmlns:tns="http://studentregistration">
             <xsd:complexType name="studentType">
                 <xsd:sequence>
                     <xsd:element name="name" type="xsd:string"></xsd:element>
+                    <xsd:element name="studentnumber" type="xsd:string"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:element name="request">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="action" type="xsd:string"></xsd:element>
+                        <xsd:element name="student" type="tns:studentType"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="student" type="tns:studentType"></xsd:element>
         </xsd:schema>
     </types>
+    <message name="studenregistrationOperationRequest">
+        <part name="request" element="tns:request"/>
+    </message>
+    <message name="studenregistrationOperationResponse">
+        <part name="student" element="tns:student"/>
+    </message>
+    <portType name="studentregistration">
+        <operation name="registerStudent">
+            <input name="input1" message="tns:studenregistrationOperationRequest"/>
+            <output name="output1" message="tns:studenregistrationOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="studentregistrationBinding" type="tns:studentregistration">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="registerStudent">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="studentregistrationService">
+        <port name="studentregistrationBindingPort" binding="tns:studentregistrationBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
 </definitions>
