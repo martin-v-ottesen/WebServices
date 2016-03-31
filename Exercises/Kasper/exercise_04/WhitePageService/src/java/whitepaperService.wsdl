@@ -5,7 +5,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepaperService.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://whitepaperService.ws" xmlns:tns="http://whitepaperService.ws">
-        <xsd:complexType name="Address">
+            <xsd:complexType name="Address">
                 <xsd:sequence>
                     <xsd:element name="City" type="xsd:string"></xsd:element>
                     <xsd:element name="Postcode" type="xsd:string"></xsd:element>
@@ -15,7 +15,7 @@
             <xsd:complexType name="wpfault">
                 <xsd:sequence>
                     <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
-                    <xsd:element ref="tns:Person"/>
+                    <xsd:element name="Person" type="tns:PersonType"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="Person">
@@ -38,10 +38,26 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="PersonArray">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Person" type="tns:PersonType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="PersonType">
+                <xsd:sequence>
+                    <xsd:element name="Address" type="tns:Address"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="firstName" type="xsd:string"/>
+                <xsd:attribute name="lastName" type="xsd:string"/>
+                <xsd:attribute name="phone" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:element name="PersonFromType" type="tns:PersonType"></xsd:element>
         </xsd:schema>
     </types>
     <message name="whitepaperServiceOperationRequest">
-        <part name="person" element="tns:Person"/>
+        <part name="person" element="tns:PersonFromType"/>
     </message>
     <message name="whitepaperServiceOperationResponse">
         <part name="status" element="tns:AddPersonStatus"/>
@@ -49,11 +65,21 @@
     <message name="PersonExistsFault">
         <part name="personerror" element="tns:PersonAlreadyExistsError"/>
     </message>
+    <message name="whitepaperServiceOperationRequest_FindPerson">
+        <part name="part1" element="tns:PersonFromType"/>
+    </message>
+    <message name="whitepaperServiceOperationResponse_FindPerson">
+        <part name="part1" element="tns:PersonArray"/>
+    </message>
     <portType name="whitepaperServicePortType">
         <operation name="AddPerson">
             <input name="input1" message="tns:whitepaperServiceOperationRequest"/>
             <output name="output1" message="tns:whitepaperServiceOperationResponse"/>
             <fault name="fault1" message="tns:PersonExistsFault"/>
+        </operation>
+        <operation name="FindPerson">
+            <input name="input2" message="tns:whitepaperServiceOperationRequest_FindPerson"/>
+            <output name="output2" message="tns:whitepaperServiceOperationResponse_FindPerson"/>
         </operation>
     </portType>
     <binding name="whitepaperServicePortTypeBinding" type="tns:whitepaperServicePortType">
@@ -69,6 +95,15 @@
             <fault name="fault1">
                 <soap:fault name="fault1" use="literal"/>
             </fault>
+        </operation>
+        <operation name="FindPerson">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output2">
+                <soap:body use="literal"/>
+            </output>
         </operation>
     </binding>
     <service name="whitepaperServiceService">

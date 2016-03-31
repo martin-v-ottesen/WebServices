@@ -13,12 +13,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ws.whitepaperservice.Address;
-import ws.whitepaperservice.Person;
+import ws.whitepaperservice.PersonType;
+import ws.whitepaperservice.PersonArray;
 import ws.whitepaperservice.PersonExistsFault;
 
 /**
  *
  * @author dxong
+ * 
+ * 
+ * WARNING: Non unique body parts! In a port, as per BP 1.1 R2710 operations 
+ * must have unique operation signature on the wire for successful dispatch.
+ * Methods [findPerson, addPerson] have the same request body block
+ * {http://whitepaperService.ws}PersonFromType. Method dispatching may fail,
+ * runtime will try to dispatch using SOAPAction. Another option is to enable
+ * AddressingFeature to enabled runtime to uniquely identify WSDL operation 
+ * using wsa:Action header.
+ * 
  */
 public class whitepageWebserviceUnitTest {
     
@@ -45,9 +56,9 @@ public class whitepageWebserviceUnitTest {
     @Test
     public void addPerson_AddOnePerson_ReturnsStringDone() {
         //Arrange
-        ws.whitepaperservice.Person TisseMand = new Person();
-        TisseMand.setFirstName("Dillermand2");
-        TisseMand.setLastName("Til Farmand2");
+        ws.whitepaperservice.PersonType TisseMand = new PersonType();
+        TisseMand.setFirstName("Dillermand2ksnfkasdasdj");
+        TisseMand.setLastName("Til Farmand");
         TisseMand.setPhone("66666662");
         Address redlightdistrict = new Address();
         redlightdistrict.setStreet("DinMorGade 069");
@@ -71,7 +82,7 @@ public class whitepageWebserviceUnitTest {
     @Test
     public void addPerson_AddIdenticalPersons_ReturnsStringDone() {
         //Arrange
-        ws.whitepaperservice.Person TisseMand = new Person();
+        ws.whitepaperservice.PersonType TisseMand = new PersonType();
         TisseMand.setFirstName("Dillermand");
         TisseMand.setLastName("Til Farmand");
         TisseMand.setPhone("66666666");
@@ -107,10 +118,52 @@ public class whitepageWebserviceUnitTest {
         //Assert
         //assertEquals(expectedResult, Result);
     }
+    
+    @Test
+    public void findPerson_findSpecificPersonByLastName_ReturnsCountOfTwoPersons() throws PersonExistsFault{
+        //Arrange
+        
+        //Common Address for Person 1 and 2
+        Address redlightdistrict = new Address();
+        redlightdistrict.setStreet("Skodsborgvej 190");
+        redlightdistrict.setPostcode("2850");
+        redlightdistrict.setCity("Nærum");
+        
+        //Person 1
+        ws.whitepaperservice.PersonType TisseMand = new PersonType();
+        TisseMand.setFirstName("Jacob");
+        TisseMand.setLastName("Tissekone");
+        TisseMand.setPhone("66666666");
+        TisseMand.setAddress(redlightdistrict);
+        
+        //Person 2
+        ws.whitepaperservice.PersonType TisseMand2 = new PersonType();
+        TisseMand2.setFirstName("Jacob");
+        TisseMand2.setLastName("Diller");
+        TisseMand2.setPhone("66666666");
+        TisseMand2.setAddress(redlightdistrict);
+        
+        int expectedCount = 2;
+        //Act
+        addPerson(TisseMand);
+        addPerson(TisseMand2);
+        
+        ws.whitepaperservice.PersonArray Result = findPerson(TisseMand);
+        //Assert
+        assertEquals(expectedCount, Result.getPerson().size());
+        
+    }
 
-    private static String addPerson(ws.whitepaperservice.Person person) throws PersonExistsFault {
+    private static String addPerson(ws.whitepaperservice.PersonType person) throws PersonExistsFault {
         ws.whitepaperservice.WhitepaperServiceService service = new ws.whitepaperservice.WhitepaperServiceService();
-        ws.whitepaperservice.WhitepaperServicePortType port = service.getWhitepaperServicePortTypeBindingPort();
+        ws.whitepaperservice.WhitepaperServicePortType port = service.getWhitepaperServicePort();
         return port.addPerson(person);
     }
+
+    private static PersonArray findPerson(ws.whitepaperservice.PersonType person) {
+        ws.whitepaperservice.WhitepaperServiceService service = new ws.whitepaperservice.WhitepaperServiceService();
+        ws.whitepaperservice.WhitepaperServicePortType port = service.getWhitepaperServicePort();
+        return port.findPerson(person);
+    }
+    
 }
