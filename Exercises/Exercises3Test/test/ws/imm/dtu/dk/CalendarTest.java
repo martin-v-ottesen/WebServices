@@ -85,6 +85,26 @@ public class CalendarTest {
         assertEquals("TestJunk", result);
 
     }
+    
+    @Test
+    public void hubertTest() throws ParseException, DatatypeConfigurationException{
+        String dateStr = "2011.02.01";
+        Date date = format.parse(dateStr);
+        gregory.setTime(date);
+
+        XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregory);
+        addAppointment(calendar, "TestJunk");
+
+        String result = getAppointment(calendar);
+        assertEquals("TestJunk", result);
+        
+        addAppointment(calendar, "TestJunk2");
+
+        result = getAppointment(calendar);
+        assertEquals("TestJunk2", result);
+        
+        
+    }
 
     private static void addAppointment(javax.xml.datatype.XMLGregorianCalendar part1, java.lang.String part2) {
         org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService();
