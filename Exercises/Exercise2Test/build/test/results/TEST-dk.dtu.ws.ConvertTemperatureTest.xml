@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Joshua" name="dk.dtu.ws.ConvertTemperatureTest" skipped="0" tests="8" time="2.229" timestamp="2015-11-03T00:15:37">
+<testsuite errors="0" failures="0" hostname="Joshua" name="dk.dtu.ws.ConvertTemperatureTest" skipped="0" tests="8" time="2.1" timestamp="2016-03-24T16:35:56">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="DK" />
@@ -8,7 +8,6 @@
     <property name="libs.jsf20.maven-pom" value="" />
     <property name="libs.junit.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\docs\junit-3.8.2-api.zip" />
     <property name="libs.spring-webmvc4.0.src" value="" />
-    <property name="javac.includes" value="dk/dtu/ws/ConvertTemperatureTest.java" />
     <property name="ant.core.lib" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
@@ -37,7 +36,7 @@
     <property name="have.tests" value="true" />
     <property name="org.xml.sax.driver" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser" />
     <property name="libs.javac-api.javadoc" value="" />
-    <property name="os.name" value="Windows 8.1" />
+    <property name="os.name" value="Windows 10" />
     <property name="libs.beans-binding.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\beansbinding-1.2.1.jar" />
     <property name="libs.javaee-endorsed-api-7.0.maven-pom" value="" />
     <property name="ap.proc.none.internal" value="" />
@@ -59,7 +58,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dk.dtu.ws.ConvertTemperatureTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\test\results\TEST-dk.dtu.ws.ConvertTemperatureTest.xml crashfile=C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\junitvmwatcher7608203980249028481.properties propsfile=C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\junit5320944363878892995.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dk.dtu.ws.ConvertTemperatureTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\test\results\TEST-dk.dtu.ws.ConvertTemperatureTest.xml crashfile=C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\junitvmwatcher4150380542854305462.properties propsfile=C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\junit283605513334870601.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -82,7 +81,6 @@
     <property name="libs.jsp-compilation-syscp.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\jstl-impl.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
     <property name="java.endorsed.dirs" value="C:\Program Files (x86)\Java\jdk1.8.0_60\jre\lib\endorsed" />
     <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
-    <property name="test.includes" value="dk/dtu/ws/ConvertTemperatureTest.java" />
     <property name="netbeans.dynamic.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\core.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\org-openide-filesystems.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\core_ja.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\core_pt_BR.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\core_ru.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\core_zh_CN.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\org-openide-filesystems_ja.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\org-openide-filesystems_ru.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\core\locale\core_soa.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\org-netbeans-upgrader.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\core_nb.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\core_nb_ja.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\core_nb_pt_BR.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\core_nb_ru.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\core_nb_zh_CN.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\org-netbeans-upgrader_ru.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
     <property name="java.vm.specification.version" value="1.8" />
     <property name="libs.hibernate4-support.src" value="" />
@@ -100,7 +98,6 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\null343612027" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\modules\ext\junit-4.10.jar" />
@@ -115,13 +112,12 @@
     <property name="libs.hibernate4-persistencemodelgen.javadoc" value="" />
     <property name="libs.jaxb.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\docs\jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\antlr-2.7.2.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\bsf-2.3.0.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-beanutils-1.8.0.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-chain-1.2.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-digester-1.8.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-fileupload-1.1.1.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-io-1.1.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-logging-1.0.4.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\commons-validator-1.3.1.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\jstl-1.0.2.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\oro-2.0.8.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\standard-1.0.6.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-core-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-el-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-extras-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-faces-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-mailreader-dao-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-scripting-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-taglib-1.3.10.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\struts\struts-tiles-1.3.10.jar" />
-    <property name="javac.includes.binary" value="C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\test\classes\dk\dtu\ws\ConvertTemperatureTest.class" />
     <property name="ant.home" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\docs\junit-4.10-sources.jar" />
     <property name="libs.testng.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\modules\ext\testng-6.8.1-dist.jar" />
     <property name="libs.absolutelayout.maven-pom" value="" />
     <property name="ant.java.version" value="1.8" />
-    <property name="java.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_60\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\gurobi605\win64\bin;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Java\jdk1.8.0_60\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Lenovo\FusionEngine;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Lenovo\Motion Control\;C:\Program Files (x86)\Common Files\lenovo\easyplussdk\bin;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\MiKTeX\miktex\bin\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Skype\Phone\;." />
+    <property name="java.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_60\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\gurobi605\win64\bin;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Java\jdk1.8.0_60\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Lenovo\FusionEngine;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Lenovo\Motion Control\;C:\Program Files (x86)\Common Files\lenovo\easyplussdk\bin;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\MiKTeX\miktex\bin\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;." />
     <property name="javadoc.author" value="false" />
     <property name="libs.metro.maven-pom" value="" />
     <property name="libs.Encoder-HL7.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\hl7.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\hl7encoder-xsdextension.jar" />
@@ -151,7 +147,7 @@
     <property name="libs.primefaces.javadoc" value="" />
     <property name="libs.spring-framework300.maven-pom" value="" />
     <property name="run.test.classpath" value=":build/classes:C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\modules\ext\junit-4.10.jar:build/test/classes" />
-    <property name="ant.project.invoked-targets" value="test-single" />
+    <property name="ant.project.invoked-targets" value="test" />
     <property name="libs.Encoder-Framework.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\encoderframework.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\encoderfrmwk-xsdextension.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\xbean.jar" />
     <property name="test.binaryexcludes" value="" />
     <property name="libs.swing-layout.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\docs\swing-layout-1.0.4-doc.zip" />
@@ -252,7 +248,7 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="ConvertTemperature" />
     <property name="libs.PojoSELib.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules\ext\sun-pojo-engine-api-javadoc.jar" />
-    <property name="netbeans.hash.code" value="unique=00d91c21c-9baa-436c-9e2b-78419b3d5069_8a0e5a18-6265-4f8f-9bc3-63f11fbb6a47" />
+    <property name="netbeans.hash.code" value="unique=00d91c21c-9baa-436c-9e2b-78419b3d5069_6704ef38-d8b7-484f-8465-1f51978b7e5c" />
     <property name="netbeans.default_userdir_root" value="" />
     <property name="libs.jsp-compilation-syscp.maven-pom" value="" />
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
@@ -300,15 +296,15 @@
     <property name="libs.jaxb.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\jaxb-impl.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\jaxb-xjc.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\jaxb1-impl.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\activation.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\api\jaxb-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\api\jsr173_1.0_api.jar" />
     <property name="do.depend" value="false" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
-    <property name="libs.spring-webmvc3.0.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.swing-layout.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\modules\ext\swing-layout-1.0.4.jar" />
+    <property name="libs.spring-webmvc3.0.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="libs.restlib.src" value="" />
     <property name="javac.source" value="1.8" />
     <property name="build.generated.dir" value="build/generated" />
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="java.specification.version" value="1.8" />
-    <property name="java.vm.info" value="mixed mode" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
     <property name="libs.jaxws21.maven-pom" value="" />
     <property name="nb.junit.batch" value="true" />
     <property name="junit.forkmode" value="perTest" />
@@ -318,14 +314,15 @@
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="libs.Encoder-Framework.maven-pom" value="" />
     <property name="src.dir" value="src" />
-    <property name="libs.jpa2-persistence.src" value="" />
     <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
     <property name="annotation.processing.enabled" value="true" />
+    <property name="libs.jpa2-persistence.src" value="" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
     <property name="libs.jsf12.src" value="" />
     <property name="libs.JAVADB_DRIVER_LABEL.maven-pom" value="" />
     <property name="libs.struts.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\docs\struts-1.3.10-javadoc.zip" />
+    <property name="ignore.failing.tests" value="true" />
     <property name="libs.Comet-GlassFish-v3.classpath" value="" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.primefaces.src" value="" />
@@ -336,8 +333,8 @@
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
     <property name="default.javac.source" value="1.8" />
     <property name="debug-transport-by-os" value="dt_shmem" />
-    <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="libs.MySQLDriver.src" value="" />
     <property name="libs.Encoder-COCO.javadoc" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
     <property name="ant.file.type.ConvertTemperature-impl" value="file" />
@@ -355,14 +352,14 @@
     <property name="libs.metro.src" value="" />
     <property name="libs.absolutelayout.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.metro.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\activation.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-extra-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-extra.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-rt.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-tools.jar" />
     <property name="libs.restlib.maven-pom" value="" />
+    <property name="libs.metro.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\activation.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-extra-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-extra.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-rt.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\metro\webservices-tools.jar" />
     <property name="libs.jpa2-persistence.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
     <property name="java.class.path" value="C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\classes;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\modules\ext\junit-4.10.jar;C:\Users\Martin\Documents\DTU\WebServices\Exercises\Exercise2Test\build\test\classes;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant-launcher.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant-junit.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar" />
-    <property name="os.version" value="6.3" />
+    <property name="os.version" value="10.0" />
     <property name="application.args" value="" />
     <property name="libs.EclipseLink-GlassFish-v3.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.javaee-api-7.0.maven-pom" value="" />
@@ -375,11 +372,11 @@
     <property name="libs.Comet-GlassFish-v3.src" value="" />
     <property name="libs.restlib.javadoc" value="" />
     <property name="libs.JAXB-ENDORSED.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\jaxb\api\jaxb-api.jar" />
-    <property name="nb.internal.action.name" value="run.single" />
-    <property name="libs.eclipselink.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\eclipselink.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
+    <property name="nb.internal.action.name" value="test" />
     <property name="libs.javaee-api-7.0.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\docs\javaee-doc-api.jar" />
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="libs.eclipselink.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\eclipselink.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="libs.beans-binding.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\docs\beansbinding-1.2.1-doc.zip" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="libs.CopyLibs.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\ant\extra\org-netbeans-modules-java-j2seproject-copylibstask.jar" />
     <property name="libs.spring-framework300.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\org-apache-commons-logging.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\cglib-2.2.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-aop-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-aspects-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-beans-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-build-src-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-context-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-context-support-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-core-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-expression-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-framework-bom-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-instrument-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-jdbc-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-jms-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-orm-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-oxm-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-struts-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-test-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-tx-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-web-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.7.RELEASE.jar" />
@@ -390,8 +387,8 @@
     <property name="libs.JAXB-ENDORSED.src" value="" />
     <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\platform\docs\testng-6.8.1-javadoc.zip" />
-    <property name="user.script" value="" />
     <property name="libs.PostgreSQLDriver.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\ide\modules\ext\postgresql-9.2-1002.jdbc4.jar" />
+    <property name="user.script" value="" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="soa.module.install.dir" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\soa\modules" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
@@ -403,23 +400,23 @@
     <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\modules\ext\jstl-api.jar;C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\extide\ant\lib\ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
-    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="file.encoding" value="Cp1252" />
-    <property name="javadoc.nonavbar" value="false" />
+    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="jdkBug6558476" value="false" />
+    <property name="javadoc.nonavbar" value="false" />
     <property name="libs.spring-webmvc4.0.classpath" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\java\modules\ext\spring-4\spring-webmvc-4.0.1.RELEASE.jar" />
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Tools\OpenESB-SE-3.0.5\OE-Studio\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToKelvin2" time="0.706" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromFahfnheitToCelsius" time="0.212" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromFahfnheitToCelsius2" time="0.208" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromKelvinToCelsius2" time="0.213" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToFahfnheit" time="0.205" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToKelvin" time="0.209" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromKelvinToCelsius" time="0.205" />
-  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToFahfnheit2" time="0.208" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToKelvin2" time="0.605" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromFahfnheitToCelsius" time="0.219" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToFahfnheit" time="0.202" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromFahfnheitToCelsius2" time="0.202" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToFahfnheit2" time="0.204" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromCelsiusToKelvin" time="0.201" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromKelvinToCelsius" time="0.216" />
+  <testcase classname="dk.dtu.ws.ConvertTemperatureTest" name="convertFromKelvinToCelsius2" time="0.2" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

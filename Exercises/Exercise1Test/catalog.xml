@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://Joshua:8080/Exercise1/CalculatorService?wsdl" uri="xml-resources/web-service-references/CalculatorService/wsdl/Joshua_8080/Exercise1/CalculatorService.wsdl"/>
-    <system systemId="http://Joshua:8080/Exercise1/CalculatorService?xsd=1" uri="xml-resources/web-service-references/CalculatorService/wsdl/Joshua_8080/Exercise1/CalculatorService.xsd_1.xsd"/>
-    <system systemId="http://Joshua:8080/Exercise1/Calculator?wsdl" uri="xml-resources/web-service-references/Calculator/wsdl/Joshua_8080/Exercise1/Calculator.wsdl"/>
-    <system systemId="http://Joshua:8080/Exercise1/Calculator?xsd=1" uri="xml-resources/web-service-references/Calculator/wsdl/Joshua_8080/Exercise1/Calculator.xsd_1.xsd"/>
-</catalog>
