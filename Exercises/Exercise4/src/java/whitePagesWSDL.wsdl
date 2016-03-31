@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="whitePagesWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/Exercise4/java/whitePagesWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/Exercise4/java/whitePagesWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/Exercise4/java/whitePagesWSDL" xmlns:tns="http://j2ee.netbeans.org/wsdl/Exercise4/java/whitePagesWSDL">
+            <xsd:complexType name="AddressType">
+                <xsd:sequence>
+                    <xsd:element name="city" type="xsd:string"></xsd:element>
+                    <xsd:element name="street" type="xsd:string"></xsd:element>
+                    <xsd:element name="postcode" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Address" type="tns:AddressType"></xsd:element>
+            <xsd:complexType name="PersonType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:Address"/>
+                </xsd:sequence>
+                <xsd:attribute name="firstName" type="xsd:string"/>
+                <xsd:attribute name="lastName" type="xsd:string"/>
+                <xsd:attribute name="phone" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:element name="Person" type="tns:PersonType"></xsd:element>
+            <xsd:complexType name="PersonArray">
+                <xsd:sequence>
+                    <xsd:element ref="tns:Person" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Persons" type="tns:PersonArray"></xsd:element>
+            <xsd:simpleType name="StatusType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="done"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:element name="Status" type="tns:StatusType"></xsd:element>
+            <xsd:complexType name="wpfaultType">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:simpleType name="errorMessageType">
+                <xsd:restriction base="xsd:string"/>
+            </xsd:simpleType>
+        </xsd:schema>
+    </types>
+    <plnk:partnerLinkType name="whitePagesWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="whitePagesServicePortTypeRole" portType="tns:whitePagesServicePortType"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="whitePagesWSDL2">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="whitePagesWSDLPortTypeRole" portType="tns:whitePagesWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
