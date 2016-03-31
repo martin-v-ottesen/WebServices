@@ -5,23 +5,33 @@
  */
 package ws.imm.dtu.dk;
 
+import com.sun.faces.util.CollectionsUtils;
+import java.util.HashMap;
 import javax.jws.WebService;
 
 /**
  *
  * @author Martin
  */
-@WebService(serviceName = "calendarService", portName = "calendarPort", endpointInterface = "org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarServicePortType", targetNamespace = "http://j2ee.netbeans.org/wsdl/Exercises3/java/calendar", wsdlLocation = "WEB-INF/wsdl/CalendarService/calendar.wsdl")
+@WebService(serviceName = "CalandarService", portName = "calendarPort", endpointInterface = "org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalendarServicePortType", targetNamespace = "http://j2ee.netbeans.org/wsdl/Exercises3/java/Calandar", wsdlLocation = "WEB-INF/wsdl/NewWebServiceFromWSDL/Calandar.wsdl")
 public class CalendarService {
 
-    public void addAppointment(javax.xml.datatype.XMLGregorianCalendar part1, java.lang.String part2) {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    HashMap<javax.xml.datatype.XMLGregorianCalendar, String> appointmentMap = new HashMap<>();
+
+    public void addAppointment(javax.xml.datatype.XMLGregorianCalendar date, java.lang.String appointment) {
+        appointmentMap.put(date, appointment);
     }
 
-    public java.lang.String getAppointment(javax.xml.datatype.XMLGregorianCalendar part1) {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public java.lang.String getAppointment(javax.xml.datatype.XMLGregorianCalendar date) {
+        return appointmentMap.getOrDefault(date, "No Appointment");
     }
-    
+
+    public void reset(java.lang.String part1) {
+        if (part1.equals("Reset")) {
+            appointmentMap.clear();
+        } else {
+            throw new UnsupportedOperationException("Not implemented yet.");
+        }
+    }
+
 }

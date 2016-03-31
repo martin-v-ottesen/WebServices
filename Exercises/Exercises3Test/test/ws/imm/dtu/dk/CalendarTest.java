@@ -27,13 +27,13 @@ import static org.junit.Assert.*;
 public class CalendarTest {
 
     static final DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+    GregorianCalendar gregory = new GregorianCalendar();
 
     public CalendarTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws ParseException {
-
     }
 
     @AfterClass
@@ -46,50 +46,61 @@ public class CalendarTest {
 
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void getAppointment() throws ParseException, DatatypeConfigurationException {
-        String dateStr = "2011.02.01";
-        Date date = format.parse(dateStr);
-
-        GregorianCalendar gregory = new GregorianCalendar();
-        gregory.setTime(date);
-
-        XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregory);
-        try {
-            String result = getAppointment(calendar);
-        } catch (Exception e) {
-            assertEquals("Client received SOAP Fault from server: Not implemented yet. Please see the server log to find more detail regarding exact cause of the failure.", e.getMessage());
-        }
+        reset("Reset");
     }
 
     @Test
     public void addAppointment() throws ParseException, DatatypeConfigurationException {
         String dateStr = "2011.02.01";
         Date date = format.parse(dateStr);
+        gregory.setTime(date);
+
+        XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregory);
+        addAppointment(calendar, "TestJunk");
+    }
+    
+    @Test
+    public void getNoAppointment() throws ParseException, DatatypeConfigurationException {
+        String dateStr = "2011.02.01";
+        Date date = format.parse(dateStr);
 
         GregorianCalendar gregory = new GregorianCalendar();
         gregory.setTime(date);
 
         XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregory);
-        try {
-            addAppointment(calendar, "TestJunk");
-        } catch (Exception e) {
-            assertEquals("Client received SOAP Fault from server: Not implemented yet. Please see the server log to find more detail regarding exact cause of the failure.", e.getMessage());
-        }
+        String result = getAppointment(calendar);
+        assertEquals("No Appointment", result);
+    }
+
+    @Test
+    public void firstAddThenGetAppointment() throws ParseException, DatatypeConfigurationException {
+        String dateStr = "2011.02.01";
+        Date date = format.parse(dateStr);
+        gregory.setTime(date);
+
+        XMLGregorianCalendar calendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregory);
+        addAppointment(calendar, "TestJunk");
+
+        String result = getAppointment(calendar);
+        assertEquals("TestJunk", result);
+
     }
 
     private static void addAppointment(javax.xml.datatype.XMLGregorianCalendar part1, java.lang.String part2) {
-        org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarService();
-        org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarServicePortType port = service.getCalendarPort();
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService();
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalendarServicePortType port = service.getCalendarPort();
         port.addAppointment(part1, part2);
     }
 
     private static String getAppointment(javax.xml.datatype.XMLGregorianCalendar part1) {
-        org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarService();
-        org.netbeans.j2ee.wsdl.exercises3.java.calendar.CalendarServicePortType port = service.getCalendarPort();
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService();
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalendarServicePortType port = service.getCalendarPort();
         return port.getAppointment(part1);
     }
 
+    private static void reset(java.lang.String part1) {
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService service = new org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalandarService();
+        org.netbeans.j2ee.wsdl.exercises3.java.calandar.CalendarServicePortType port = service.getCalendarPort();
+        port.reset(part1);
+    }
 }

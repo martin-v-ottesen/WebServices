@@ -1,24 +1,28 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/Exercises3/java/calendar" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="calendar" targetNamespace="http://j2ee.netbeans.org/wsdl/Exercises3/java/calendar">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/Exercises3/java/Calandar" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Calandar" targetNamespace="http://j2ee.netbeans.org/wsdl/Exercises3/java/Calandar">
     <types/>
     <message name="addAppointmentRequest">
         <part name="part1" type="xsd:date"/>
         <part name="part2" type="xsd:string"/>
     </message>
-    <message name="addAppointmentResponse"/>
-    <message name="calendarOperationRequest">
+    <message name="CalandarOperationRequest">
         <part name="part1" type="xsd:date"/>
     </message>
-    <message name="calendarOperationResponse">
+    <message name="CalandarOperationResponse">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="CalandarOperationRequest1">
         <part name="part1" type="xsd:string"/>
     </message>
     <portType name="calendarServicePortType">
         <operation name="addAppointment">
             <input name="input1" message="tns:addAppointmentRequest"/>
-            <output name="output1" message="tns:addAppointmentResponse"/>
         </operation>
         <operation name="getAppointment">
-            <input name="input2" message="tns:calendarOperationRequest"/>
-            <output name="output2" message="tns:calendarOperationResponse"/>
+            <input name="input2" message="tns:CalandarOperationRequest"/>
+            <output name="output1" message="tns:CalandarOperationResponse"/>
+        </operation>
+        <operation name="reset">
+            <input name="input3" message="tns:CalandarOperationRequest1"/>
         </operation>
     </portType>
     <binding name="calendarServicePortTypeBinding" type="tns:calendarServicePortType">
@@ -28,26 +32,29 @@
             <input name="input1">
                 <soap:body use="literal"/>
             </input>
-            <output name="output1">
-                <soap:body use="literal"/>
-            </output>
         </operation>
         <operation name="getAppointment">
             <soap:operation/>
             <input name="input2">
                 <soap:body use="literal"/>
             </input>
-            <output name="output2">
+            <output name="output1">
                 <soap:body use="literal"/>
             </output>
         </operation>
+        <operation name="reset">
+            <soap:operation/>
+            <input name="input3">
+                <soap:body use="literal"/>
+            </input>
+        </operation>
     </binding>
-    <service name="calendarService">
+    <service name="CalandarService">
         <port name="calendarPort" binding="tns:calendarServicePortTypeBinding">
-            <soap:address location="http://localhost:8080/Calendar/calendarService"/>
+            <soap:address location="http://Joshua:8080/Calendar/CalandarService"/>
         </port>
     </service>
-    <plnk:partnerLinkType name="calendar">
+    <plnk:partnerLinkType name="Calandar">
         <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
 In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
 A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->

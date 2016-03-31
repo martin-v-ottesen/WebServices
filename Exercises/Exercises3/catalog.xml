@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/C:/Users/Martin/Documents/DTU/WebServices/Exercises/Exercises3/src/java/calendar.wsdl" uri="src/conf/xml-resources/web-services/CalendarService/wsdl/calendar.wsdl"/>
+    <system systemId="file:/C:/Users/Martin/Documents/DTU/WebServices/Exercises/Exercises3/src/java/Calandar.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/Calandar.wsdl"/>
 </catalog>
