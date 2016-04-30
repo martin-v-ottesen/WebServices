@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system"/>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Martin/Documents/DTU/WebServices/Project2/LameDuck/web/WEB-INF/lameDuckWSDL.wsdl" uri="src/conf/xml-resources/web-services/LameDuckService/wsdl/lameDuckWSDL.wsdl"/>
+</catalog>
