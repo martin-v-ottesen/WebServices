@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/HamAndEggs/hamAndEggs" xmlns:ns2="http://cook.ws/" xmlns:ns3="http://cleaner.ws/" xmlns:ns4="http://hamandeggs.ws" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="CookServicePort" interface-name="ns2:CookService" service-name="ns2:CookServiceService"/>
+        <provides endpoint-name="CleanerServicePort" interface-name="ns3:CleanerService" service-name="ns3:CleanerServiceService"/>
+        <consumes endpoint-name="hamAndEggsPort" interface-name="ns4:hamAndEggsPortType" service-name="ns4:hamAndEggsService"/>
+    </services>
+</jbi>

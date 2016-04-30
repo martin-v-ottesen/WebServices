@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://www.webservicex.net/ConvertTemperature.asmx?WSDL" uri="xml-resources/web-service-references/ConvertTemperature/wsdl/www.webservicex.net/ConvertTemperature.asmx.wsdl"/>
+    <system systemId="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20&apos;12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%202/ConvertTemperature.asmx.wsdl" uri="xml-resources/web-service-references/ConvertTemperature.asmx/wsdl/ConvertTemperature.asmx.wsdl"/>
+</catalog>
+
+
+
+

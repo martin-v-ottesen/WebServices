@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/I:/Workspaces/NetBeansProjects/WS_Exercises/WhitePagesService/src/java/WhitePagesWSDL.wsdl" uri="wsdl/WhitePagesWSDL.wsdl"/>
+    <system systemId="http://localhost:8080/WhitePagesService/WhitePagesWSDLService?wsdl" uri="wsdl/localhost_8080/WhitePagesService/WhitePagesWSDLService.wsdl"/>
+    <system systemId="file:/C:/Users/Wojtek/Documents/Git%20Repositories/WS_Exercises/WhitePagesClient/src/META-INF/wsdl/WhitePagesWSDL.wsdl" uri="wsdl/WhitePagesWSDL.wsdl"/>
+    <system systemId="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20&apos;12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%204/WhitePagesWSDLService.wsdl" uri="wsdl/WhitePagesWSDLService.wsdl"/>
+</catalog>
+
+
+
+
+
+
+

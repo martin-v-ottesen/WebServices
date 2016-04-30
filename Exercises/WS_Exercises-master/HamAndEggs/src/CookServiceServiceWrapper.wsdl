@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CookServiceServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/CookServiceServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/CookServiceServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://cook.ws/">
+    <import location="http://localhost:8080/CookApp/CookServiceService?wsdl" namespace="http://cook.ws/"/>
+    <plnk:partnerLinkType name="CookServiceLinkType">
+        <plnk:role name="CookServiceRole" portType="ns:CookService"/>
+    </plnk:partnerLinkType>
+</definitions>
+

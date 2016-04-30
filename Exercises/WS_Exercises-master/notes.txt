@@ -1,0 +1,2 @@
+"C:\Program Files\Java\jdk1.6.0_34\bin\java.exe" -classpath axis.jar org.apache.axis.utils.tcpmon
+8070 www.webservicex.net 80

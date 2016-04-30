@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/CalendarService/calendarService?wsdl" uri="wsdl/localhost_8080/CalendarService/calendarService.wsdl"/>
+    <system systemId="file:/C:/Users/Wojtek/Dropbox/DTU%20-%20MSc/3%20-%20Autumn%20&apos;12/02267%20Software%20Development%20of%20Web%20Services%20E12/Week%203/calendarService.wsdl" uri="wsdl/calendarService.wsdl"/>
+</catalog>
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="helloWorldBPEL"
+    targetNamespace="http://enterprise.netbeans.org/bpel/HelloWorldBPEL/helloWorldBPEL"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/HelloWorldBPEL/helloWorldBPEL"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2">
+    <import namespace="http://helloworld.ws" location="helloWorld.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ConcatServiceServiceWrapper" location="ConcatServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://concat.ws/" location="http://localhost:8080/ConcatApp/ConcatServiceService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PartnerLink2" xmlns:tns="http://enterprise.netbeans.org/bpel/ConcatServiceServiceWrapper" partnerLinkType="tns:ConcatServiceLinkType" partnerRole="ConcatServiceRole"/>
+        <partnerLink name="PartnerLink1" xmlns:tns="http://helloworld.ws" partnerLinkType="tns:helloWorld" myRole="helloWorldPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="ConcatOut" xmlns:tns="http://concat.ws/" messageType="tns:concatResponse"/>
+        <variable name="ConcatIn" xmlns:tns="http://concat.ws/" messageType="tns:concat"/>
+        <variable name="HelloWorldOut" xmlns:tns="http://helloworld.ws" messageType="tns:helloWorldResponse"/>
+        <variable name="HelloWorldIn" xmlns:tns="http://helloworld.ws" messageType="tns:helloWorldRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="helloWorld" xmlns:tns="http://helloworld.ws" portType="tns:helloWorldPortType" variable="HelloWorldIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from variable="HelloWorldIn" part="part1"/>
+                <to>$ConcatIn.parameters/arg1</to>
+            </copy>
+            <copy>
+                <from>'Hello '</from>
+                <to>$ConcatIn.parameters/arg0</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="PartnerLink2" operation="concat" xmlns:tns="http://concat.ws/" portType="tns:ConcatService" inputVariable="ConcatIn" outputVariable="ConcatOut"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$ConcatOut.parameters/return</from>
+                <to variable="HelloWorldOut" part="part1"/>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="PartnerLink1" operation="helloWorld" xmlns:tns="http://helloworld.ws" portType="tns:helloWorldPortType" variable="HelloWorldOut"/>
+    </sequence>
+</process>
+

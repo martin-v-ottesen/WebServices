@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="lameDuckWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/LameDuck/LameDuck/lameDuckWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/LameDuck/LameDuck/lameDuckWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/LameDuck/LameDuck/lameDuckWSDL" xmlns:tns="http://j2ee.netbeans.org/wsdl/LameDuck/LameDuck/lameDuckWSDL">
+            <xsd:complexType name="airportType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="start" type="tns:airportType"></xsd:element>
+            <xsd:element name="destination" type="tns:airportType"></xsd:element>
+            <xsd:complexType name="bookingNumberType">
+                <xsd:sequence>
+                    <xsd:element name="bookingNumber" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="bookingNumber" type="tns:bookingNumberType"></xsd:element>
+            <xsd:complexType name="priceType">
+                <xsd:sequence>
+                    <xsd:element name="price" type="xsd:double"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="carrier" type="tns:airlineType"></xsd:element>
+            <xsd:complexType name="airlineType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="liftOff" type="tns:dateTimeType"></xsd:element>
+            <xsd:element name="landing" type="tns:dateTimeType"></xsd:element>
+            <xsd:complexType name="flightType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:destination"/>
+                    <xsd:element ref="tns:landing"/>
+                    <xsd:element ref="tns:liftOff"/>
+                    <xsd:element ref="tns:start"/>
+                    <xsd:element ref="tns:carrier"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="airlineReservationType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="airlineReservation" type="tns:airlineReservationType"></xsd:element>
+            <xsd:element name="flight" type="tns:flightType"></xsd:element>
+            <xsd:complexType name="flightInformationType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:flight"/>
+                    <xsd:element ref="tns:bookingNumber"/>
+                    <xsd:element ref="tns:airlineReservation"/>
+                    <xsd:element ref="tns:price"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="price" type="tns:priceType"></xsd:element>
+            <xsd:element name="flightInformation" type="tns:flightInformationType"></xsd:element>
+            <xsd:complexType name="flightInformations">
+                <xsd:sequence>
+                    <xsd:element ref="tns:flightInformation" maxOccurs="unbounded" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="flightInformationList" type="tns:flightInformations"></xsd:element>
+            <xsd:complexType name="dateTimeType">
+                <xsd:sequence>
+                    <xsd:element name="dateTime" type="xsd:dateTime"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="requestGetFlights" type="tns:requestFlightType"></xsd:element>
+            <xsd:complexType name="requestFlightType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:start"/>
+                    <xsd:element ref="tns:liftOff"/>
+                    <xsd:element ref="tns:destination"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name="lameDuckWSDLOperationRequest">
+        <part name="part1" element="tns:requestGetFlights"/>
+    </message>
+    <message name="lameDuckWSDLOperationResponse">
+        <part name="part1" element="tns:flightInformationList"/>
+    </message>
+    <portType name="lameDuckWSDLPortType">
+        <operation name="getFlights">
+            <input name="input1" message="tns:lameDuckWSDLOperationRequest"/>
+            <output name="output1" message="tns:lameDuckWSDLOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="lameDuckWSDLPortTypeBinding" type="tns:lameDuckWSDLPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getFlights">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="lameDuckWSDLService">
+        <port name="lameDuckWSDLPortTypeBindingPort" binding="tns:lameDuckWSDLPortTypeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="lameDuckWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="lameDuckWSDLPortTypeRole" portType="tns:lameDuckWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

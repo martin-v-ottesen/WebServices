@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.3.3-hudson-757-SNAPSHOT. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.imm.dtu.dk/calendar" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="calendar" targetNamespace="http://ws.imm.dtu.dk/calendar">
+    <types></types>
+    <message name="addApointmentRequest">
+        <part name="part1" type="xsd:date"></part>
+        <part name="part2" type="xsd:string"></part>
+    </message>
+    <message name="getAppointmentRequest">
+        <part name="part1" type="xsd:date"></part>
+    </message>
+    <message name="getAppointmentResponse">
+        <part name="part1" type="xsd:string"></part>
+    </message>
+    <portType name="calendarServicePortType">
+        <operation name="addApointment">
+            <input name="input1" message="tns:addApointmentRequest"></input>
+        </operation>
+        <operation name="getAppointment">
+            <input name="input2" message="tns:getAppointmentRequest"></input>
+            <output name="output1" message="tns:getAppointmentResponse"></output>
+        </operation>
+    </portType>
+    <binding name="calendarServicePortTypeBinding" type="tns:calendarServicePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+        <operation name="addApointment">
+            <soap:operation></soap:operation>
+            <input name="input1">
+                <soap:body use="literal"></soap:body>
+            </input>
+        </operation>
+        <operation name="getAppointment">
+            <soap:operation></soap:operation>
+            <input name="input2">
+                <soap:body use="literal"></soap:body>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"></soap:body>
+            </output>
+        </operation>
+    </binding>
+    <service name="calendarService">
+        <port name="calendarServicePort" binding="tns:calendarServicePortTypeBinding">
+            <soap:address location="http://localhost:8080/CalendarService/calendarService"></soap:address>
+        </port>
+    </service>
+</definitions>

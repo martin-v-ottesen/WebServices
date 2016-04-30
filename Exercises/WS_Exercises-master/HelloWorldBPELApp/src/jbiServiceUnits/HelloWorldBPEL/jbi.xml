@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/HelloWorldBPEL/helloWorldBPEL" xmlns:ns1="http://concat.ws/" xmlns:ns2="http://helloworld.ws" xmlns:ns3="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="helloWorldPortTypeRole_myRole" interface-name="ns2:helloWorldPortType" service-name="ns0:PartnerLink1">
+            <ns3:display-name>PartnerLink1</ns3:display-name>
+            <ns3:process-name>helloWorldBPEL</ns3:process-name>
+            <ns3:file-path>helloWorldBPEL.bpel</ns3:file-path>
+        </provides>
+        <consumes endpoint-name="ConcatServiceRole_partnerRole" interface-name="ns1:ConcatService" service-name="ns0:PartnerLink2">
+            <ns3:display-name>PartnerLink2</ns3:display-name>
+            <ns3:process-name>helloWorldBPEL</ns3:process-name>
+            <ns3:file-path>helloWorldBPEL.bpel</ns3:file-path>
+        </consumes>
+    </services>
+</jbi>

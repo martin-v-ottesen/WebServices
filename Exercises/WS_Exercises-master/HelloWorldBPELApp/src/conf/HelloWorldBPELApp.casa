@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://helloworld.ws" xmlns:ns2="http://concat.ws/" xmlns:ns3="http://enterprise.netbeans.org/bpel/HelloWorldBPEL/helloWorldBPEL" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="helloWorldPort" interface-name="ns1:helloWorldPortType" name="endpoint1" service-name="ns1:helloWorldService"/>
+        <endpoint endpoint-name="ConcatServicePort" interface-name="ns2:ConcatService" name="endpoint2" service-name="ns2:ConcatServiceService"/>
+        <endpoint display-name="PartnerLink1" endpoint-name="helloWorldPortTypeRole_myRole" file-path="helloWorldBPEL.bpel" interface-name="ns1:helloWorldPortType" name="endpoint3" process-name="helloWorldBPEL" service-name="ns3:PartnerLink1"/>
+        <endpoint display-name="PartnerLink2" endpoint-name="ConcatServiceRole_partnerRole" file-path="helloWorldBPEL.bpel" interface-name="ns2:ConcatService" name="endpoint4" process-name="helloWorldBPEL" service-name="ns3:PartnerLink2"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="HelloWorldBPEL.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="HelloWorldBPELApp-HelloWorldBPEL" unit-name="HelloWorldBPEL" unknown="false" x="145" y="99">
+            <provides endpoint="endpoint3"/>
+            <consumes endpoint="endpoint4"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="HelloWorldBPELApp-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port x="67" y="39">
+                    <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/helloWorld.wsdl#xpointer(/definitions/service[@name='helloWorldService']/port[@name='helloWorldPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port x="0" y="-1">
+                    <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/localhost_8080/ConcatApp/ConcatServiceService.wsdl#xpointer(/definitions/service[@name='ConcatServiceService']/port[@name='ConcatServicePort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint4" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint1" provider="endpoint3" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/helloWorld.wsdl#xpointer(/definitions/portType[@name='helloWorldPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/localhost_8080/ConcatApp/ConcatServiceService.wsdl#xpointer(/definitions/portType[@name='ConcatService'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/helloWorld.wsdl#xpointer(/definitions/binding[@name='helloWorldBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/localhost_8080/ConcatApp/ConcatServiceService.wsdl#xpointer(/definitions/binding[@name='ConcatServicePortBinding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/helloWorld.wsdl#xpointer(/definitions/service[@name='helloWorldService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/HelloWorldBPEL/localhost_8080/ConcatApp/ConcatServiceService.wsdl#xpointer(/definitions/service[@name='ConcatServiceService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="calendar" targetNamespace="http://ws.imm.dtu.dk/calendar"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.imm.dtu.dk/calendar" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types/>
+    <message name="addApointmentRequest">
+        <part name="part1" type="xsd:date"/>
+        <part name="part2" type="xsd:string"/>
+    </message>
+    <message name="getAppointmentRequest">
+        <part name="part1" type="xsd:date"/>
+    </message>
+    <message name="getAppointmentResponse">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <portType name="calendarServicePortType">
+        <operation name="addApointment">
+            <input name="input1" message="tns:addApointmentRequest"/>
+        </operation>
+        <operation name="getAppointment">
+            <input name="input2" message="tns:getAppointmentRequest"/>
+            <output name="output1" message="tns:getAppointmentResponse"/>
+        </operation>
+    </portType>
+    <binding name="calendarServicePortTypeBinding" type="tns:calendarServicePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="addApointment">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="getAppointment">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="calendarService">
+        <port name="calendarServicePort" binding="tns:calendarServicePortTypeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+        </port>
+    </service>
+</definitions>
+
+

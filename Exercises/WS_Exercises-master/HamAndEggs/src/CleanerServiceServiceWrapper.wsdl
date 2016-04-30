@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CleanerServiceServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/CleanerServiceServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/CleanerServiceServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://cleaner.ws/">
+    <import location="http://localhost:8080/CleanerApp/CleanerServiceService?wsdl" namespace="http://cleaner.ws/"/>
+    <plnk:partnerLinkType name="CleanerServiceLinkType">
+        <plnk:role name="CleanerServiceRole" portType="ns:CleanerService"/>
+    </plnk:partnerLinkType>
+</definitions>
+

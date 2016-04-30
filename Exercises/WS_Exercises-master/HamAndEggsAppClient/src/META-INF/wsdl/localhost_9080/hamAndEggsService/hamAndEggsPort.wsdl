@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="hamAndEggs" targetNamespace="http://hamandeggs.ws" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hamandeggs.ws" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+  </types>
+  <message name="hamAndEggsOperationResponse">
+    <part name="output" type="xsd:int">
+    </part>
+  </message>
+  <message name="hamAndEggsOperationRequest">
+    <part name="input" type="xsd:int">
+    </part>
+  </message>
+  <portType name="hamAndEggsPortType">
+    <operation name="hamAndEggsOperation">
+      <input name="input1" message="tns:hamAndEggsOperationRequest">
+    </input>
+      <output name="output1" message="tns:hamAndEggsOperationResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="hamAndEggsBinding" type="tns:hamAndEggsPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hamAndEggsOperation">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal" namespace="http://hamandeggs.ws"/>
+      </input>
+      <output name="output1">
+        <soap:body use="literal" namespace="http://hamandeggs.ws"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="hamAndEggsService">
+    <port name="hamAndEggsPort" binding="tns:hamAndEggsBinding">
+      <soap:address location="http://Wojtek-PC:9080/hamAndEggsService/hamAndEggsPort"/>
+    </port>
+  </service>
+    <plnk:partnerLinkType name="hamAndEggs">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="hamAndEggsPortTypeRole" portType="tns:hamAndEggsPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

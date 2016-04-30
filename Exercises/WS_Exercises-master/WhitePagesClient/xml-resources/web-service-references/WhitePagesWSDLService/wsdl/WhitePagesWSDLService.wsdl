@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.3.3-hudson-757-SNAPSHOT. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepages.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="WhitePagesWSDL" targetNamespace="http://whitepages.ws">
+    <types>
+        <xsd:schema xmlns:tns="http://whitepages.ws" targetNamespace="http://whitepages.ws">
+            <xsd:complexType name="personType">
+                <xsd:sequence>
+                    <xsd:element name="address" type="tns:addressType"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="phone" type="xsd:string"></xsd:attribute>
+                <xsd:attribute name="lastName" type="xsd:string"></xsd:attribute>
+                <xsd:attribute name="firstName" type="xsd:string"></xsd:attribute>
+            </xsd:complexType>
+            <xsd:complexType name="addressType">
+                <xsd:sequence>
+                    <xsd:element name="street" type="xsd:string"></xsd:element>
+                    <xsd:element name="postcode" type="xsd:string"></xsd:element>
+                    <xsd:element name="city" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="person" type="tns:personType" nillable="false"></xsd:element>
+            <xsd:element name="status" type="xsd:string"></xsd:element>
+            <xsd:complexType name="addPersonFaultType">
+                <xsd:sequence>
+                    <xsd:element name="errorMessage" type="xsd:string"></xsd:element>
+                    <xsd:element name="person" type="tns:personType"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="addPersonFault" type="tns:addPersonFaultType"></xsd:element>
+            <xsd:complexType name="personArrayType">
+                <xsd:sequence maxOccurs="unbounded">
+                    <xsd:element name="person" type="tns:personType" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="personArray" type="tns:personArrayType"></xsd:element>
+            <xsd:element name="personQuery" type="tns:personType"></xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="addPersonRequest">
+        <part name="person" element="tns:person"></part>
+    </message>
+    <message name="addPersonResponse">
+        <part name="status" element="tns:status"></part>
+    </message>
+    <message name="addPersonFault">
+        <part name="wpfault" element="tns:addPersonFault"></part>
+    </message>
+    <message name="findPersonRequest">
+        <part name="input1" element="tns:personQuery"></part>
+    </message>
+    <message name="findPersonResponse">
+        <part name="output1" element="tns:personArray"></part>
+    </message>
+    <portType name="WhitePagesWSDLPortType">
+        <operation name="addPerson">
+            <input name="input1" message="tns:addPersonRequest"></input>
+            <output name="output1" message="tns:addPersonResponse"></output>
+            <fault name="fault1" message="tns:addPersonFault"></fault>
+        </operation>
+        <operation name="findPerson">
+            <input name="input2" message="tns:findPersonRequest"></input>
+            <output name="output2" message="tns:findPersonResponse"></output>
+        </operation>
+    </portType>
+    <binding name="WhitePagesWSDLPortTypeBinding" type="tns:WhitePagesWSDLPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+        <operation name="addPerson">
+            <soap:operation></soap:operation>
+            <input name="input1">
+                <soap:body use="literal"></soap:body>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"></soap:body>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"></soap:fault>
+            </fault>
+        </operation>
+        <operation name="findPerson">
+            <soap:operation></soap:operation>
+            <input name="input2">
+                <soap:body use="literal"></soap:body>
+            </input>
+            <output name="output2">
+                <soap:body use="literal"></soap:body>
+            </output>
+        </operation>
+    </binding>
+    <service name="WhitePagesWSDLService">
+        <port name="WhitePagesWSDLPortTypeBindingPort" binding="tns:WhitePagesWSDLPortTypeBinding">
+            <soap:address location="http://localhost:8070/WhitePagesService/WhitePagesWSDLService"></soap:address>
+        </port>
+    </service>
+</definitions>

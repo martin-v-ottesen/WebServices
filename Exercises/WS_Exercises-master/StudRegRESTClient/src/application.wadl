@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://research.sun.com/wadl/2006/10">
+    <doc xmlns:jersey="http://jersey.dev.java.net/" jersey:generatedBy="Jersey: 1.0 10/13/2008 12:27 PM"/>
+    <resources base="http://localhost:8080/sr/resources/">
+        <resource path="students/{id}">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="id"/>
+            <method name="GET" id="getStudent">
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <method name="PUT" id="setStudent">
+                <request>
+                    <representation mediaType="*/*"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <method name="DELETE" id="deleteStudent">
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="students">
+            <method name="POST" id="registerStudent">
+                <request>
+                    <representation mediaType="*/*"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <method name="GET" id="findStudent">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="name"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

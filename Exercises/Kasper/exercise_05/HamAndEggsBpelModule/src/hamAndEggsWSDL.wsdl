@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="hamAndEggsWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/HamAndEggsBpelModule/src/hamAndEggsWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/HamAndEggsBpelModule/src/hamAndEggsWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types/>
+    <message name="hamAndEggsRequest">
+        <part name="eggs" type="xsd:int"/>
+    </message>
+    <message name="hamAndEggsResponse">
+        <part name="status" type="xsd:boolean"/>
+    </message>
+    <portType name="hamAndEggsWSDLPortType">
+        <operation name="hamAndEggs">
+            <input name="input1" message="tns:hamAndEggsRequest"/>
+            <output name="output1" message="tns:hamAndEggsResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="hamAndEggsWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="hamAndEggsWSDLPortTypeRole" portType="tns:hamAndEggsWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

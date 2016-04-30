@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="WhitePagesWSDL" targetNamespace="http://whitepages.ws"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://whitepages.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://whitepages.ws" xmlns:tns="http://whitepages.ws">
+            <xsd:complexType name="personType">
+                <xsd:sequence>
+                    <xsd:element name="address" type="tns:addressType"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="phone" type="xsd:string"/>
+                <xsd:attribute name="lastName" type="xsd:string"/>
+                <xsd:attribute name="firstName" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="addressType">
+                <xsd:sequence>
+                    <xsd:element name="street" type="xsd:string"></xsd:element>
+                    <xsd:element name="postcode" type="xsd:string"></xsd:element>
+                    <xsd:element name="city" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="person" type="tns:personType"></xsd:element>
+            <xsd:element name="status" type="xsd:string"></xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="addPersonRequest">
+        <part name="person" element="tns:person"/>
+    </message>
+    <message name="addPersonResponse">
+        <part name="status" element="tns:status"/>
+    </message>
+    <portType name="WhitePagesWSDLPortType">
+        <operation name="addPerson">
+            <input name="input1" message="tns:addPersonRequest"/>
+            <output name="output1" message="tns:addPersonResponse"/>
+        </operation>
+    </portType>
+    <binding name="WhitePagesWSDLBinding" type="tns:WhitePagesWSDLPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="addPerson">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="WhitePagesWSDLService">
+        <port name="WhitePagesWSDLPort" binding="tns:WhitePagesWSDLBinding">
+            <soap:address location="http://localhost:8070/service"/>
+        </port>
+    </service>
+</definitions>
+
+
+

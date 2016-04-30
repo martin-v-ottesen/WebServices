@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Wojtek/Documents/Git%20Repositories/WS_Exercises/CalendarService/src/java/calendar.wsdl" uri="src/conf/xml-resources/web-services/Calendar/wsdl/calendar.wsdl"/>
+</catalog>

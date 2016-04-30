@@ -168,3 +168,5 @@ sympy-plots-for-*.tex/
 
 #MAC OSX System files ignore
 *.DS_Store
+/Exercises/Kasper/exercise_04/HelloWorldCA/src/jbiServiceUnits/
+/Exercises/Kasper/exercise_04/HelloWorldCA/test/results/

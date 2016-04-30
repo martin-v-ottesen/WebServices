@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/CookApp/CookServiceService?wsdl" uri="xml-resources/web-service-references/CookServiceService/wsdl/localhost_8080/CookApp/CookServiceService.wsdl"/>
+    <system systemId="http://localhost:8080/CookApp/CookServiceService?xsd=1" uri="xml-resources/web-service-references/CookServiceService/wsdl/localhost_8080/CookApp/CookServiceService.xsd_1.xsd"/>
+</catalog>
+
