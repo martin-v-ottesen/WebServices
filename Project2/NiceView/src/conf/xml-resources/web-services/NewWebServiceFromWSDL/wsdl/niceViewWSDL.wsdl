@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="niceViewWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/NiceView/java/niceViewWSDL"
+<definitions name="niceViewWSDL" targetNamespace="http://ws.dtu.dk/NiceView"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.dtu.dk/NiceView" xmlns:ns="http://j2ee.netbeans.org/wsdl/NiceView/java/niceViewWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://fastmoney.imm.dtu.dk" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.dtu.dk/NiceView" xmlns:ns="http://ws.dtu.dk/NiceView" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://fastmoney.imm.dtu.dk" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <import location="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl=1" namespace="http://fastmoney.imm.dtu.dk"/>
     <types>
-        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/NiceView/java/niceViewWSDL" xmlns:tns1="http://j2ee.netbeans.org/wsdl/NiceView/java/niceViewWSDL">
+        <xsd:schema targetNamespace="http://ws.dtu.dk/NiceView" xmlns:tns1="http://ws.dtu.dk/NiceView">
             <xsd:complexType name="cityType">
                 <xsd:sequence>
                     <xsd:element name="name" type="xsd:string"></xsd:element>
