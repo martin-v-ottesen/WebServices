@@ -5,6 +5,8 @@
  */
 package dk.dtu.ws;
 
+import dk.dtu.lameduck.lameduckwsdl.CancelFlightExceptionMessage;
+import dk.dtu.lameduck.lameduckwsdl.LameDuckWSDLExceptionBookFlights;
 import javax.jws.WebService;
 
 /**
@@ -16,7 +18,21 @@ public class NewWebServiceFromWSDL {
 
     public dk.dtu.lameduck.lameduckwsdl.FlightInformations getFlights(dk.dtu.lameduck.lameduckwsdl.RequestFlightType part1) {
         //TODO implement this method
-        
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public dk.dtu.lameduck.lameduckwsdl.BookingFlightStatusType bookFlights(dk.dtu.lameduck.lameduckwsdl.RequestBookFlightType requestBookFlights) throws LameDuckWSDLExceptionBookFlights {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public dk.dtu.lameduck.lameduckwsdl.BookingFlightStatusType cancelFlights(dk.dtu.lameduck.lameduckwsdl.RequestCancelFlightsType part1) throws CancelFlightExceptionMessage {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public void reset(dk.dtu.lameduck.lameduckwsdl.BookingFlightStatusType part1) {
+        //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }
     

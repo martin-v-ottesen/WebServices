@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Martin/Documents/DTU/WebServices/Project2/LameDuck/web/WEB-INF/lameDuckWSDL.wsdl" uri="src/conf/xml-resources/web-services/LameDuckService/wsdl/lameDuckWSDL.wsdl"/>
+    <system systemId="file:/Users/dxong/DTU/Development_of_Web_Services/WebServices/Project2/LameDuck/src/java/lameDuckWSDL.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/lameDuckWSDL.wsdl"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl=1" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl_1.wsdl"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankService?xsd=1" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankService.xsd_1.xsd"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankService?xsd=2" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankService.xsd_2.xsd"/>
+</catalog>

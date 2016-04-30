@@ -2,9 +2,11 @@
 <definitions name="lameDuckWSDL" targetNamespace="http://dk/dtu/LameDuck/lameDuckWSDL"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dk/dtu/LameDuck/lameDuckWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dk/dtu/LameDuck/lameDuckWSDL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="urn://fastmoney.imm.dtu.dk" xmlns:ns1="http://types.fastmoney.imm.dtu.dk" xmlns:ns="http://fastmoney.imm.dtu.dk" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <import location="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl" namespace="urn://fastmoney.imm.dtu.dk"/>
     <types>
         <xsd:schema targetNamespace="http://dk/dtu/LameDuck/lameDuckWSDL" xmlns:tns="http://dk/dtu/LameDuck/lameDuckWSDL">
+            <xsd:import namespace="http://types.fastmoney.imm.dtu.dk" schemaLocation="http://fastmoney.imm.dtu.dk:8080/BankService?xsd=1"/>
             <xsd:complexType name="airportType">
                 <xsd:sequence>
                     <xsd:element name="name" type="xsd:string"></xsd:element>
@@ -76,18 +78,86 @@
                     <xsd:element ref="tns:destination"/>
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:complexType name="bookingFlightStatusType">
+                <xsd:sequence>
+                    <xsd:element name="status" type="xsd:boolean"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="flightServiceStatus" type="tns:bookingFlightStatusType"></xsd:element>
+            <xsd:complexType name="bookingNumbers">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumber" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="bookingNumbers" type="tns:bookingNumbers"></xsd:element>
+            <xsd:complexType name="requestBookFlightType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumbers"/>
+                    <xsd:element ref="tns:creditCardInfo"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="creditCardInfo" type="ns1:creditCardInfoType"></xsd:element>
+            <xsd:element name="requestBookFlights" type="tns:requestBookFlightType"></xsd:element>
+            <xsd:complexType name="bookFlightExceptionType">
+                <xsd:sequence>
+                    <xsd:element name="message" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="FlightExceptionMessage" type="tns:bookFlightExceptionType"></xsd:element>
+            <xsd:complexType name="requestCancelFlightsType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumbers"/>
+                    <xsd:element ref="tns:creditCardInfo"/>
+                    <xsd:element ref="tns:price"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="requestCancelFlight" type="tns:requestCancelFlightsType"></xsd:element>
         </xsd:schema>
     </types>
     <message name="lameDuckWSDLOperationRequest">
         <part name="part1" element="tns:requestGetFlights"/>
     </message>
     <message name="lameDuckWSDLOperationResponse">
-        <part name="part1" element="tns:flightInformationList"/>
+        <part name="part2" element="tns:flightInformationList"/>
+    </message>
+    <message name="lameDuckWSDLOperationRequestBookFlights">
+        <part name="requestBookFlights" element="tns:requestBookFlights"/>
+    </message>
+    <message name="lameDuckWSDLOperationResponseBookFlights">
+        <part name="status" element="tns:flightServiceStatus"/>
+    </message>
+    <message name="lameDuckWSDLExceptionBookFlights">
+        <part name="error" element="tns:FlightExceptionMessage"/>
+    </message>
+    <message name="lameDuckWSDLOperationRequest1">
+        <part name="part1" element="tns:requestCancelFlight"/>
+    </message>
+    <message name="lameDuckWSDLOperationResponse1">
+        <part name="part1" element="tns:flightServiceStatus"/>
+    </message>
+    <message name="cancelFlightExceptionMessage">
+        <part name="part1" element="tns:FlightExceptionMessage"/>
+    </message>
+    <message name="lameDuckWSDLOperationRequestReset">
+        <part name="part1" element="tns:flightServiceStatus"/>
     </message>
     <portType name="lameDuckWSDLPortType">
         <operation name="getFlights">
             <input name="input1" message="tns:lameDuckWSDLOperationRequest"/>
             <output name="output1" message="tns:lameDuckWSDLOperationResponse"/>
+        </operation>
+        <operation name="bookFlights">
+            <input name="input2" message="tns:lameDuckWSDLOperationRequestBookFlights"/>
+            <output name="output2" message="tns:lameDuckWSDLOperationResponseBookFlights"/>
+            <fault name="fault1" message="tns:lameDuckWSDLExceptionBookFlights"/>
+        </operation>
+        <operation name="cancelFlights">
+            <input name="input3" message="tns:lameDuckWSDLOperationRequest1"/>
+            <output name="output3" message="tns:lameDuckWSDLOperationResponse1"/>
+            <fault name="fault1" message="tns:cancelFlightExceptionMessage"/>
+        </operation>
+        <operation name="reset">
+            <input name="input4" message="tns:lameDuckWSDLOperationRequestReset"/>
         </operation>
     </portType>
     <binding name="lameDuckWSDLPortTypeBinding" type="tns:lameDuckWSDLPortType">
@@ -100,6 +170,36 @@
             <output name="output1">
                 <soap:body use="literal"/>
             </output>
+        </operation>
+        <operation name="bookFlights">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output2">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="cancelFlights">
+            <soap:operation/>
+            <input name="input3">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output3">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="reset">
+            <soap:operation/>
+            <input name="input4">
+                <soap:body use="literal"/>
+            </input>
         </operation>
     </binding>
     <service name="lameDuckWSDLService">
