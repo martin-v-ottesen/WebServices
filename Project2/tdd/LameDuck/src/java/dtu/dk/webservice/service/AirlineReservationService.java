@@ -5,10 +5,15 @@
  */
 package dtu.dk.webservice.service;
 
+import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
+import dk.dtu.imm.fastmoney.types.AccountType;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dtu.dk.webservice.model.Flight;
 import dtu.dk.webservice.model.flightInformation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,6 +26,8 @@ import javax.jws.WebParam;
 public class AirlineReservationService {
 
     List<flightInformation> flightInformationContainer = new ArrayList<>();
+    List<flightInformation> bookedflightInformationContainer = new ArrayList<>();
+    Bank bankService = new Bank();
     
     flightInformation flightInfo = new flightInformation();
     Flight flight = new Flight();
@@ -33,6 +40,7 @@ public class AirlineReservationService {
     @WebMethod(operationName = "clearFlightInformations")
     public void clearFlightInformations(){
         flightInformationContainer.clear();
+        bookedflightInformationContainer.clear();
     }
     
     /**
@@ -47,14 +55,39 @@ public class AirlineReservationService {
             @WebParam(name = "startDate") String startDate) {
         List<flightInformation> flightInformationsfound = new ArrayList<>();
         
-        for (flightInformation flightInformation : flightInformationContainer) {
-            if (flightInformation.getFlight().getStartAirport().equals(startDestination) &&
-                    flightInformation.getFlight().getEndAirport().equals(endDestination) &&
-                    flightInformation.getFlight().getDateAndTimefForLiftOff().equals(startDate)) {
-                flightInformationsfound.add(flightInformation);
-            }
-        }
+        flightInformationContainer.stream().filter((flightInformation) -> (flightInformation.getFlight().getStartAirport().equals(startDestination) &&
+                flightInformation.getFlight().getEndAirport().equals(endDestination) &&
+                flightInformation.getFlight().getDateAndTimefForLiftOff().equals(startDate))).forEach((flightInformation) -> {
+                    flightInformationsfound.add(flightInformation);
+                });
         return flightInformationsfound;
     }
     
+    /**
+     * Web service operation
+     * @param bookingNumber
+     * @param account
+     * @param creditCardInfo
+     * @return 
+     * @throws dk.dtu.imm.fastmoney.CreditCardFaultMessage 
+     */
+    @WebMethod(operationName = "bookFlight")
+    public boolean bookFlight(@WebParam(name = "bookingNumber") int bookingNumber, 
+            @WebParam(name = "creditCardInfo") CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage, Exception{
+        System.out.println("booking number: " + bookingNumber);
+        System.out.println("creditcard name: " + creditCardInfo.getName());
+        System.out.println("creditcard number: " + creditCardInfo.getNumber());
+        
+        for (flightInformation flightInfo : flightInformationContainer) {
+            if (flightInfo.getBookingNumber() == bookingNumber) {
+                bankService.chargeCreditCard(creditCardInfo.getName(), creditCardInfo.getNumber(),
+                        creditCardInfo.getExpirationDate().getYear(),
+                        creditCardInfo.getExpirationDate().getMonth(), flightInfo.getPrice());
+                
+                bookedflightInformationContainer.add(flightInfo);
+                return true;
+            }
+        }
+        throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
+    }  
 }

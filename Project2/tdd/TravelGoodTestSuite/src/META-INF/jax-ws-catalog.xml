@@ -2,4 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://dxong:8080/LameDuck/AirlineReservationService?wsdl" uri="wsdl/dxong_8080/LameDuck/AirlineReservationService.wsdl"/>
     <system systemId="http://dxong:8080/LameDuck/AirlineReservationService?xsd=1" uri="wsdl/dxong_8080/LameDuck/AirlineReservationService.xsd_1.xsd"/>
+    <system systemId="http://dxong:8080/LameDuck/AirlineReservationService?xsd=2" uri="wsdl/dxong_8080/LameDuck/AirlineReservationService.xsd_2.xsd"/>
+    <system systemId="http://dxong:8080/LameDuck/AirlineReservationService?xsd=3" uri="wsdl/dxong_8080/LameDuck/AirlineReservationService.xsd_3.xsd"/>
 </catalog>
