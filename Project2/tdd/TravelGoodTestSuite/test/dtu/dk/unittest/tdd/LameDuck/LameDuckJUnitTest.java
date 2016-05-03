@@ -102,12 +102,9 @@ public class LameDuckJUnitTest {
     
     @Test
     public void bookFlight_BookingSingleFlight_ThrowsAnExceptionWithExpectedErrorMessage() throws CreditCardFaultMessage, Exception_Exception{
-        //Arrange
+        //Arrange    
         boolean Result;
         int WrongBookingNumber;
-        expectedEx.expect(Exception_Exception.class);
-        
-        
         List<FlightInformation> expectedFlightInformations;   
         CreditCardInfoType creditcardInfo = new CreditCardInfoType();
         CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
@@ -127,6 +124,32 @@ public class LameDuckJUnitTest {
         Result = bookFlight(WrongBookingNumber, creditcardInfo);
         //Assert
         //Exception is Thrown and caught
+    }
+    
+    @Test
+    public void cancelFlight_cancelSingleFlight_ReturnTrue() throws CreditCardFaultMessage, Exception_Exception{        
+         //Arrange
+        boolean bookedFlightResult;
+        boolean cancelFlightResult;
+        List<FlightInformation> expectedFlightInformations;   
+        CreditCardInfoType creditcardInfo = new CreditCardInfoType();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        
+        creditcardInfo.setName("Thor-Jensen Claus");
+        creditcardInfo.setNumber("50408825");
+        
+        expirationDate.setYear(9);
+        expirationDate.setMonth(5);
+        creditcardInfo.setExpirationDate(expirationDate);
+        //Act
+        expectedFlightInformations = getFlights("Copenhagen", "Thailand", "2016-04-16");
+        FlightInformation expectedFlightInfo = expectedFlightInformations.get(0);
+        bookedFlightResult = bookFlight(expectedFlightInfo.getBookingNumber(), creditcardInfo);
+        cancelFlightResult = cancelFlight(expectedFlightInfo.getBookingNumber(), creditcardInfo,
+                expectedFlightInfo.getPrice());
+        
+        //Assert
+        assertEquals(true, cancelFlightResult);
     }
 
     private static void clearFlightInformations() {
@@ -153,5 +176,9 @@ public class LameDuckJUnitTest {
         return port.bookFlight(bookingNumber, creditCardInfo);
     }
 
-
+    private static boolean cancelFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int price) throws Exception_Exception, CreditCardFaultMessage {
+        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
+        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+        return port.cancelFlight(bookingNumber, creditCardInfo, price);
+    }
 }

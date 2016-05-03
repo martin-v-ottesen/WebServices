@@ -80,14 +80,32 @@ public class AirlineReservationService {
         
         for (flightInformation flightInfo : flightInformationContainer) {
             if (flightInfo.getBookingNumber() == bookingNumber) {
-                bankService.chargeCreditCard(creditCardInfo.getName(), creditCardInfo.getNumber(),
+                boolean isFlightBooked;
+                isFlightBooked = bankService.chargeCreditCard(creditCardInfo.getName(), creditCardInfo.getNumber(),
                         creditCardInfo.getExpirationDate().getYear(),
                         creditCardInfo.getExpirationDate().getMonth(), flightInfo.getPrice());
                 
                 bookedflightInformationContainer.add(flightInfo);
-                return true;
+                return isFlightBooked;
             }
         }
         throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
-    }  
+    }
+    @WebMethod(operationName = "cancelFlight")
+    public boolean cancelFlight(@WebParam(name = "bookingNumber") int bookingNumber,
+            @WebParam(name = "creditCardInfo") CreditCardInfoType creditCardInfo,
+            @WebParam(name = "price") int price) throws CreditCardFaultMessage, Exception{
+        
+        for (flightInformation flightInfo : bookedflightInformationContainer) {
+            if (flightInfo.getBookingNumber() == bookingNumber) {
+                boolean isFlightBooked;
+                int refundPrice = flightInfo.getPrice() / 2;
+                isFlightBooked = bankService.refundCreditCard(creditCardInfo, refundPrice);
+                
+                bookedflightInformationContainer.remove(flightInfo);
+                return isFlightBooked;
+            }
+        }
+        throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
+    }
 }

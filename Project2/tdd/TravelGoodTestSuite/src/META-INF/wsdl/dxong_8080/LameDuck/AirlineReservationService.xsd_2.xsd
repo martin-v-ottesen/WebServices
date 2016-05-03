@@ -8,6 +8,10 @@
 
 <xs:element name="bookFlightResponse" type="tns:bookFlightResponse"/>
 
+<xs:element name="cancelFlight" type="tns:cancelFlight"/>
+
+<xs:element name="cancelFlightResponse" type="tns:cancelFlightResponse"/>
+
 <xs:element name="clearFlightInformations" type="tns:clearFlightInformations"/>
 
 <xs:element name="clearFlightInformationsResponse" type="tns:clearFlightInformationsResponse"/>
@@ -77,6 +81,20 @@
 <xs:complexType name="Exception">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelFlight">
+<xs:sequence>
+<xs:element name="bookingNumber" type="xs:int"/>
+<xs:element name="creditCardInfo" type="ns1:creditCardInfoType" minOccurs="0"/>
+<xs:element name="price" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelFlightResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

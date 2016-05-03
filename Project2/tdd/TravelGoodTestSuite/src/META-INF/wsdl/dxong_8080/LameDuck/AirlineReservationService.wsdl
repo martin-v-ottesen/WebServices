@@ -40,6 +40,12 @@
 <message name="Exception">
 <part name="fault" element="tns:Exception"/>
 </message>
+<message name="cancelFlight">
+<part name="parameters" element="tns:cancelFlight"/>
+</message>
+<message name="cancelFlightResponse">
+<part name="parameters" element="tns:cancelFlightResponse"/>
+</message>
 <portType name="AirlineReservationService">
 <operation name="setTestFlightInformations">
 <input wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/setTestFlightInformationsRequest" message="tns:setTestFlightInformations"/>
@@ -58,6 +64,12 @@
 <output wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/bookFlightResponse" message="tns:bookFlightResponse"/>
 <fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/bookFlight/Fault/CreditCardFaultMessage"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/bookFlight/Fault/Exception"/>
+</operation>
+<operation name="cancelFlight">
+<input wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/cancelFlightRequest" message="tns:cancelFlight"/>
+<output wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/cancelFlightResponse" message="tns:cancelFlightResponse"/>
+<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/cancelFlight/Fault/CreditCardFaultMessage"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://service.webservice.dk.dtu/AirlineReservationService/cancelFlight/Fault/Exception"/>
 </operation>
 </portType>
 <binding name="AirlineReservationServicePortBinding" type="tns:AirlineReservationService">
@@ -90,6 +102,21 @@
 </output>
 </operation>
 <operation name="bookFlight">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="CreditCardFaultMessage">
+<soap:fault name="CreditCardFaultMessage" use="literal"/>
+</fault>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
+</operation>
+<operation name="cancelFlight">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
