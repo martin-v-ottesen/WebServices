@@ -14,7 +14,15 @@ public class hotelInformation {
     int price;
     String nameOfHotelReservationService;
     Hotel hotel;
-    boolean CreditCardGuaranteeRequired;
+    boolean isCreditCardGuaranteeRequired;
+
+    public boolean isIsCreditCardGuaranteeRequired() {
+        return isCreditCardGuaranteeRequired;
+    }
+
+    public void setIsCreditCardGuaranteeRequired(boolean isCreditCardGuaranteeRequired) {
+        this.isCreditCardGuaranteeRequired = isCreditCardGuaranteeRequired;
+    }
 
     public int getBookingNumber() {
         return bookingNumber;
@@ -46,14 +54,6 @@ public class hotelInformation {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
-    }
-
-    public boolean isCreditCardGuaranteeRequired() {
-        return CreditCardGuaranteeRequired;
-    }
-
-    public void setIsCreditCardGuaranteeRequired(boolean isCreditCardGuaranteeRequired) {
-        this.CreditCardGuaranteeRequired = isCreditCardGuaranteeRequired;
     }
     
 }

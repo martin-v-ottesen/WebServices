@@ -48,6 +48,10 @@ public class Bank {
         
         return fastmoney_refundCreditCard(group, creditCardInfo, amount, account);
     }
+    
+    public boolean validateCreditCard(CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage{
+        return fastmoney_validateCreditCard(group, creditCardInfo, amount);
+    }
 
     private static boolean fastmoney_chargeCreditCard(int group, 
             dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, 

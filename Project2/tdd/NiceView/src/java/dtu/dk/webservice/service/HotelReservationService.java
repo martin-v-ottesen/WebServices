@@ -5,6 +5,8 @@
  */
 package dtu.dk.webservice.service;
 
+import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dtu.dk.webservice.model.hotelInformation;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,8 @@ public class HotelReservationService {
     
     List<hotelInformation> hotelInformationContainer = new ArrayList<>();
     List<hotelInformation> bookedHotelInformationContainer = new ArrayList<>();
+    
+    Bank bankService = new Bank();
     
     @WebMethod(operationName = "setTestHotelInformations")
     public void setTestHotelInformations(@WebParam(name = "hotelInfo") hotelInformation hotelInfo){
@@ -54,5 +58,41 @@ public class HotelReservationService {
         return foundHotelInformationContainer;
     }
     
-    
+    /**
+     * Web service operation
+     * @param bookingNumber
+     * @param isCreditCardGuaranteeRequired
+     * @param creditCardInfo
+     * @return 
+     * @throws dk.dtu.imm.fastmoney.CreditCardFaultMessage 
+     */
+    @WebMethod(operationName = "bookHotel")
+    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber,
+            @WebParam(name = "isCreditCardGuaranteeRequired") boolean isCreditCardGuaranteeRequired,
+            @WebParam(name = "creditCardInfo") CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage, Exception{
+        
+        System.out.println("booking number: " + bookingNumber);
+        System.out.println("isCreditCardGuaranteeRequired : " + isCreditCardGuaranteeRequired);
+        System.out.println("creditcard name: " + creditCardInfo.getName());
+        System.out.println("creditcard number: " + creditCardInfo.getNumber());
+        System.out.println("hotelInformationContainer size: " + hotelInformationContainer.size());
+        boolean isHotelbooked;
+        
+        for (hotelInformation hotelInfo : hotelInformationContainer) {
+            if (bookingNumber == hotelInfo.getBookingNumber()) {
+                if (isCreditCardGuaranteeRequired){                   
+                    bankService.validateCreditCard(creditCardInfo, hotelInfo.getPrice());
+                }
+                isHotelbooked = bankService.chargeCreditCard(creditCardInfo.getName(), creditCardInfo.getNumber(),
+                        creditCardInfo.getExpirationDate().getYear(),
+                        creditCardInfo.getExpirationDate().getMonth(), hotelInfo.getPrice());
+                
+                if (isHotelbooked){
+                    bookedHotelInformationContainer.add(hotelInfo);
+                    return isHotelbooked;
+                }              
+            }       
+        }
+        throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
+    }
 }

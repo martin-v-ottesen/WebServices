@@ -5,8 +5,12 @@
  */
 package dtu.dk.unittest.tdd.niceview;
 
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import dtu.dk.webservice.service.CreditCardFaultMessage;
+import dtu.dk.webservice.service.Exception_Exception;
 import dtu.dk.webservice.service.Hotel;
 import dtu.dk.webservice.service.HotelInformation;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -47,6 +51,7 @@ public class NiceViewJUnitTest {
         expectedHotelInfo.setHotel(hotel);
         expectedHotelInfo.setBookingNumber(12345);
         expectedHotelInfo.setPrice(5000);
+        expectedHotelInfo.setIsCreditCardGuaranteeRequired(true);
         
         setTestHotelInformations(expectedHotelInfo);
     }
@@ -82,6 +87,36 @@ public class NiceViewJUnitTest {
          assertEquals(expectedPrice, Result.get(0).getPrice());
          assertEquals(expectedHotel.getHotelName(), Result.get(0).getHotel().getHotelName());
      }
+     
+     @Test
+     public void bookHotel_BookSingleHotel_ReturnTrue() throws CreditCardFaultMessage, Exception_Exception{
+         //Arrange
+         HotelInformation expectedHotelToBeBooked = new HotelInformation();
+         List<HotelInformation> expectedHotelInformationList = new ArrayList<>();
+         
+         boolean Result;
+         boolean expectedResult = true;
+         String expectedCity = "Bangkok";
+         String expectedCheckInDate = "2016-04-20";
+         String expectedCheckOutDate = "2016-04-27";
+         
+        CreditCardInfoType creditcardInfo = new CreditCardInfoType();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        
+        creditcardInfo.setName("Thor-Jensen Claus");
+        creditcardInfo.setNumber("50408825");
+        
+        expirationDate.setYear(9);
+        expirationDate.setMonth(5);
+        creditcardInfo.setExpirationDate(expirationDate);
+         
+         //Act
+         expectedHotelToBeBooked = getHotels(expectedCity, expectedCheckInDate, expectedCheckOutDate).get(0);
+         
+         Result = bookHotel(expectedHotelToBeBooked.getBookingNumber(), expectedHotelToBeBooked.isIsCreditCardGuaranteeRequired(), creditcardInfo);        
+         //Assert
+         assertEquals(expectedResult, Result);
+     }
 
     private static java.util.List<dtu.dk.webservice.service.HotelInformation> getHotels(java.lang.String cityName, java.lang.String arrivalDate, java.lang.String departureDate) {
         dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
@@ -99,6 +134,12 @@ public class NiceViewJUnitTest {
         dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
         dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
         port.clearHotelInformations();
+    }
+
+    private static boolean bookHotel(int bookingNumber, boolean isCreditCardGuaranteeRequired, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage, Exception_Exception {
+        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
+        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
+        return port.bookHotel(bookingNumber, isCreditCardGuaranteeRequired, creditCardInfo);
     }
 
 }

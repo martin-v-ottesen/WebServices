@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dtu.dk.unittest.tdd.LameDuck;
+package dtu.dk.unittest.tdd.lameduck;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dtu.dk.webservice.service.CreditCardFaultMessage;
