@@ -37,6 +37,16 @@ public class HotelReservationService {
         bookedHotelInformationContainer.clear();
     }
 
+    @WebMethod(operationName = "getBookedHotelInformations")
+    public List<hotelInformation> getBookedHotelInformations(){
+        return bookedHotelInformationContainer;
+    }
+
+//    @WebMethod(operationName = "addBookedHotelInformations")
+//    public void addBookedHotelInformations(@WebParam(name = "hotelInfo") hotelInformation hotelInfo){
+//        bookedHotelInformationContainer.add(hotelInfo);
+//    }
+
     /**
      * Web service operation
      * @param city
@@ -94,5 +104,21 @@ public class HotelReservationService {
             }       
         }
         throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
+    }
+
+    /**
+     * Web service operation
+     * @param bookingNumber
+     * @throws java.lang.Exception
+     */
+    @WebMethod(operationName = "cancelHotel")
+    public void cancelHotel(@WebParam(name = "bookingNumber") int bookingNumber) throws Exception {
+        for (hotelInformation hotelInfo : bookedHotelInformationContainer) {
+                if (hotelInfo.getBookingNumber() == bookingNumber){
+                    bookedHotelInformationContainer.remove(hotelInfo);
+                    return;
+                }
+            }
+        throw new Exception("Cancelling hotel can not be issued. Booking number: " + bookingNumber);
     }
 }

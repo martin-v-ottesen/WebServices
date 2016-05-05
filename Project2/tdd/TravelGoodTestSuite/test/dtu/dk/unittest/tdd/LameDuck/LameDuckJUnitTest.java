@@ -19,6 +19,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -73,6 +74,14 @@ public class LameDuckJUnitTest {
        assertEquals(1, Result.size());
        assertEquals(1234567890, Result.get(0).getBookingNumber());
        assertEquals("SAS", Result.get(0).getFlight().getCarrierOperationTheFlight());
+    }
+    
+    @Test
+    public void getFlights_GetMultipleFlightInformation_ReturnsTwoFlightInformations() {
+        throw new NotImplementedException();
+        //Arrange
+        //Act
+        //Assert
     }
 
     @Test

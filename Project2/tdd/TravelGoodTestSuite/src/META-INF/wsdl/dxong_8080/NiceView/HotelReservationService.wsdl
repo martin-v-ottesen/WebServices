@@ -10,6 +10,21 @@
 <xsd:import namespace="http://fastmoney.imm.dtu.dk" schemaLocation="http://dxong:8080/NiceView/HotelReservationService?xsd=3"/>
 </xsd:schema>
 </types>
+<message name="cancelHotel">
+<part name="parameters" element="tns:cancelHotel"/>
+</message>
+<message name="cancelHotelResponse">
+<part name="parameters" element="tns:cancelHotelResponse"/>
+</message>
+<message name="Exception">
+<part name="fault" element="tns:Exception"/>
+</message>
+<message name="getBookedHotelInformations">
+<part name="parameters" element="tns:getBookedHotelInformations"/>
+</message>
+<message name="getBookedHotelInformationsResponse">
+<part name="parameters" element="tns:getBookedHotelInformationsResponse"/>
+</message>
 <message name="clearHotelInformations">
 <part name="parameters" element="tns:clearHotelInformations"/>
 </message>
@@ -37,10 +52,16 @@
 <message name="CreditCardFaultMessage">
 <part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
 </message>
-<message name="Exception">
-<part name="fault" element="tns:Exception"/>
-</message>
 <portType name="HotelReservationService">
+<operation name="cancelHotel">
+<input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelRequest" message="tns:cancelHotel"/>
+<output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelResponse" message="tns:cancelHotelResponse"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotel/Fault/Exception"/>
+</operation>
+<operation name="getBookedHotelInformations">
+<input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsRequest" message="tns:getBookedHotelInformations"/>
+<output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsResponse" message="tns:getBookedHotelInformationsResponse"/>
+</operation>
 <operation name="clearHotelInformations">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/clearHotelInformationsRequest" message="tns:clearHotelInformations"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/clearHotelInformationsResponse" message="tns:clearHotelInformationsResponse"/>
@@ -62,6 +83,27 @@
 </portType>
 <binding name="HotelReservationServicePortBinding" type="tns:HotelReservationService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="cancelHotel">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
+</operation>
+<operation name="getBookedHotelInformations">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="clearHotelInformations">
 <soap:operation soapAction=""/>
 <input>

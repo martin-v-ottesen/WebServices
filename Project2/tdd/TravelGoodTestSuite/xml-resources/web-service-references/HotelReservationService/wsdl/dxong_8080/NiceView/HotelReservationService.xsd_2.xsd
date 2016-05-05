@@ -8,9 +8,17 @@
 
 <xs:element name="bookHotelResponse" type="tns:bookHotelResponse"/>
 
+<xs:element name="cancelHotel" type="tns:cancelHotel"/>
+
+<xs:element name="cancelHotelResponse" type="tns:cancelHotelResponse"/>
+
 <xs:element name="clearHotelInformations" type="tns:clearHotelInformations"/>
 
 <xs:element name="clearHotelInformationsResponse" type="tns:clearHotelInformationsResponse"/>
+
+<xs:element name="getBookedHotelInformations" type="tns:getBookedHotelInformations"/>
+
+<xs:element name="getBookedHotelInformationsResponse" type="tns:getBookedHotelInformationsResponse"/>
 
 <xs:element name="getHotels" type="tns:getHotels"/>
 
@@ -19,6 +27,22 @@
 <xs:element name="setTestHotelInformations" type="tns:setTestHotelInformations"/>
 
 <xs:element name="setTestHotelInformationsResponse" type="tns:setTestHotelInformationsResponse"/>
+
+<xs:complexType name="cancelHotel">
+<xs:sequence>
+<xs:element name="bookingNumber" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelHotelResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="clearHotelInformations">
 <xs:sequence/>
@@ -76,12 +100,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="Exception">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="setTestHotelInformations">
 <xs:sequence>
 <xs:element name="hotelInfo" type="tns:hotelInformation" minOccurs="0"/>
@@ -90,5 +108,15 @@
 
 <xs:complexType name="setTestHotelInformationsResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getBookedHotelInformations">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getBookedHotelInformationsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:hotelInformation" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 </xs:schema>
