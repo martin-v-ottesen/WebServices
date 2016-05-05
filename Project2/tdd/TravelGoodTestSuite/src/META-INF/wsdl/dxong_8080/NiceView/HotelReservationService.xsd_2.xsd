@@ -20,6 +20,14 @@
 
 <xs:element name="setTestHotelInformationsResponse" type="tns:setTestHotelInformationsResponse"/>
 
+<xs:complexType name="clearHotelInformations">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="clearHotelInformationsResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="getHotels">
 <xs:sequence>
 <xs:element name="cityName" type="xs:string" minOccurs="0"/>
@@ -52,14 +60,6 @@
 <xs:element name="city" type="xs:string" minOccurs="0"/>
 <xs:element name="hotelName" type="xs:string" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="clearHotelInformations">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="clearHotelInformationsResponse">
-<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="bookHotel">

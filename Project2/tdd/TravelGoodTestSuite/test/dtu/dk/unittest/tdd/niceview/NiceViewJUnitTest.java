@@ -8,6 +8,7 @@ package dtu.dk.unittest.tdd.niceview;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dtu.dk.webservice.service.CreditCardFaultMessage;
 import dtu.dk.webservice.service.Exception_Exception;
+import dtu.dk.webservice.service.FlightInformation;
 import dtu.dk.webservice.service.Hotel;
 import dtu.dk.webservice.service.HotelInformation;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -117,6 +120,41 @@ public class NiceViewJUnitTest {
          //Assert
          assertEquals(expectedResult, Result);
      }
+     
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+    
+    @Test
+    public void bookHotel_BookingSingleHotelWithBookingNumberThatDoesNotExist_ThrowsAnExceptionWithExpectedErrorMessage() throws CreditCardFaultMessage, Exception_Exception{
+         //Arrange
+         HotelInformation expectedHotelToBeBooked = new HotelInformation();
+         List<HotelInformation> expectedHotelInformationList = new ArrayList<>();
+         
+         int WrongBookingNumber = 69;
+         boolean Result;
+         boolean expectedResult = true;
+         
+         String expectedCity = "Bangkok";
+         String expectedCheckInDate = "2016-04-20";
+         String expectedCheckOutDate = "2016-04-27";
+         
+         CreditCardInfoType creditcardInfo = new CreditCardInfoType();
+         CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        
+         creditcardInfo.setName("Thor-Jensen Claus");
+         creditcardInfo.setNumber("50408825");
+        
+         expirationDate.setYear(9);
+         expirationDate.setMonth(5);
+         creditcardInfo.setExpirationDate(expirationDate);
+         
+         //Act
+         expectedHotelToBeBooked = getHotels(expectedCity, expectedCheckInDate, expectedCheckOutDate).get(0);
+         expectedEx.expectMessage("Booking Number was not found: " + String.valueOf(WrongBookingNumber)); 
+         Result = bookHotel(WrongBookingNumber, expectedHotelToBeBooked.isIsCreditCardGuaranteeRequired(), creditcardInfo);                 
+         //Assert
+         //Exception is Thrown and caught
+    }
 
     private static java.util.List<dtu.dk.webservice.service.HotelInformation> getHotels(java.lang.String cityName, java.lang.String arrivalDate, java.lang.String departureDate) {
         dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
