@@ -66,7 +66,6 @@ public class AirlineReservationService {
     /**
      * Web service operation
      * @param bookingNumber
-     * @param account
      * @param creditCardInfo
      * @return 
      * @throws dk.dtu.imm.fastmoney.CreditCardFaultMessage 
@@ -91,6 +90,15 @@ public class AirlineReservationService {
         }
         throw new Exception("Booking Number was not found: " + String.valueOf(bookingNumber));
     }
+    
+    /**
+     * Web service operation
+     * @param bookingNumber
+     * @param creditCardInfo
+     * @param price
+     * @return 
+     * @throws dk.dtu.imm.fastmoney.CreditCardFaultMessage 
+    */
     @WebMethod(operationName = "cancelFlight")
     public boolean cancelFlight(@WebParam(name = "bookingNumber") int bookingNumber,
             @WebParam(name = "creditCardInfo") CreditCardInfoType creditCardInfo,

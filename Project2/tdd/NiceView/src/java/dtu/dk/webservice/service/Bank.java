@@ -40,6 +40,8 @@ public class Bank {
     
     public boolean refundCreditCard(CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
         AccountType account = new AccountType();
+        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        
         
         account.setName(Bank.accountName);
         account.setNumber(Bank.accountNumber);
@@ -61,6 +63,12 @@ public class Bank {
         dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
+    }
+
+    private static boolean fastmoney_validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
+        dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
+        return port.validateCreditCard(group, creditCardInfo, amount);
     }
     
 }
