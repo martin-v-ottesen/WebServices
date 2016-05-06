@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="TravelAgencyBPEL"
+    targetNamespace="http://enterprise.netbeans.org/bpel/TravelAgencyBPEL/TravelAgencyBPEL"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/TravelAgencyBPEL/TravelAgencyBPEL"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling">
+    <import namespace="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" location="TravelAgencyWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/AirlineReservationServiceWrapper" location="AirlineReservationServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://service.webservice.dk.dtu/" location="AirlineReservationService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="LameDuck" xmlns:tns="http://enterprise.netbeans.org/bpel/AirlineReservationServiceWrapper" partnerLinkType="tns:AirlineReservationServiceLinkType" partnerRole="AirlineReservationServiceRole"/>
+        <partnerLink name="TravelAgency" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" partnerLinkType="tns:TravelAgencyWSDL" myRole="TravelAgencyWSDLPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="GetFlightsOut1" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" messageType="tns:TravelAgencyWSDLOperationResponse"/>
+        <variable name="GetFlightsOut" xmlns:tns="http://service.webservice.dk.dtu/" messageType="tns:getFlightsResponse"/>
+        <variable name="GetFlightsIn1" xmlns:tns="http://service.webservice.dk.dtu/" messageType="tns:getFlights"/>
+        <variable name="GetFlightsIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" messageType="tns:TravelAgencyWSDLOperationRequestgetFlights"/>
+    </variables>
+    <sequence name="Sequence1">
+        <receive name="Receive1" createInstance="yes" partnerLink="TravelAgency" operation="getFlights" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" portType="tns:TravelAgencyWSDLPortType" variable="GetFlightsIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from>$GetFlightsIn.parameters/startDestination</from>
+                <to>$GetFlightsIn1.parameters/startDestination</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsIn.parameters/endDestination</from>
+                <to>$GetFlightsIn1.parameters/endDestination</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsIn.parameters/startDate</from>
+                <to>$GetFlightsIn1.parameters/startDate</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="LameDuck" operation="getFlights" xmlns:tns="http://service.webservice.dk.dtu/" portType="tns:AirlineReservationService" inputVariable="GetFlightsIn1" outputVariable="GetFlightsOut"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$GetFlightsOut.parameters/return</from>
+                <to>$GetFlightsOut1.parameters/return</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="TravelAgency" operation="getFlights" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" portType="tns:TravelAgencyWSDLPortType" variable="GetFlightsOut1"/>
+    </sequence>
+</process>
