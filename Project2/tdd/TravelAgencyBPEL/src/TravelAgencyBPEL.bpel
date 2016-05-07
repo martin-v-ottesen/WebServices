@@ -45,6 +45,38 @@
                 <from>$GetFlightsOut.parameters/return</from>
                 <to>$GetFlightsOut1.parameters/return</to>
             </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/bookingNumber</from>
+                <to>$GetFlightsOut1.parameters/return/bookingNumber</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/flight/carrierOperationTheFlight</from>
+                <to>$GetFlightsOut1.parameters/return/flight/carrierOperationTheFlight</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/flight/dateAndTimefForLanding</from>
+                <to>$GetFlightsOut1.parameters/return/flight/dateAndTimefForLanding</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/flight/dateAndTimefForLiftOff</from>
+                <to>$GetFlightsOut1.parameters/return/flight/dateAndTimefForLiftOff</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/flight/endAirport</from>
+                <to>$GetFlightsOut1.parameters/return/flight/endAirport</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/flight/startAirport</from>
+                <to>$GetFlightsOut1.parameters/return/flight/startAirport</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/nameOfAirlineReservationService</from>
+                <to>$GetFlightsOut1.parameters/return/nameOfAirlineReservationService</to>
+            </copy>
+            <copy>
+                <from>$GetFlightsOut.parameters/return/price</from>
+                <to>$GetFlightsOut1.parameters/return/price</to>
+            </copy>
         </assign>
         <reply name="Reply1" partnerLink="TravelAgency" operation="getFlights" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL" portType="tns:TravelAgencyWSDLPortType" variable="GetFlightsOut1"/>
     </sequence>
