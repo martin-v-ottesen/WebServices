@@ -170,3 +170,5 @@ sympy-plots-for-*.tex/
 *.DS_Store
 /Exercises/Kasper/exercise_04/HelloWorldCA/src/jbiServiceUnits/
 /Exercises/Kasper/exercise_04/HelloWorldCA/test/results/
+/Project2/tdd/TravelAgencyApp/src/jbiServiceUnits/
+/Project2/tdd/TravelAgencyApp/test/results/

@@ -1,0 +1,12 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trav="http://j2ee.netbeans.org/wsdl/TravelAgencyBPEL/src/TravelAgencyWSDL">
+  <soapenv:Body>
+    <trav:getFlights>
+      <!--Optional:-->
+      <startDestination>Copenhagen</startDestination>
+      <!--Optional:-->
+      <endDestination>Thailand</endDestination>
+      <!--Optional:-->
+      <startDate>2016-04-17</startDate>
+    </trav:getFlights>
+  </soapenv:Body>
+</soapenv:Envelope>
