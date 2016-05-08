@@ -42,4 +42,10 @@ public class TravelGoodBPELJUnitTest {
     //
     // @Test
     // public void hello() {}
+
+    private static java.util.List<dtu.dk.webservice.service.FlightInformation> getFlights(java.lang.String startDestination, java.lang.String endDestination, java.lang.String startDate) {
+        dtu.dk.webservice.service.wsdl.travelgoodbpelmodule.src.travelgoodwsdl.TravelGoodWSDLService service = new dtu.dk.webservice.service.wsdl.travelgoodbpelmodule.src.travelgoodwsdl.TravelGoodWSDLService();
+        dtu.dk.webservice.service.wsdl.travelgoodbpelmodule.src.travelgoodwsdl.TravelGoodWSDLPortType port = service.getTravelGoodWSDLPortTypeBindingPort();
+        return port.getFlights(startDestination, endDestination, startDate);
+    }    
 }

@@ -2,11 +2,11 @@
   <soapenv:Body>
     <ser:getFlights>
       <!--Optional:-->
-      <startDestination>dsgsdgds</startDestination>
+      <startDestination>Copenhagen</startDestination>
       <!--Optional:-->
-      <endDestination>sdgsdgs</endDestination>
+      <endDestination>Thailand</endDestination>
       <!--Optional:-->
-      <startDate>asfsaf</startDate>
+      <startDate>2016-04-16</startDate>
     </ser:getFlights>
   </soapenv:Body>
 </soapenv:Envelope>

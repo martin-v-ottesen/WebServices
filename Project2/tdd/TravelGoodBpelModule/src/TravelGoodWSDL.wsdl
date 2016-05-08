@@ -14,10 +14,20 @@
     <message name="TravelGoodWSDLOperationResponse">
         <part name="getFlightsResponse" element="ns:getFlightsResponse"/>
     </message>
+    <message name="TravelGoodWSDLOperationRequestcreateItinerary">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <message name="TravelGoodWSDLOperationResponsecreateItinerary">
+        <part name="part1" type="xsd:string"/>
+    </message>
     <portType name="TravelGoodWSDLPortType">
         <operation name="getFlights">
             <input name="input1" message="tns:TravelGoodWSDLOperationRequest"/>
             <output name="output1" message="tns:TravelGoodWSDLOperationResponse"/>
+        </operation>
+        <operation name="createItinerary">
+            <input name="input2" message="tns:TravelGoodWSDLOperationRequestcreateItinerary"/>
+            <output name="output2" message="tns:TravelGoodWSDLOperationResponsecreateItinerary"/>
         </operation>
     </portType>
     <binding name="TravelGoodWSDLPortTypeBinding" type="tns:TravelGoodWSDLPortType">
