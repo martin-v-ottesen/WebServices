@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ws.dtu.dk;
+package test;
 
 import javax.jws.WebService;
 
@@ -11,10 +11,10 @@ import javax.jws.WebService;
  *
  * @author Martin
  */
-@WebService(serviceName = "niceViewWSDLService", portName = "NiceViewPortalBindingPort", endpointInterface = "dk.dtu.ws.niceview.NiceViewPortal", targetNamespace = "http://ws.dtu.dk/NiceView", wsdlLocation = "WEB-INF/wsdl/NewWebServiceFromWSDL/niceViewWSDL.wsdl")
+@WebService(serviceName = "LameDuckService", portName = "LameDuckPort", endpointInterface = "org.netbeans.j2ee.wsdl.lameduck.java.lameduck.LameDuckPortType", targetNamespace = "http://j2ee.netbeans.org/wsdl/LameDuck/java/LAmeDuck", wsdlLocation = "WEB-INF/wsdl/NewWebServiceFromWSDL/LameDuckWrapper.wsdl")
 public class NewWebServiceFromWSDL {
 
-    public dk.dtu.ws.niceview.HotelVacancies getHotels(dk.dtu.ws.niceview.HotelRequestType part1) {
+    public void lameDuckOperation(boolean part1) {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dk.dtu.ws/wsdl/LameDuck" xmlns:ns="http://j2ee.netbeans.org/wsdl/LameDuck/java/LAmeDuck" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="LameDuck" targetNamespace="http://j2ee.netbeans.org/wsdl/LameDuck/java/LAmeDuck">
+<wsdl:import namespace="http://j2ee.netbeans.org/wsdl/LameDuck/java/LAmeDuck" location="LameDuck.wsdl"/>
+<wsdl:binding name="LameDuckBinding" type="ns:LameDuckPortType">
+<soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="LameDuckOperation">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="LameDuckOperation_action"/>
+<wsdl:input name="input1">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+</wsdl:input>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="LameDuckService">
+<wsdl:port name="LameDuckPort" binding="ns:LameDuckBinding">
+<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="REPLACE_WITH_ACTUAL_URL"/>
+</wsdl:port>
+</wsdl:service>
+</definitions>

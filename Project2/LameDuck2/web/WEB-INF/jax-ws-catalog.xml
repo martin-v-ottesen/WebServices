@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankSecureService?wsdl" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankSecureService.wsdl"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankSecureService?wsdl=1" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankSecureService.wsdl_1.wsdl"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankSecureService?xsd=1" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankSecureService.xsd_1.xsd"/>
+    <system systemId="http://fastmoney.imm.dtu.dk:8080/BankSecureService?xsd=2" uri="wsdl/fastmoney.imm.dtu.dk_8080/BankSecureService.xsd_2.xsd"/>
+</catalog>
