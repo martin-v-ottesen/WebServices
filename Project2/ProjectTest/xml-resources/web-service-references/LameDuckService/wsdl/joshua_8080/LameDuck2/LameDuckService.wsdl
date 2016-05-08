@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/LameDuck2/java/LameDuck" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://fastmoney.imm.dtu.dk" xmlns:ns0="http://fastmoney.imm.dtu.dk" xmlns:ns1="urn://fastmoney.imm.dtu.dk" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="LameDuck" targetNamespace="http://j2ee.netbeans.org/wsdl/LameDuck2/java/LameDuck">
+    <types>
+        <xsd:schema xmlns:tns="http://j2ee.netbeans.org/wsdl/LameDuck2/java/LameDuck" targetNamespace="http://j2ee.netbeans.org/wsdl/LameDuck2/java/LameDuck">
+            <xsd:import schemaLocation="http://joshua:8080/LameDuck2/LameDuckService?null" namespace="http://fastmoney.imm.dtu.dk"/>
+            <xsd:element name="reset" type="xsd:boolean"/>
+            <xsd:element name="bookingNumber" type="xsd:string"/>
+            <xsd:complexType name="bookingNumbers">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumber" maxOccurs="unbounded" minOccurs="0"/>
+                    <xsd:element ref="ns:chargeCreditCard"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="bookingNumberLiset" type="tns:bookingNumbers"/>
+            <xsd:element name="flightExceptioMessage" type="xsd:string"/>
+            <xsd:element name="liftOff" type="xsd:dateTime"/>
+            <xsd:element name="landing" type="xsd:dateTime"/>
+            <xsd:element name="destination" type="tns:airportType"/>
+            <xsd:complexType name="airportType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="start" type="tns:airportType"/>
+            <xsd:complexType name="getFlightRequestType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:liftOff"/>
+                    <xsd:element ref="tns:start"/>
+                    <xsd:element ref="tns:destination"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="flightInformations">
+                <xsd:sequence>
+                    <xsd:element ref="tns:flightInformation" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="flightInformationList" type="tns:flightInformations"/>
+            <xsd:element name="price" type="xsd:double"/>
+            <xsd:element name="getFlightsRequest" type="tns:getFlightRequestType"/>
+            <xsd:complexType name="reservationServiceType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="reservatinService" type="tns:reservationServiceType"/>
+            <xsd:complexType name="airlineType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="carrier" type="tns:airlineType"/>
+            <xsd:complexType name="cancelFlightType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:price"/>
+                    <xsd:element ref="tns:bookingNumberLiset"/>
+                    <xsd:element ref="ns:chargeCreditCard"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="cancelFlights" type="tns:cancelFlightType"/>
+            <xsd:complexType name="bookFlightRequestType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumberLiset"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="bookFlightRequest" type="tns:bookFlightRequestType"/>
+            <xsd:element name="bookingStatus" type="xsd:boolean"/>
+            <xsd:complexType name="flightInformationType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:bookingNumber"/>
+                    <xsd:element ref="tns:price"/>
+                    <xsd:element ref="tns:reservatinService"/>
+                    <xsd:element ref="tns:flight"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="flightInformation" type="tns:flightInformationType"/>
+            <xsd:complexType name="flightType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:start"/>
+                    <xsd:element ref="tns:destination"/>
+                    <xsd:element ref="tns:liftOff"/>
+                    <xsd:element ref="tns:landing"/>
+                    <xsd:element ref="tns:carrier"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="flight" type="tns:flightType"/>
+        </xsd:schema>
+    </types>
+    <message name="LameDuckOperationRequest">
+        <part name="doReset" element="tns:reset"/>
+    </message>
+    <message name="cancelFlightRequest">
+        <part name="cancelFlights" element="tns:cancelFlights"/>
+    </message>
+    <message name="cancelFlightResponse">
+        <part name="status" element="tns:bookingStatus"/>
+    </message>
+    <message name="cancelFlightError">
+        <part name="cancelFlightsException" element="tns:flightExceptioMessage"/>
+    </message>
+    <message name="bookFlightRequest">
+        <part name="booking" element="tns:bookFlightRequest"/>
+    </message>
+    <message name="bookFlightResponse">
+        <part name="bookingResponce" element="tns:bookingStatus"/>
+    </message>
+    <message name="bookFlightFault">
+        <part name="bookingException" element="tns:flightExceptioMessage"/>
+    </message>
+    <message name="getFlightsRequest">
+        <part name="route" element="tns:getFlightsRequest"/>
+    </message>
+    <message name="getFlightsResponse">
+        <part name="possibleFlights" element="tns:flightInformationList"/>
+    </message>
+    <portType name="LameDuckPortType">
+        <operation name="reset">
+            <input name="input1" message="tns:LameDuckOperationRequest"/>
+        </operation>
+        <operation name="cancelFlight">
+            <input name="input2" message="tns:cancelFlightRequest"/>
+            <output name="output1" message="tns:cancelFlightResponse"/>
+            <fault name="fault1" message="tns:cancelFlightError"/>
+        </operation>
+        <operation name="bookFlight">
+            <input name="input3" message="tns:bookFlightRequest"/>
+            <output name="output2" message="tns:bookFlightResponse"/>
+            <fault name="fault2" message="tns:bookFlightFault"/>
+        </operation>
+        <operation name="getFlights">
+            <input name="input4" message="tns:getFlightsRequest"/>
+            <output name="output3" message="tns:getFlightsResponse"/>
+        </operation>
+    </portType>
+    <binding name="LameDuckPortTypeBinding" type="tns:LameDuckPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="reset">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="cancelFlight">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="bookFlight">
+            <soap:operation/>
+            <input name="input3">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output2">
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault2">
+                <soap:fault name="fault2" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getFlights">
+            <soap:operation/>
+            <input name="input4">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output3">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="LameDuckService">
+        <port name="LameDuckPortTypeBindingPort" binding="tns:LameDuckPortTypeBinding">
+            <soap:address location="http://joshua:8080/LameDuck2/LameDuckService"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="LameDuck">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="LameDuckPortTypeRole" portType="tns:LameDuckPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
