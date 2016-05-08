@@ -4,9 +4,9 @@
       <!--Optional:-->
       <startDestination>Copenhagen</startDestination>
       <!--Optional:-->
-      <endDestination>Thailand</endDestination>
+      <endDestination>Tokyo</endDestination>
       <!--Optional:-->
-      <startDate>2016-04-16</startDate>
+      <startDate>2017-02-01</startDate>
     </ser:getFlights>
   </soapenv:Body>
 </soapenv:Envelope>

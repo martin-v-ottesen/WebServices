@@ -35,16 +35,16 @@ public class AirlineReservationService {
     public AirlineReservationService() {
         
         flight.setStartAirport("Copenhagen");
-        flight.setEndAirport("Thailand");
-        flight.setCarrierOperationTheFlight("SAS");
-        flight.setDateAndTimefForLiftOff("2016-04-16");
-        flight.setDateAndTimefForLanding("2016-04-20");
+        flight.setEndAirport("Tokyo");
+        flight.setCarrierOperationTheFlight("ANA");
+        flight.setDateAndTimefForLiftOff("2017-02-01");
+        flight.setDateAndTimefForLanding("I Will never come back");
         
         flightInfo.setFlight(flight);
         
         flightInfo.setNameOfAirlineReservationService("LameDuck");
-        flightInfo.setBookingNumber(1234567890);
-        flightInfo.setPrice(999);
+        flightInfo.setBookingNumber(365247);
+        flightInfo.setPrice(35813);
     
         flightInformationContainer.add(flightInfo);
     }
