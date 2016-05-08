@@ -1,0 +1,110 @@
+Airline Reservation Service:
+
+getFlights method:
+  input parameters:
+    departureAirport, destinationAirport, dateOfFlight
+  return value:
+    list of flight informations (possibly empty)
+
+FlightInformation (object):
+  privates:
+    bookingNumber, priceOfFlight, nameOfAirlineReservationService, Flight
+
+Flight (object):
+  privates:
+    startAirport, destinationAirport, dateAndTimeForLiftOff,
+    dateAndTimeForLanding, carrierOperatingTheFlight
+
+
+bookFlight method:
+  input parameters:
+    bookingNumber, creditCardInfo
+  return value:
+    boolean (true/false)
+      true if success in booking
+      FAULT (i.e. throws exception) if booking fails
+
+cancelFlight method:
+  input parameters:
+    bookingNumber, price, creditCardInfo
+  return value:
+    void
+  Throws exception in case of failure due to whatever
+
+
+
+Hotel Reservation Service:
+getHotels method:
+  input parameters:
+    city, arrivalDate, departureDate
+  return value:
+    listOfHotels (containing: nameOfHotel, addressOfHotel, bookingNumber,
+    priceOfWholeStay, nameOfHotelReservationService)
+
+HotelInformation (object):
+  privates:
+    bookingNumber, priceOfStay, nameOfHotelReservationService,
+    Hotel, isCreditCardGuaranteeRequired
+
+Hotel (object):
+  privates:
+    nameOfHotel, addressOfHotel, city, checkinDate, checkoutDate
+
+bookHotel method:
+  input parameters:
+    bookingNumber, creditCardInfo(if creditCardGuaranteeIsRequired),
+  does:
+    books the hotel
+  return value:
+    true (if booking was successful)
+    FAULT(i.e. throws exception) if:
+      creditCardInfo is invalid, OR
+      not enough money on the client account (insufficient funds), OR
+      other random fails
+
+cancelHotel method:
+  input parameters:
+    bookingNumber
+  return value:
+    none (void)
+  does:
+    throws exception if cancellation for whatever reason fails
+
+
+
+BPEL TravelGood:
+  Planning Container:
+    does:
+      - contains a list of chosen hotels and flight
+  Itineraries container:
+    does:
+      - Contains a list of booked hotels and flights (immutable)
+
+  Processes:
+
+    Planning Process:
+      createItinerary();
+      while (!isBookingProcess):
+        getFlights(...);
+        getHotels(...);
+        addToPlanningContainer(...);
+        removeChosenHotelFlight(...);
+        ---
+        cancelProcess();
+          does:
+            - clear Itineraries Container (clear whole container)
+
+    Booking Process:
+      bookItineraries(list...);
+        does:
+          - Takes the list of chosen hotels and flights and add them to       Itineraries container.
+          - If booking fails, previous successful bookings have to be cancelled by calling our available cancel methods
+      cancelBooking(...);
+        does:
+          - Cancels either a booked hotel or flight.
+          - Can at latest be cancelled before the first date of the booking within the itinerary
+
+    Global Process:
+      statusForItinerary(...);
+        does:
+          Get status of the current itinerary (unconfirmed, confirmed, cancelled)
