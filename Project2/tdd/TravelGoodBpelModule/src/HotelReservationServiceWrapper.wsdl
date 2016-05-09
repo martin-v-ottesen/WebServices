@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HotelReservationServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/HotelReservationServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/HotelReservationServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://service.webservice.dk.dtu/">
+    <import location="http://localhost:8080/NiceView/HotelReservationService?wsdl" namespace="http://service.webservice.dk.dtu/"/>
+    <plnk:partnerLinkType name="HotelReservationServiceLinkType">
+        <plnk:role name="HotelReservationServiceRole" portType="ns:HotelReservationService"/>
+    </plnk:partnerLinkType>
+</definitions>

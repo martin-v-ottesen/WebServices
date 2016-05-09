@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL"
+    xmlns:tns="http://webservice.ws.dtu.dk/schema/TravelGoodSchema"
+    elementFormDefault="qualified" xmlns:ns="http://service.webservice.dk.dtu/">
+    <xsd:import schemaLocation="soapservicewrapperSchema.xsd" namespace="http://service.webservice.dk.dtu/"/>
+    <xsd:complexType name="itineraryContainerType">
+        <xsd:sequence>
+            <xsd:element name="itineraryID" type="xsd:string"></xsd:element>
+            <xsd:element name="hotelInformationContainer" type="ns:hotelInformation" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            <xsd:element name="flightInformationContainer" type="ns:flightInformation" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="createItineraryRequest" type="xsd:string"></xsd:element>
+    <xsd:element name="createItineraryResponse" type="xsd:string"></xsd:element>
+</xsd:schema>

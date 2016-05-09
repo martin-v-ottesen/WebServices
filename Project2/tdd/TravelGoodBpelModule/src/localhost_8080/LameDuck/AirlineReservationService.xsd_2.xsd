@@ -2,7 +2,7 @@
 
 <xs:import namespace="http://types.fastmoney.imm.dtu.dk" schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=1"/>
 
-<xs:element name="Exception" type="tns:Exception"/>
+<xs:element name="ExceptionAirline" type="tns:ExceptionAirline"/>
 
 <xs:element name="bookFlight" type="tns:bookFlight"/>
 
@@ -78,7 +78,7 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="Exception">
+<xs:complexType name="ExceptionAirline">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
