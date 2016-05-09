@@ -10,6 +10,15 @@
 <xsd:import namespace="http://fastmoney.imm.dtu.dk" schemaLocation="http://localhost:8080/NiceView/HotelReservationService?xsd=3"/>
 </xsd:schema>
 </types>
+<<<<<<< HEAD
+<message name="getBookedHotelInformations">
+<part name="parameters" element="tns:getBookedHotelInformations"/>
+</message>
+<message name="getBookedHotelInformationsResponse">
+<part name="parameters" element="tns:getBookedHotelInformationsResponse"/>
+</message>
+=======
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <message name="setTestHotelInformations">
 <part name="parameters" element="tns:setTestHotelInformations"/>
 </message>
@@ -22,18 +31,33 @@
 <message name="clearHotelInformationsResponse">
 <part name="parameters" element="tns:clearHotelInformationsResponse"/>
 </message>
+<<<<<<< HEAD
+=======
 <message name="getBookedHotelInformations">
 <part name="parameters" element="tns:getBookedHotelInformations"/>
 </message>
 <message name="getBookedHotelInformationsResponse">
 <part name="parameters" element="tns:getBookedHotelInformationsResponse"/>
 </message>
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <message name="getHotels">
 <part name="parameters" element="tns:getHotels"/>
 </message>
 <message name="getHotelsResponse">
 <part name="parameters" element="tns:getHotelsResponse"/>
 </message>
+<<<<<<< HEAD
+<message name="cancelHotel">
+<part name="parameters" element="tns:cancelHotel"/>
+</message>
+<message name="cancelHotelResponse">
+<part name="parameters" element="tns:cancelHotelResponse"/>
+</message>
+<message name="Exception">
+<part name="fault" element="tns:Exception"/>
+</message>
+=======
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <message name="bookHotel">
 <part name="parameters" element="tns:bookHotel"/>
 </message>
@@ -43,6 +67,13 @@
 <message name="CreditCardFaultMessage">
 <part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
 </message>
+<<<<<<< HEAD
+<portType name="HotelReservationService">
+<operation name="getBookedHotelInformations">
+<input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsRequest" message="tns:getBookedHotelInformations"/>
+<output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsResponse" message="tns:getBookedHotelInformationsResponse"/>
+</operation>
+=======
 <message name="Exception">
 <part name="fault" element="tns:Exception"/>
 </message>
@@ -53,6 +84,7 @@
 <part name="parameters" element="tns:cancelHotelResponse"/>
 </message>
 <portType name="HotelReservationService">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <operation name="setTestHotelInformations">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/setTestHotelInformationsRequest" message="tns:setTestHotelInformations"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/setTestHotelInformationsResponse" message="tns:setTestHotelInformationsResponse"/>
@@ -61,20 +93,37 @@
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/clearHotelInformationsRequest" message="tns:clearHotelInformations"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/clearHotelInformationsResponse" message="tns:clearHotelInformationsResponse"/>
 </operation>
+<<<<<<< HEAD
+=======
 <operation name="getBookedHotelInformations">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsRequest" message="tns:getBookedHotelInformations"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getBookedHotelInformationsResponse" message="tns:getBookedHotelInformationsResponse"/>
 </operation>
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <operation name="getHotels">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getHotelsRequest" message="tns:getHotels"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/getHotelsResponse" message="tns:getHotelsResponse"/>
 </operation>
+<<<<<<< HEAD
+<operation name="cancelHotel">
+<input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelRequest" message="tns:cancelHotel"/>
+<output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelResponse" message="tns:cancelHotelResponse"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotel/Fault/Exception"/>
+</operation>
+=======
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <operation name="bookHotel">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/bookHotelRequest" message="tns:bookHotel"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/bookHotelResponse" message="tns:bookHotelResponse"/>
 <fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/bookHotel/Fault/CreditCardFaultMessage"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/bookHotel/Fault/Exception"/>
 </operation>
+<<<<<<< HEAD
+</portType>
+<binding name="HotelReservationServicePortBinding" type="tns:HotelReservationService">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="getBookedHotelInformations">
+=======
 <operation name="cancelHotel">
 <input wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelRequest" message="tns:cancelHotel"/>
 <output wsam:Action="http://service.webservice.dk.dtu/HotelReservationService/cancelHotelResponse" message="tns:cancelHotelResponse"/>
@@ -84,6 +133,7 @@
 <binding name="HotelReservationServicePortBinding" type="tns:HotelReservationService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="setTestHotelInformations">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -92,7 +142,11 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<<<<<<< HEAD
+<operation name="setTestHotelInformations">
+=======
 <operation name="clearHotelInformations">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -101,7 +155,11 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<<<<<<< HEAD
+<operation name="clearHotelInformations">
+=======
 <operation name="getBookedHotelInformations">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -119,7 +177,11 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<<<<<<< HEAD
+<operation name="cancelHotel">
+=======
 <operation name="bookHotel">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -127,14 +189,21 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<<<<<<< HEAD
+=======
 <fault name="CreditCardFaultMessage">
 <soap:fault name="CreditCardFaultMessage" use="literal"/>
 </fault>
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <fault name="Exception">
 <soap:fault name="Exception" use="literal"/>
 </fault>
 </operation>
+<<<<<<< HEAD
+<operation name="bookHotel">
+=======
 <operation name="cancelHotel">
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -142,6 +211,12 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<<<<<<< HEAD
+<fault name="CreditCardFaultMessage">
+<soap:fault name="CreditCardFaultMessage" use="literal"/>
+</fault>
+=======
+>>>>>>> 0cc7bab76d4774d077ad73ef2bb9a3784682d8e9
 <fault name="Exception">
 <soap:fault name="Exception" use="literal"/>
 </fault>
