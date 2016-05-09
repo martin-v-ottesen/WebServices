@@ -1,0 +1,12 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.webservice.dk.dtu/">
+  <soapenv:Body>
+    <ser:getFlights>
+      <!--Optional:-->
+      <startDestination>Copenhagen</startDestination>
+      <!--Optional:-->
+      <endDestination>Tokyo</endDestination>
+      <!--Optional:-->
+      <startDate>2017-02-01</startDate>
+    </ser:getFlights>
+  </soapenv:Body>
+</soapenv:Envelope>

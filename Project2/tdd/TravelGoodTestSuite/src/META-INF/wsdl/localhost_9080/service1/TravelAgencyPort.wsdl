@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://service.webservice.dk.dtu/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TravelGoodWSDL" targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL">
+  <types>
+    <xsd:schema xmlns:ns0="http://service.webservice.dk.dtu/" targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL">
+            <xsd:import namespace="http://service.webservice.dk.dtu/" schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2"/>
+        </xsd:schema>
+  </types>
+  <message name="TravelGoodWSDLOperationRequest">
+    <part element="ns:getFlights" name="getFlights">
+    </part>
+  </message>
+  <message name="TravelGoodWSDLOperationResponse">
+    <part element="ns:getFlightsResponse" name="getFlightsResponse">
+    </part>
+  </message>
+  <portType name="TravelGoodWSDLPortType">
+    <operation name="getFlights">
+      <input message="tns:TravelGoodWSDLOperationRequest" name="input1">
+    </input>
+      <output message="tns:TravelGoodWSDLOperationResponse" name="output1">
+    </output>
+    </operation>
+  </portType>
+  <binding name="TravelGoodWSDLPortTypeBinding" type="tns:TravelGoodWSDLPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getFlights">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal"/>
+      </input>
+      <output name="output1">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="TravelGoodWSDLService">
+    <port binding="tns:TravelGoodWSDLPortTypeBinding" name="TravelGoodWSDLPortTypeBindingPort">
+      <soap:address location="http://192.168.1.14:9080/service"/>
+    </port>
+  </service>
+    <plnk:partnerLinkType name="TravelGoodWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="TravelGoodWSDLPortTypeRole" portType="tns:TravelGoodWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

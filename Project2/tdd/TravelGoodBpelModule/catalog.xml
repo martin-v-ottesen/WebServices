@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+    <system systemId="http://localhost:8080/LameDuck/AirlineReservationService?wsdl" uri="src/localhost_8080/LameDuck/AirlineReservationService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/AirlineReservationService?xsd=1" uri="src/localhost_8080/LameDuck/AirlineReservationService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2" uri="src/localhost_8080/LameDuck/AirlineReservationService.xsd_2.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/AirlineReservationService?xsd=3" uri="src/localhost_8080/LameDuck/AirlineReservationService.xsd_3.xsd"/>
+</catalog>

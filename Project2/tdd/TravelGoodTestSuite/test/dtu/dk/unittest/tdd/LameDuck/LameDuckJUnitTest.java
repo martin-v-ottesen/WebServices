@@ -76,13 +76,13 @@ public class LameDuckJUnitTest {
        assertEquals("SAS", Result.get(0).getFlight().getCarrierOperationTheFlight());
     }
     
-    @Test
-    public void getFlights_GetMultipleFlightInformation_ReturnsTwoFlightInformations() {
-        throw new NotImplementedException();
-        //Arrange
-        //Act
-        //Assert
-    }
+//    @Test
+//    public void getFlights_GetMultipleFlightInformation_ReturnsTwoFlightInformations() {
+//        throw new NotImplementedException();
+//        //Arrange
+//        //Act
+//        //Assert
+//    }
 
     @Test
     public void bookFlight_BookingSingleFlight_ReturnsTrue() throws CreditCardFaultMessage, Exception_Exception{

@@ -7,8 +7,6 @@
             <file>file:/C:/Users/Martin/Documents/DTU/WebServices/Exercises/HelloWorldAPP/test/HelloTest/Output.xml</file>
             <file>file:/C:/Users/Martin/Documents/DTU/WebServices/Exercises/HelloWorldApp/src/conf/HelloWorldAPP.casa</file>
         </group>
-        <group name="TDD TravelGood">
-            <file>file:/Users/dxong/DTU/Development_of_Web_Services/WebServices/Exercises/HelloWorldAPP/src/jbiasa/HelloWorldAPP.wsdl</file>
-        </group>
+        <group name="TDD TravelGood"/>
     </open-files>
 </project-private>

@@ -31,7 +31,27 @@ public class AirlineReservationService {
     
     flightInformation flightInfo = new flightInformation();
     Flight flight = new Flight();
+
+    public AirlineReservationService() {
+        
+        flight.setStartAirport("Copenhagen");
+        flight.setEndAirport("Tokyo");
+        flight.setCarrierOperationTheFlight("ANA");
+        flight.setDateAndTimefForLiftOff("2017-02-01");
+        flight.setDateAndTimefForLanding("I Will never come back");
+        
+        flightInfo.setFlight(flight);
+        
+        flightInfo.setNameOfAirlineReservationService("LameDuck");
+        flightInfo.setBookingNumber(365247);
+        flightInfo.setPrice(35813);
     
+        flightInformationContainer.add(flightInfo);
+    }
+    
+    
+    
+
     @WebMethod(operationName = "setTestFlightInformations")
     public void setFlightInformationsTest(@WebParam(name = "flightInfo") flightInformation flightInfo){
         flightInformationContainer.add(flightInfo);

@@ -2,22 +2,22 @@
 <jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
     <service-assembly>
         <identification>
-            <name>TravelAgencyApp</name>
-            <description>Represents the Service Assembly of TravelAgencyApp</description>
+            <name>TravelAgencyCA</name>
+            <description>Represents the Service Assembly of TravelAgencyCA</description>
         </identification>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-TravelAgencyBPEL</name>
+                <name>TravelAgencyCA-TravelGoodBpelModule</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
-                <artifacts-zip>TravelAgencyBPEL.jar</artifacts-zip>
+                <artifacts-zip>TravelGoodBpelModule.jar</artifacts-zip>
                 <component-name>sun-bpel-engine</component-name>
             </target>
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-database-binding</name>
+                <name>TravelAgencyCA-sun-database-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -27,7 +27,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-email-binding</name>
+                <name>TravelAgencyCA-sun-email-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -37,7 +37,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-file-binding</name>
+                <name>TravelAgencyCA-sun-file-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -47,7 +47,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-ftp-binding</name>
+                <name>TravelAgencyCA-sun-ftp-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -57,7 +57,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-hl7-binding</name>
+                <name>TravelAgencyCA-sun-hl7-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -67,7 +67,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-http-binding</name>
+                <name>TravelAgencyCA-sun-http-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -77,7 +77,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-jms-binding</name>
+                <name>TravelAgencyCA-sun-jms-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -87,7 +87,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-ldap-binding</name>
+                <name>TravelAgencyCA-sun-ldap-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -97,7 +97,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-rest-binding</name>
+                <name>TravelAgencyCA-sun-rest-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -107,7 +107,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-scheduler-binding</name>
+                <name>TravelAgencyCA-sun-scheduler-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -117,7 +117,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelAgencyApp-sun-webspheremq-binding</name>
+                <name>TravelAgencyCA-sun-webspheremq-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
