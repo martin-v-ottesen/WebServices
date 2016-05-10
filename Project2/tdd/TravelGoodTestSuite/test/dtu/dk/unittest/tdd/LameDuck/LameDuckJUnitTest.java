@@ -6,10 +6,10 @@
 package dtu.dk.unittest.tdd.lameduck;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
-import dtu.dk.webservice.service.CreditCardFaultMessage;
-import dtu.dk.webservice.service.Exception_Exception;
-import dtu.dk.webservice.service.Flight;
-import dtu.dk.webservice.service.FlightInformation;
+import dk.dtu.webservice.airline.service.CreditCardFaultMessage;
+import dk.dtu.webservice.airline.service.Exception_Exception;
+import dk.dtu.webservice.airline.service.Flight;
+import dk.dtu.webservice.airline.service.FlightInformation;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,7 +19,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -161,33 +160,33 @@ public class LameDuckJUnitTest {
         assertEquals(true, cancelFlightResult);
     }
 
-    private static void clearFlightInformations() {
-        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
-        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
-        port.clearFlightInformations();
-    }
-
-    private static void setTestFlightInformations(dtu.dk.webservice.service.FlightInformation flightInfo) {
-        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
-        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
-        port.setTestFlightInformations(flightInfo);
-    }
-
-    private static java.util.List<dtu.dk.webservice.service.FlightInformation> getFlights(java.lang.String startDestination, java.lang.String endDestination, java.lang.String startDate) {
-        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
-        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
-        return port.getFlights(startDestination, endDestination, startDate);
-    }   
-
-    private static boolean bookFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage, Exception_Exception {
-        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
-        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+    private static boolean bookFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws dk.dtu.webservice.airline.service.CreditCardFaultMessage, dk.dtu.webservice.airline.service.Exception_Exception {
+        dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
+        dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
         return port.bookFlight(bookingNumber, creditCardInfo);
     }
 
-    private static boolean cancelFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int price) throws Exception_Exception, CreditCardFaultMessage {
-        dtu.dk.webservice.service.AirlineReservationService_Service service = new dtu.dk.webservice.service.AirlineReservationService_Service();
-        dtu.dk.webservice.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+    private static boolean cancelFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int price) throws dk.dtu.webservice.airline.service.CreditCardFaultMessage, dk.dtu.webservice.airline.service.Exception_Exception {
+        dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
+        dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
         return port.cancelFlight(bookingNumber, creditCardInfo, price);
+    }
+
+    private static void clearFlightInformations() {
+        dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
+        dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+        port.clearFlightInformations();
+    }
+
+    private static java.util.List<dk.dtu.webservice.airline.service.FlightInformation> getFlights(java.lang.String startDestination, java.lang.String endDestination, java.lang.String startDate) {
+        dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
+        dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+        return port.getFlights(startDestination, endDestination, startDate);
+    }
+
+    private static void setTestFlightInformations(dk.dtu.webservice.airline.service.FlightInformation flightInfo) {
+        dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
+        dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
+        port.setTestFlightInformations(flightInfo);
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <getFlightsResponse xmlns="http://service.airline.webservice.dtu.dk/" xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:msgns="http://service.airline.webservice.dtu.dk/" xmlns:ns0="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" xmlns:ns2="http://service.airline.webservice.dtu.dk/" xmlns:ns3="http://fastmoney.imm.dtu.dk">
+      <return xmlns="">
+        <bookingNumber>365247</bookingNumber>
+        <flight>
+          <carrierOperationTheFlight>ANA</carrierOperationTheFlight>
+          <dateAndTimefForLanding>I Will never come back</dateAndTimefForLanding>
+          <dateAndTimefForLiftOff>2017-02-01</dateAndTimefForLiftOff>
+          <endAirport>Tokyo</endAirport>
+          <startAirport>Copenhagen</startAirport>
+        </flight>
+        <nameOfAirlineReservationService>LameDuck</nameOfAirlineReservationService>
+        <price>35813</price>
+      </return>
+    </getFlightsResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

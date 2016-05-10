@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://service.airline.webservice.dtu.dk/" xmlns:ns2="http://service.hotel.webservice.dtu.dk/" xmlns:ns3="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" xmlns:ns4="http://enterprise.netbeans.org/bpel/TravelGood2BpelModule/travelGood2BpelModule" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="AirlineReservationServicePort" interface-name="ns1:AirlineReservationService" name="endpoint1" service-name="ns1:AirlineReservationService"/>
+        <endpoint endpoint-name="HotelReservationServicePort" interface-name="ns2:HotelReservationService" name="endpoint2" service-name="ns2:HotelReservationService"/>
+        <endpoint endpoint-name="TravelGoodWSDLPortTypeBindingPort" interface-name="ns3:TravelGoodWSDLPortType" name="endpoint3" service-name="ns3:TravelGoodWSDLService"/>
+        <endpoint display-name="TravelGood" endpoint-name="TravelGoodWSDLPortTypeRole_myRole" file-path="travelGood2BpelModule.bpel" interface-name="ns3:TravelGoodWSDLPortType" name="endpoint4" process-name="travelGood2BpelModule" service-name="ns4:TravelGood"/>
+        <endpoint display-name="LameDuck" endpoint-name="AirlineReservationServiceRole_partnerRole" file-path="travelGood2BpelModule.bpel" interface-name="ns1:AirlineReservationService" name="endpoint5" process-name="travelGood2BpelModule" service-name="ns4:LameDuck"/>
+        <endpoint display-name="NiceView" endpoint-name="HotelReservationServiceRole_partnerRole" file-path="travelGood2BpelModule.bpel" interface-name="ns2:HotelReservationService" name="endpoint6" process-name="travelGood2BpelModule" service-name="ns4:NiceView"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="TravelGood2BpelModule.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="TravelGoodCA-TravelGood2BpelModule" unit-name="TravelGood2BpelModule" unknown="false" x="115" y="97">
+            <provides endpoint="endpoint4"/>
+            <consumes endpoint="endpoint5"/>
+            <consumes endpoint="endpoint6"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="TravelGoodCA-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port bindingType="soap" x="67" y="191">
+                    <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/AirlineReservationService.wsdl#xpointer(/definitions/service[@name='AirlineReservationService']/port[@name='AirlineReservationServicePort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port bindingType="soap" x="67" y="114">
+                    <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/HotelReservationService.wsdl#xpointer(/definitions/service[@name='HotelReservationService']/port[@name='HotelReservationServicePort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+                <port x="67" y="37">
+                    <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/TravelGoodWSDL.wsdl#xpointer(/definitions/service[@name='TravelGoodWSDLService']/port[@name='TravelGoodWSDLPortTypeBindingPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint3" provider="endpoint4" state="unchanged"/>
+        <connection consumer="endpoint5" provider="endpoint1" state="new"/>
+        <connection consumer="endpoint6" provider="endpoint2" state="new"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/AirlineReservationService.wsdl#xpointer(/definitions/portType[@name='AirlineReservationService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/HotelReservationService.wsdl#xpointer(/definitions/portType[@name='HotelReservationService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/TravelGoodWSDL.wsdl#xpointer(/definitions/portType[@name='TravelGoodWSDLPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/AirlineReservationService.wsdl#xpointer(/definitions/binding[@name='AirlineReservationServicePortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/HotelReservationService.wsdl#xpointer(/definitions/binding[@name='HotelReservationServicePortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/TravelGoodWSDL.wsdl#xpointer(/definitions/binding[@name='TravelGoodWSDLPortTypeBinding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/AirlineReservationService.wsdl#xpointer(/definitions/service[@name='AirlineReservationService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/HotelReservationService.wsdl#xpointer(/definitions/service[@name='HotelReservationService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/TravelGood2BpelModule/TravelGoodWSDL.wsdl#xpointer(/definitions/service[@name='TravelGoodWSDLService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

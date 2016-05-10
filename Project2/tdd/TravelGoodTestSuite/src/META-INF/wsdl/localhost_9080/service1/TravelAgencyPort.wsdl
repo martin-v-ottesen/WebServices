@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://service.webservice.dk.dtu/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TravelGoodWSDL" targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL">
   <types>
-    <xsd:schema xmlns:ns0="http://service.webservice.dk.dtu/" targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL">
+    <xsd:schema xmlns:ns3="http://webservice.ws.dtu.dk/schema/TravelGoodSchema" targetNamespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL">
+<!--            <xsd:import schemaLocation="http://localhost:8080/NiceView/HotelReservationService?xsd=2" namespace="http://service.webservice.dk.dtu/"/>
+            <xsd:import schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2" namespace="http://service.webservice.dk.dtu/"/>
+            <xsd:import schemaLocation="TravelGoodSchema.xsd" namespace="http://webservice.ws.dtu.dk/schema/TravelGoodSchema"/>-->
+            <xsd:include schemaLocation="http://10.16.135.58:9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/TravelGoodSchema.xsd"/>
+            <!--<xsd:import namespace="http://service.webservice.dk.dtu/wsdl/TravelGoodBpelModule/src/TravelGoodWSDL" schemaLocation="TravelGoodSchema.xsd"/>-->
             <xsd:import namespace="http://service.webservice.dk.dtu/" schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2"/>
         </xsd:schema>
   </types>
-  <message name="TravelGoodWSDLOperationRequest">
-    <part element="ns:getFlights" name="getFlights">
+  <message name="TravelGoodWSDLOperationRequestGetFlights">
+    <part element="ns:getFlights" name="part1">
     </part>
   </message>
-  <message name="TravelGoodWSDLOperationResponse">
-    <part element="ns:getFlightsResponse" name="getFlightsResponse">
+  <message name="TravelGoodWSDLOperationResponsegetFlights">
+    <part element="ns:getFlightsResponse" name="part1">
     </part>
   </message>
   <portType name="TravelGoodWSDLPortType">
     <operation name="getFlights">
-      <input message="tns:TravelGoodWSDLOperationRequest" name="input1">
+      <input message="tns:TravelGoodWSDLOperationRequestGetFlights" name="input1">
     </input>
-      <output message="tns:TravelGoodWSDLOperationResponse" name="output1">
+      <output message="tns:TravelGoodWSDLOperationResponsegetFlights" name="output1">
     </output>
     </operation>
   </portType>
@@ -35,7 +40,7 @@
   </binding>
   <service name="TravelGoodWSDLService">
     <port binding="tns:TravelGoodWSDLPortTypeBinding" name="TravelGoodWSDLPortTypeBindingPort">
-      <soap:address location="http://192.168.1.14:9080/service"/>
+      <soap:address location="http://10.16.135.58:9080/service"/>
     </port>
   </service>
     <plnk:partnerLinkType name="TravelGoodWSDL">

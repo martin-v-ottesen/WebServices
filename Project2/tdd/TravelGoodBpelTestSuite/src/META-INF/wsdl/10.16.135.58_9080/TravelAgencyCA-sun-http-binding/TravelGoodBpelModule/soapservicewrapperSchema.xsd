@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:tns="http://service.webservice.dk.dtu/schema/soapservicewrapperSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.webservice.dk.dtu/">
+    <xsd:include schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2"/>
+    <xsd:include schemaLocation="http://localhost:8080/NiceView/HotelReservationService?xsd=2"/>
+
+</xsd:schema>

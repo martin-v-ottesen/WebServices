@@ -6,11 +6,11 @@
 package dtu.dk.unittest.tdd.niceview;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
-import dtu.dk.webservice.service.CreditCardFaultMessage;
-import dtu.dk.webservice.service.Exception_Exception;
-import dtu.dk.webservice.service.FlightInformation;
-import dtu.dk.webservice.service.Hotel;
-import dtu.dk.webservice.service.HotelInformation;
+import dk.dtu.webservice.hotel.service.CreditCardFaultMessage;
+import dk.dtu.webservice.hotel.service.Exception_Exception;
+import dk.dtu.webservice.hotel.service.Hotel;
+import dk.dtu.webservice.hotel.service.HotelInformation;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -287,40 +287,41 @@ public class NiceViewJUnitTest {
          //Exception is Thrown and caught
     }
 
-    private static java.util.List<dtu.dk.webservice.service.HotelInformation> getHotels(java.lang.String cityName, java.lang.String arrivalDate, java.lang.String departureDate) {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
-        return port.getHotels(cityName, arrivalDate, departureDate);
-    }
-
-    private static void setTestHotelInformations(dtu.dk.webservice.service.HotelInformation hotelInfo) {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
-        port.setTestHotelInformations(hotelInfo);
-    }
-
-    private static void clearHotelInformations() {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
-        port.clearHotelInformations();
-    }
-
     private static boolean bookHotel(int bookingNumber, boolean isCreditCardGuaranteeRequired, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws CreditCardFaultMessage, Exception_Exception {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
         return port.bookHotel(bookingNumber, isCreditCardGuaranteeRequired, creditCardInfo);
     }
 
     private static void cancelHotel(int bookingNumber) throws Exception_Exception {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
         port.cancelHotel(bookingNumber);
     }
 
-    private static java.util.List<dtu.dk.webservice.service.HotelInformation> getBookedHotelInformations() {
-        dtu.dk.webservice.service.HotelReservationService_Service service = new dtu.dk.webservice.service.HotelReservationService_Service();
-        dtu.dk.webservice.service.HotelReservationService port = service.getHotelReservationServicePort();
+    private static void clearHotelInformations() {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
+        port.clearHotelInformations();
+    }
+
+    private static java.util.List<dk.dtu.webservice.hotel.service.HotelInformation> getBookedHotelInformations() {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
         return port.getBookedHotelInformations();
     }
+
+    private static java.util.List<dk.dtu.webservice.hotel.service.HotelInformation> getHotels(java.lang.String cityName, java.lang.String arrivalDate, java.lang.String departureDate) {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
+        return port.getHotels(cityName, arrivalDate, departureDate);
+    }
+
+    private static void setTestHotelInformations(dk.dtu.webservice.hotel.service.HotelInformation hotelInfo) {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
+        port.setTestHotelInformations(hotelInfo);
+    }
+
 
 }

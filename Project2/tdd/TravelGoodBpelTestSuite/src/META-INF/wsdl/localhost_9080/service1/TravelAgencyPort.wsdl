@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://service.airline.webservice.dtu.dk/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TravelGoodWSDL" targetNamespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
+  <types>
+    <xsd:schema xmlns:ns0="http://service.airline.webservice.dtu.dk/" xmlns:ns1="http://service.hotel.webservice.dtu.dk/" targetNamespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
+            <xsd:import namespace="http://service.airline.webservice.dtu.dk/" schemaLocation="http://10.16.135.58:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd"/>
+            <xsd:import namespace="http://service.hotel.webservice.dtu.dk/" schemaLocation="http://10.16.135.58:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd"/>
+            <xsd:complexType name="itineraryContainerType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="flightInformationContainer" type="ns0:flightInformation"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="hotelInformationContainer" type="ns1:hotelInformation"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+  </types>
+  <message name="TravelGoodWSDLOperationResponseGetFlights">
+    <part element="ns:getFlightsResponse" name="part1">
+    </part>
+  </message>
+  <message name="TravelGoodWSDLOperationRequestGetFlights">
+    <part element="ns:getFlights" name="part1">
+    </part>
+  </message>
+  <portType name="TravelGoodWSDLPortType">
+    <operation name="getFlights">
+      <input message="tns:TravelGoodWSDLOperationRequestGetFlights" name="input1">
+    </input>
+      <output message="tns:TravelGoodWSDLOperationResponseGetFlights" name="output1">
+    </output>
+    </operation>
+  </portType>
+  <binding name="TravelGoodWSDLPortTypeBinding" type="tns:TravelGoodWSDLPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getFlights">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal"/>
+      </input>
+      <output name="output1">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="TravelGoodWSDLService">
+    <port binding="tns:TravelGoodWSDLPortTypeBinding" name="TravelGoodWSDLPortTypeBindingPort">
+      <soap:address location="http://10.16.135.58:9080/service"/>
+    </port>
+  </service>
+    <plnk:partnerLinkType name="TravelGoodWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="TravelGoodWSDLPortTypeRole" portType="tns:TravelGoodWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

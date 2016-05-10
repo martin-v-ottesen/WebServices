@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="travelGood2BpelModule"
+    targetNamespace="http://enterprise.netbeans.org/bpel/TravelGood2BpelModule/travelGood2BpelModule"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/TravelGood2BpelModule/travelGood2BpelModule"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling">
+    <import namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" location="TravelGoodWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/AirlineReservationServiceWrapper" location="AirlineReservationServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://service.airline.webservice.dtu.dk/" location="AirlineReservationService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/HotelReservationServiceWrapper" location="HotelReservationServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://service.hotel.webservice.dtu.dk/" location="HotelReservationService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="LameDuck" xmlns:tns="http://enterprise.netbeans.org/bpel/AirlineReservationServiceWrapper" partnerLinkType="tns:AirlineReservationServiceLinkType" partnerRole="AirlineReservationServiceRole"/>
+        <partnerLink name="NiceView" xmlns:tns="http://enterprise.netbeans.org/bpel/HotelReservationServiceWrapper" partnerLinkType="tns:HotelReservationServiceLinkType" partnerRole="HotelReservationServiceRole"/>
+        <partnerLink name="TravelGood" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" partnerLinkType="tns:TravelGoodWSDL" myRole="TravelGoodWSDLPortTypeRole"/>
+    </partnerLinks>
+    <sequence>
+        <scope name="getFlights">
+            <variables>
+                <variable name="GetFlightsOutTG" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" messageType="tns:TravelGoodWSDLOperationResponseGetFlights"/>
+                <variable name="GetFlightsInTG" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" messageType="tns:TravelGoodWSDLOperationRequestGetFlights"/>
+                <variable name="GetFlightsOutLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlightsResponse"/>
+                <variable name="GetFlightsInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlights"/>
+            </variables>
+            <sequence name="Sequence1">
+                <receive name="Receive1" createInstance="yes" partnerLink="TravelGood" operation="getFlights" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsInTG"/>
+                <assign name="Assign1">
+                    <copy>
+                        <from variable="GetFlightsInTG" part="part1"/>
+                        <to variable="GetFlightsInLD" part="parameters"/>
+                    </copy>
+                </assign>
+                <invoke name="Invoke1" partnerLink="LameDuck" operation="getFlights" xmlns:tns="http://service.airline.webservice.dtu.dk/" portType="tns:AirlineReservationService" inputVariable="GetFlightsInLD" outputVariable="GetFlightsOutLD"/>
+                <assign name="Assign2">
+                    <copy>
+                        <from variable="GetFlightsOutLD" part="parameters"/>
+                        <to variable="GetFlightsOutTG" part="part1"/>
+                    </copy>
+                </assign>
+                <reply name="Reply1" partnerLink="TravelGood" operation="getFlights" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsOutTG"/>
+            </sequence>
+        </scope>
+    </sequence>
+</process>

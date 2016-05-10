@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://service.webservice.dk.dtu/" xmlns:ns1="http://types.fastmoney.imm.dtu.dk" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.webservice.dk.dtu/">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://service.airline.webservice.dtu.dk/" xmlns:ns1="http://types.fastmoney.imm.dtu.dk" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.airline.webservice.dtu.dk/">
 
 <xs:import namespace="http://types.fastmoney.imm.dtu.dk" schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=1"/>
 
@@ -23,47 +23,6 @@
 <xs:element name="setTestFlightInformations" type="tns:setTestFlightInformations"/>
 
 <xs:element name="setTestFlightInformationsResponse" type="tns:setTestFlightInformationsResponse"/>
-
-<xs:complexType name="clearFlightInformations">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="clearFlightInformationsResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getFlights">
-<xs:sequence>
-<xs:element name="startDestination" type="xs:string" minOccurs="0"/>
-<xs:element name="endDestination" type="xs:string" minOccurs="0"/>
-<xs:element name="startDate" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getFlightsResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:flightInformation" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="flightInformation">
-<xs:sequence>
-<xs:element name="bookingNumber" type="xs:int"/>
-<xs:element name="flight" type="tns:flight" minOccurs="0"/>
-<xs:element name="nameOfAirlineReservationService" type="xs:string" minOccurs="0"/>
-<xs:element name="price" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="flight">
-<xs:sequence>
-<xs:element name="carrierOperationTheFlight" type="xs:string" minOccurs="0"/>
-<xs:element name="dateAndTimefForLanding" type="xs:string" minOccurs="0"/>
-<xs:element name="dateAndTimefForLiftOff" type="xs:string" minOccurs="0"/>
-<xs:element name="endAirport" type="xs:string" minOccurs="0"/>
-<xs:element name="startAirport" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
 
 <xs:complexType name="bookFlight">
 <xs:sequence>
@@ -104,7 +63,48 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="flightInformation">
+<xs:sequence>
+<xs:element name="bookingNumber" type="xs:int"/>
+<xs:element name="flight" type="tns:flight" minOccurs="0"/>
+<xs:element name="nameOfAirlineReservationService" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="flight">
+<xs:sequence>
+<xs:element name="carrierOperationTheFlight" type="xs:string" minOccurs="0"/>
+<xs:element name="dateAndTimefForLanding" type="xs:string" minOccurs="0"/>
+<xs:element name="dateAndTimefForLiftOff" type="xs:string" minOccurs="0"/>
+<xs:element name="endAirport" type="xs:string" minOccurs="0"/>
+<xs:element name="startAirport" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="setTestFlightInformationsResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getFlights">
+<xs:sequence>
+<xs:element name="startDestination" type="xs:string" minOccurs="0"/>
+<xs:element name="endDestination" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFlightsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:flightInformation" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="clearFlightInformations">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="clearFlightInformationsResponse">
 <xs:sequence/>
 </xs:complexType>
 </xs:schema>

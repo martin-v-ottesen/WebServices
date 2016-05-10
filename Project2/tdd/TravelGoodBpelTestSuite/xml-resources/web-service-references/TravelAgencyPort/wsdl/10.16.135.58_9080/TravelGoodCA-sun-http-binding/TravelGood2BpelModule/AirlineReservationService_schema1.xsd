@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:tns="http://service.airline.webservice.dtu.dk/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.airline.webservice.dtu.dk/" version="1.0">
+
+  <xs:element name="CreditCardFaultMessage" type="tns:CreditCardFaultMessage"/>
+
+  <xs:element name="Exception" type="tns:Exception"/>
+
+  <xs:element name="bookFlight" type="tns:bookFlight"/>
+
+  <xs:element name="bookFlightResponse" type="tns:bookFlightResponse"/>
+
+  <xs:element name="cancelFlight" type="tns:cancelFlight"/>
+
+  <xs:element name="cancelFlightResponse" type="tns:cancelFlightResponse"/>
+
+  <xs:element name="clearFlightInformations" type="tns:clearFlightInformations"/>
+
+  <xs:element name="clearFlightInformationsResponse" type="tns:clearFlightInformationsResponse"/>
+
+  <xs:element name="getFlights" type="tns:getFlights"/>
+
+  <xs:element name="getFlightsResponse" type="tns:getFlightsResponse"/>
+
+  <xs:element name="setTestFlightInformations" type="tns:setTestFlightInformations"/>
+
+  <xs:element name="setTestFlightInformationsResponse" type="tns:setTestFlightInformationsResponse"/>
+
+  <xs:complexType name="cancelFlight">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="creditCardInfo" type="tns:creditCardInfoType"/>
+      <xs:element name="price" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCardInfoType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="expirationDate" type="tns:expirationDate"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="number" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="expirationDate">
+    <xs:sequence>
+      <xs:element name="month" type="xs:int"/>
+      <xs:element name="year" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelFlightResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CreditCardFaultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="faultInfo" type="tns:creditCardFaultType"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCardFaultType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookFlight">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="creditCardInfo" type="tns:creditCardInfoType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookFlightResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setTestFlightInformations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="flightInfo" type="tns:flightInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="flightInformation">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="flight" type="tns:flight"/>
+      <xs:element minOccurs="0" name="nameOfAirlineReservationService" type="xs:string"/>
+      <xs:element name="price" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="flight">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="carrierOperationTheFlight" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateAndTimefForLanding" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateAndTimefForLiftOff" type="xs:string"/>
+      <xs:element minOccurs="0" name="endAirport" type="xs:string"/>
+      <xs:element minOccurs="0" name="startAirport" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setTestFlightInformationsResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getFlights">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="startDestination" type="xs:string"/>
+      <xs:element minOccurs="0" name="endDestination" type="xs:string"/>
+      <xs:element minOccurs="0" name="startDate" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getFlightsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:flightInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clearFlightInformations">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="clearFlightInformationsResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

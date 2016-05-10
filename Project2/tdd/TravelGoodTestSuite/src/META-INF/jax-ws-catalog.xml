@@ -17,4 +17,8 @@
     <system systemId="http://localhost:8080/NiceView/HotelReservationService?xsd=2" uri="wsdl/localhost_8080/NiceView/HotelReservationService.xsd_2.xsd"/>
     <system systemId="http://localhost:8080/NiceView/HotelReservationService?xsd=3" uri="wsdl/localhost_8080/NiceView/HotelReservationService.xsd_3.xsd"/>
     <system systemId="http://localhost:9080/service1/TravelAgencyPort?wsdl" uri="wsdl/localhost_9080/service1/TravelAgencyPort.wsdl"/>
+    <system systemId="http://kaspers-mbp:9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/TravelGoodSchema.xsd" uri="wsdl/kaspers-mbp_9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/TravelGoodSchema.xsd"/>
+    <system systemId="http://kaspers-mbp:9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/soapservicewrapperSchema.xsd" uri="wsdl/kaspers-mbp_9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/soapservicewrapperSchema.xsd"/>
+    <system systemId="http://10.16.135.58:9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/TravelGoodSchema.xsd" uri="wsdl/10.16.135.58_9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/TravelGoodSchema.xsd"/>
+    <system systemId="http://10.16.135.58:9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/soapservicewrapperSchema.xsd" uri="wsdl/10.16.135.58_9080/TravelAgencyCA-sun-http-binding/TravelGoodBpelModule/soapservicewrapperSchema.xsd"/>
 </catalog>
