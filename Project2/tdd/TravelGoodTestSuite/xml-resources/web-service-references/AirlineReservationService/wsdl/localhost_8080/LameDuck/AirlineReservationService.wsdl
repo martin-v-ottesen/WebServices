@@ -10,17 +10,17 @@
 <xsd:import namespace="http://fastmoney.imm.dtu.dk" schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=3"/>
 </xsd:schema>
 </types>
-<message name="setTestFlightInformations">
-<part name="parameters" element="tns:setTestFlightInformations"/>
-</message>
-<message name="setTestFlightInformationsResponse">
-<part name="parameters" element="tns:setTestFlightInformationsResponse"/>
-</message>
 <message name="clearFlightInformations">
 <part name="parameters" element="tns:clearFlightInformations"/>
 </message>
 <message name="clearFlightInformationsResponse">
 <part name="parameters" element="tns:clearFlightInformationsResponse"/>
+</message>
+<message name="setTestFlightInformations">
+<part name="parameters" element="tns:setTestFlightInformations"/>
+</message>
+<message name="setTestFlightInformationsResponse">
+<part name="parameters" element="tns:setTestFlightInformationsResponse"/>
 </message>
 <message name="getFlights">
 <part name="parameters" element="tns:getFlights"/>
@@ -47,13 +47,13 @@
 <part name="parameters" element="tns:cancelFlightResponse"/>
 </message>
 <portType name="AirlineReservationService">
-<operation name="setTestFlightInformations">
-<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsRequest" message="tns:setTestFlightInformations"/>
-<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsResponse" message="tns:setTestFlightInformationsResponse"/>
-</operation>
 <operation name="clearFlightInformations">
 <input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/clearFlightInformationsRequest" message="tns:clearFlightInformations"/>
 <output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/clearFlightInformationsResponse" message="tns:clearFlightInformationsResponse"/>
+</operation>
+<operation name="setTestFlightInformations">
+<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsRequest" message="tns:setTestFlightInformations"/>
+<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsResponse" message="tns:setTestFlightInformationsResponse"/>
 </operation>
 <operation name="getFlights">
 <input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/getFlightsRequest" message="tns:getFlights"/>
@@ -74,7 +74,7 @@
 </portType>
 <binding name="AirlineReservationServicePortBinding" type="tns:AirlineReservationService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="setTestFlightInformations">
+<operation name="clearFlightInformations">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -83,7 +83,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="clearFlightInformations">
+<operation name="setTestFlightInformations">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
