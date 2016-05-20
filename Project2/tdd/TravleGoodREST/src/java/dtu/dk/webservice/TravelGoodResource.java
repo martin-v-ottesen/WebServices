@@ -5,21 +5,22 @@
  */
 package dtu.dk.webservice;
 
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 
 /**
  * REST Web Service
  *
  * @author Martin
  */
-@Path("tg")
+@Path("/tg")
 public class TravelGoodResource {
 
     @Context
@@ -42,4 +43,29 @@ public class TravelGoodResource {
         //throw new UnsupportedOperationException();
         return "DTU";
     }
+    
+    @GET
+    @Path("/flight/{startDestination}/{endDestination}/{startDate}")
+    public String getFlight(@PathParam("startDestination") String startDestination,
+			@PathParam("endDestination") String endDestination, 
+			@PathParam("startDate") String startDate){
+//        List<FlightInformation> flights = getFlights(startDestination, endDestination, startDate);
+ 
+//        JsonArray flightsList = new JsonArray();
+//        flights.stream().map((FlightInformation flightInormation) -> {
+//            JsonObject flightInfo = new JsonObject();
+//            flightInfo.addProperty("BookingNumber", flightInormation.getBookingNumber());
+//            flightInfo.addProperty("AirlineReservationServic", flightInormation.getNameOfAirlineReservationService());
+//            JsonObject flight = new JsonObject();
+//            flight.addProperty("CarrierOperationTheFlight", flightInormation.getFlight().getCarrierOperationTheFlight());
+//            flightInfo.add("flight", flight);
+//            return flightInfo;
+//        }).forEach((flightInfo) -> {  
+//            flightsList.add(flightInfo);
+//        });
+        
+//        return flightsList.toString();
+        return startDestination + " " + endDestination + " " + startDate;
+    }
+
 }
