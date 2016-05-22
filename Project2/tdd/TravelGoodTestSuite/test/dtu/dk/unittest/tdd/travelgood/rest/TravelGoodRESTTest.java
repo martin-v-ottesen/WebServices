@@ -5,9 +5,15 @@
  */
 package dtu.dk.unittest.tdd.travelgood.rest;
 
-import dk.dtu.webservice.airline.service.Flight;
-import dk.dtu.webservice.airline.service.FlightInformation;
-import dk.dtu.webservice.hotel.service.Exception_Exception;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import dk.dtu.webservice.airline.service.*;
+import dk.dtu.webservice.hotel.service.*;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -25,6 +31,8 @@ public class TravelGoodRESTTest {
 
     Client client = ClientBuilder.newClient();
     WebTarget target = client.target("http://localhost:8080/TravleGoodREST/webresources/tg");
+    GsonBuilder builder = new GsonBuilder();
+    Gson gson = builder.create();
 
     public TravelGoodRESTTest() {
     }
@@ -38,13 +46,13 @@ public class TravelGoodRESTTest {
     @Before
     public void setUp() {
         setTestFlightInformations(FlightData.testFlightInformation());
-        
+
         //Hotel 1: HotelOfBangkok
         setTestHotelInformations(HotelData.testHotelInformation1());
-        
+
         //Hotel 2: BLUE
         setTestHotelInformations(HotelData.testHotelInformation2());
-        
+
         //Hotel 3: RADISON
         setTestHotelInformations(HotelData.testHotelInformation3());
     }
@@ -56,23 +64,32 @@ public class TravelGoodRESTTest {
     }
 
     @Test
-    public void getFlightTest() {
-        String result = target.path("flight/" 
-                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/" 
-                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/" 
+    public void getFlightTest() throws IOException {
+        String result = target.path("flight/"
+                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
                 + FlightData.testFlightInformation().getFlight().getDateAndTimefForLiftOff())
                 .request().get(String.class);
-        System.out.println(result);
+        List<FlightInformation> flights = gson.fromJson(result,
+                new TypeToken<List<FlightInformation>>() {
+        }.getType());
+        assertEquals(1, flights.size());
+        assertEquals(FlightData.testFlightInformation().getBookingNumber(),
+                flights.get(0).getBookingNumber());
     }
-    
+
     @Test
     public void getHotelTest() {
-        String result = target.path("hotel/" 
-                + HotelData.testHotel1().getCity() + "/" 
-                + HotelData.testHotel1().getCheckInDate() + "/" 
+        String result = target.path("hotel/"
+                + HotelData.testHotel1().getCity() + "/"
+                + HotelData.testHotel1().getCheckInDate() + "/"
                 + HotelData.testHotel1().getCheckOutDate())
                 .request().get(String.class);
-        System.out.println(result);
+        List<HotelInformation> hotelss = gson.fromJson(result,
+                new TypeToken<List<HotelInformation>>() {}.getType());
+        assertEquals(2, hotelss.size());
+        assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
+                hotelss.get(0).getBookingNumber());
     }
 
     private static void setTestFlightInformations(dk.dtu.webservice.airline.service.FlightInformation flightInfo) {
@@ -98,6 +115,5 @@ public class TravelGoodRESTTest {
         dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
         port.clearHotelInformations();
     }
-
 
 }
