@@ -15,10 +15,6 @@ import dk.dtu.webservice.airline.service.FlightInformation;
  */
 public class FlightData {
     
-    static String startDestination =  "Copenhagen";    
-    static String endDestination = "Thailand";
-    static String startDate = "2016-04-16";
-    
     static FlightInformation testFlightInformation(){
         FlightInformation expectedflightInfo = new FlightInformation();       
         expectedflightInfo.setFlight(testFlight());        
@@ -32,10 +28,10 @@ public class FlightData {
     static Flight testFlight(){
         Flight flight = new Flight();
         
-        flight.setStartAirport(startDestination);
-        flight.setEndAirport(endDestination);
+        flight.setStartAirport("Copenhagen");
+        flight.setEndAirport("Thailand");
         flight.setCarrierOperationTheFlight("SAS");
-        flight.setDateAndTimefForLiftOff(startDate);
+        flight.setDateAndTimefForLiftOff("2016-04-16");
         flight.setDateAndTimefForLanding("2016-04-20");
         
         return flight;

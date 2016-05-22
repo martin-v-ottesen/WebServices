@@ -7,6 +7,7 @@ package dtu.dk.unittest.tdd.travelgood.rest;
 
 import dk.dtu.webservice.airline.service.Flight;
 import dk.dtu.webservice.airline.service.FlightInformation;
+import dk.dtu.webservice.hotel.service.Exception_Exception;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -21,49 +22,56 @@ import org.junit.Test;
  * @author Martin
  */
 public class TravelGoodRESTTest {
+
     Client client = ClientBuilder.newClient();
     WebTarget target = client.target("http://localhost:8080/TravleGoodREST/webresources/tg");
 
     public TravelGoodRESTTest() {
     }
+
     @Test
     public void hello() {
         String result = target.request().get(String.class);
-        assertEquals(result,"DTU");
+        assertEquals(result, "DTU");
     }
-    
-        @Before
-    public void setUp() {
-        FlightInformation expectedflightInfo = new FlightInformation();
-        Flight flight = new Flight();
-        
-        flight.setStartAirport("Copenhagen");
-        flight.setEndAirport("Thailand");
-        flight.setCarrierOperationTheFlight("SAS");
-        flight.setDateAndTimefForLiftOff("2016-04-16");
-        flight.setDateAndTimefForLanding("2016-04-20");
-        
-        expectedflightInfo.setFlight(flight);
-        
-        expectedflightInfo.setNameOfAirlineReservationService("LameDuck");
-        expectedflightInfo.setBookingNumber(1234567890);
-        expectedflightInfo.setPrice(999);
 
-        setTestFlightInformations(expectedflightInfo);
+    @Before
+    public void setUp() {
+        setTestFlightInformations(FlightData.testFlightInformation());
+        
+        //Hotel 1: HotelOfBangkok
+        setTestHotelInformations(HotelData.testHotelInformation1());
+        
+        //Hotel 2: BLUE
+        setTestHotelInformations(HotelData.testHotelInformation2());
+        
+        //Hotel 3: RADISON
+        setTestHotelInformations(HotelData.testHotelInformation3());
     }
-    
+
     @After
     public void tearDown() {
         clearFlightInformations();
+        clearHotelInformations();
+    }
+
+    @Test
+    public void getFlightTest() {
+        String result = target.path("flight/" 
+                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/" 
+                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/" 
+                + FlightData.testFlightInformation().getFlight().getDateAndTimefForLiftOff())
+                .request().get(String.class);
+        System.out.println(result);
     }
     
     @Test
-    public void EccoTest(){
-        String startDestination = "Copenhagen";
-        String endDestination = "Thailand";
-        String startDate = "2016-04-16";
-        String result = target.path("flight/" + FlightData.startDestination + "/"+FlightData.endDestination+"/"+FlightData.startDate)
-               .request().get(String.class);
+    public void getHotelTest() {
+        String result = target.path("hotel/" 
+                + HotelData.testHotel1().getCity() + "/" 
+                + HotelData.testHotel1().getCheckInDate() + "/" 
+                + HotelData.testHotel1().getCheckOutDate())
+                .request().get(String.class);
         System.out.println(result);
     }
 
@@ -78,4 +86,18 @@ public class TravelGoodRESTTest {
         dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
         port.clearFlightInformations();
     }
+
+    private static void setTestHotelInformations(dk.dtu.webservice.hotel.service.HotelInformation hotelInfo) {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
+        port.setTestHotelInformations(hotelInfo);
+    }
+
+    private static void clearHotelInformations() {
+        dk.dtu.webservice.hotel.service.HotelReservationService_Service service = new dk.dtu.webservice.hotel.service.HotelReservationService_Service();
+        dk.dtu.webservice.hotel.service.HotelReservationService port = service.getHotelReservationServicePort();
+        port.clearHotelInformations();
+    }
+
+
 }

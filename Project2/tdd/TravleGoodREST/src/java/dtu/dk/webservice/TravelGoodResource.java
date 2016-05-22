@@ -60,7 +60,7 @@ public class TravelGoodResource {
     }
     
     @GET
-    @Path("/hotel/{cityName}/{arrivalDate}/{startDate}")
+    @Path("/hotel/{cityName}/{arrivalDate}/{departureDate}")
     public String getHotelsToJSON(@PathParam("cityName") String city,
 			@PathParam("arrivalDate") String arrivalDate, 
 			@PathParam("departureDate") String departureDate){
