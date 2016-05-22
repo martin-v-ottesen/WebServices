@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dtu.dk.unittest.tdd.bankservice;
+package dtu.dk.unittest.tdd.travelgood.rest;
 
+import dtu.dk.unittest.tdd.lameduck.*;
+import dtu.dk.unittest.tdd.bankservice.*;
 import dk.dtu.imm.fastmoney.types.AccountType;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 
