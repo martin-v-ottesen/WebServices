@@ -9,4 +9,6 @@
     <system systemId="http://localhost:8080/NiceView/HotelReservationService?xsd=1" uri="wsdl/localhost_8080/NiceView/HotelReservationService.xsd_1.xsd"/>
     <system systemId="http://10.16.135.58:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd" uri="wsdl/10.16.135.58_9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd"/>
     <system systemId="http://10.16.135.58:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd" uri="wsdl/10.16.135.58_9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd"/>
+    <system systemId="http://192.168.1.64:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd" uri="wsdl/192.168.1.64_9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd"/>
+    <system systemId="http://192.168.1.64:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd" uri="wsdl/192.168.1.64_9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd"/>
 </catalog>

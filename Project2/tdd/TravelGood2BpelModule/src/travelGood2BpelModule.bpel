@@ -9,7 +9,7 @@
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions" xmlns:ns0="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
     <import namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" location="TravelGoodWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/AirlineReservationServiceWrapper" location="AirlineReservationServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://service.airline.webservice.dtu.dk/" location="AirlineReservationService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -20,31 +20,229 @@
         <partnerLink name="NiceView" xmlns:tns="http://enterprise.netbeans.org/bpel/HotelReservationServiceWrapper" partnerLinkType="tns:HotelReservationServiceLinkType" partnerRole="HotelReservationServiceRole"/>
         <partnerLink name="TravelGood" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" partnerLinkType="tns:TravelGoodWSDL" myRole="TravelGoodWSDLPortTypeRole"/>
     </partnerLinks>
+    <variables>
+        <variable name="BookItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestBookItinerary"/>
+        <variable name="CancelPlanningItineraryOutTG" messageType="ns0:TravelGoodWSDLOperationResponseCancelPlanningItinerary"/>
+        <variable name="CancelPlanningItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestCancelPlanningItinerary"/>
+        <variable name="AddHotelOutTG" messageType="ns0:TravelGoodWSDLOperationResponseAddHotel"/>
+        <variable name="AddHotelInTG" messageType="ns0:TravelGoodWSDLOperationRequestAddHotel"/>
+        <variable name="CreateItineraryOutTG" messageType="ns0:TravelGoodWSDLOperationResponseCreateItinerary"/>
+        <variable name="ItineraryContainer" type="ns0:itineraryContainerType"/>
+        <variable name="AddFlightOutTG" messageType="ns0:TravelGoodWSDLOperationResponseAddFlight"/>
+        <variable name="flightContainerCount" type="xs:int"/>
+        <variable name="hotelContainerCount" type="xs:int"/>
+        <variable name="AddFlightInTG" messageType="ns0:TravelGoodWSDLOperationRequestAddFlight"/>
+        <variable name="GetHotelsOutTG" messageType="ns0:TravelGoodWSDLOperationResponseGetHotels"/>
+        <variable name="GetHotelsOutNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:getHotelsResponse"/>
+        <variable name="GetHotelsInNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:getHotels"/>
+        <variable name="GetHotelsInTG" messageType="ns0:TravelGoodWSDLOperationRequestGetHotels"/>
+        <variable name="GetFlightsOutTG" messageType="ns0:TravelGoodWSDLOperationResponseGetFlights"/>
+        <variable name="GetFlightsOutLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlightsResponse"/>
+        <variable name="GetFlightsInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlights"/>
+        <variable name="GetFlightsInTG" messageType="ns0:TravelGoodWSDLOperationRequestGetFlights"/>
+        <variable name="CreateItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestCreateItinerary"/>
+        <variable name="PlanningItineraryState" type="xs:boolean"/>
+        <variable name="BookingItineraryState" type="xs:boolean"/>
+    </variables>
+    <correlationSets>
+        <correlationSet name="CorrelationSetItinerary" properties="ns0:ItineraryID"/>
+    </correlationSets>
     <sequence>
-        <scope name="getFlights">
-            <variables>
-                <variable name="GetFlightsOutTG" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" messageType="tns:TravelGoodWSDLOperationResponseGetFlights"/>
-                <variable name="GetFlightsInTG" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" messageType="tns:TravelGoodWSDLOperationRequestGetFlights"/>
-                <variable name="GetFlightsOutLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlightsResponse"/>
-                <variable name="GetFlightsInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlights"/>
-            </variables>
-            <sequence name="Sequence1">
-                <receive name="Receive1" createInstance="yes" partnerLink="TravelGood" operation="getFlights" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsInTG"/>
-                <assign name="Assign1">
-                    <copy>
-                        <from variable="GetFlightsInTG" part="part1"/>
-                        <to variable="GetFlightsInLD" part="parameters"/>
-                    </copy>
-                </assign>
-                <invoke name="Invoke1" partnerLink="LameDuck" operation="getFlights" xmlns:tns="http://service.airline.webservice.dtu.dk/" portType="tns:AirlineReservationService" inputVariable="GetFlightsInLD" outputVariable="GetFlightsOutLD"/>
-                <assign name="Assign2">
-                    <copy>
-                        <from variable="GetFlightsOutLD" part="parameters"/>
-                        <to variable="GetFlightsOutTG" part="part1"/>
-                    </copy>
-                </assign>
-                <reply name="Reply1" partnerLink="TravelGood" operation="getFlights" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsOutTG"/>
-            </sequence>
-        </scope>
+        <receive name="Receive1" createInstance="yes" partnerLink="TravelGood" operation="createItinerary" portType="ns0:TravelGoodWSDLPortType" variable="CreateItineraryInTG">
+            <correlations>
+                <correlation set="CorrelationSetItinerary" initiate="yes"/>
+            </correlations>
+        </receive>
+        <assign name="Assign3">
+            <copy>
+                <from>boolean(true())</from>
+                <to variable="PlanningItineraryState"/>
+            </copy>
+            <copy>
+                <from>'unconfirmed'</from>
+                <to>$ItineraryContainer/ns0:ItineraryState</to>
+            </copy>
+            <copy>
+                <from>0</from>
+                <to variable="flightContainerCount"/>
+            </copy>
+            <copy>
+                <from>0</from>
+                <to variable="hotelContainerCount"/>
+            </copy>
+            <copy>
+                <from variable="CreateItineraryInTG" part="ItineraryID"/>
+                <to>$ItineraryContainer/ItineraryID</to>
+            </copy>
+            <copy>
+                <from>false()</from>
+                <to variable="BookingItineraryState"/>
+            </copy>
+        </assign>
+        <assign name="Assign8">
+            <copy>
+                <from variable="ItineraryContainer"/>
+                <to variable="CreateItineraryOutTG" part="itineraryContainer"/>
+            </copy>
+        </assign>
+        <reply name="Reply7" partnerLink="TravelGood" operation="createItinerary" portType="ns0:TravelGoodWSDLPortType" variable="CreateItineraryOutTG"/>
+        <sequence name="Sequence1">
+            <while name="While1">
+                <condition>$PlanningItineraryState</condition>
+                <pick name="Pick1" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
+                    <onMessage partnerLink="TravelGood" operation="getFlights" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsInTG">
+                        <correlations>
+                            <correlation set="CorrelationSetItinerary" initiate="no"/>
+                        </correlations>
+                        <sequence name="Sequence2">
+                                    <assign name="Assign4">
+                                        <copy>
+                                            <from variable="GetFlightsInTG" part="startDestination"/>
+                                            <to>$GetFlightsInLD.parameters/startDestination</to>
+                                        </copy>
+                                        <copy>
+                                            <from variable="GetFlightsInTG" part="endDestination"/>
+                                            <to>$GetFlightsInLD.parameters/endDestination</to>
+                                        </copy>
+                                        <copy>
+                                            <from variable="GetFlightsInTG" part="startDate"/>
+                                            <to>$GetFlightsInLD.parameters/startDate</to>
+                                        </copy>
+                                    </assign>
+                                        <invoke name="Invoke1" partnerLink="LameDuck" operation="getFlights" xmlns:tns="http://service.airline.webservice.dtu.dk/" portType="tns:AirlineReservationService" inputVariable="GetFlightsInLD" outputVariable="GetFlightsOutLD"/>
+                                        <assign name="Assign6">
+                                            <copy>
+                                                <from variable="GetFlightsOutLD" part="parameters"/>
+                                                <to variable="GetFlightsOutTG" part="flights"/>
+                                            </copy>
+                                        </assign>
+                                        <reply name="Reply3" partnerLink="TravelGood" operation="getFlights" portType="tns:TravelGoodWSDLPortType" variable="GetFlightsOutTG"/>
+                                </sequence>
+                        </onMessage>
+                        <onMessage partnerLink="TravelGood" operation="getHotels" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" portType="tns:TravelGoodWSDLPortType" variable="GetHotelsInTG">
+                            <correlations>
+                                <correlation set="CorrelationSetItinerary" initiate="no"/>
+                            </correlations>
+                            <sequence name="Sequence3">
+                                    <assign name="Assign5">
+                                        <copy>
+                                            <from variable="GetHotelsInTG" part="cityName"/>
+                                            <to>$GetHotelsInNV.parameters/cityName</to>
+                                        </copy>
+                                        <copy>
+                                            <from variable="GetHotelsInTG" part="arrivalDate"/>
+                                            <to>$GetHotelsInNV.parameters/arrivalDate</to>
+                                        </copy>
+                                        <copy>
+                                            <from variable="GetHotelsInTG" part="departureDate"/>
+                                            <to>$GetHotelsInNV.parameters/departureDate</to>
+                                        </copy>
+                                    </assign>
+                                        <invoke name="Invoke2" partnerLink="NiceView" operation="getHotels" xmlns:tns="http://service.hotel.webservice.dtu.dk/" portType="tns:HotelReservationService" inputVariable="GetHotelsInNV" outputVariable="GetHotelsOutNV"/>
+                                        <assign name="Assign7">
+                                            <copy>
+                                                <from variable="GetHotelsOutTG" part="hotels"/>
+                                                <to variable="GetHotelsOutTG" part="hotels"/>
+                                            </copy>
+                                        </assign>
+                                        <reply name="Reply4" partnerLink="TravelGood" operation="getHotels" portType="tns:TravelGoodWSDLPortType" variable="GetHotelsOutTG"/>
+                                </sequence>
+                        </onMessage>
+                    <onMessage partnerLink="TravelGood" operation="addFlight" portType="tns:TravelGoodWSDLPortType" variable="AddFlightInTG">
+                        <correlations>
+                            <correlation set="CorrelationSetItinerary" initiate="no"/>
+                        </correlations>
+                        <sequence name="Sequence4">
+                            <assign name="Assign9">
+                                <copy>
+                                    <from variable="AddFlightInTG" part="bookingNumber"/>
+                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/bookingNumber</to>
+                                </copy>
+                                <copy>
+                                    <from>'unconfirmed'</from>
+                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/status</to>
+                                </copy>
+                            </assign>
+                            <assign name="Assign11">
+                                <copy>
+                                    <from>1 + $flightContainerCount</from>
+                                    <to variable="flightContainerCount"/>
+                                </copy>
+                            </assign>
+                            <assign name="Assign10">
+                                <copy>
+                                    <from variable="ItineraryContainer"/>
+                                    <to variable="AddFlightOutTG" part="part1"/>
+                                </copy>
+                            </assign>
+                            <reply name="Reply6" partnerLink="TravelGood" operation="addFlight" portType="tns:TravelGoodWSDLPortType" variable="AddFlightOutTG"/>
+                        </sequence>
+                    </onMessage>
+                    <onMessage partnerLink="TravelGood" operation="addHotel" portType="tns:TravelGoodWSDLPortType" variable="AddHotelInTG">
+                        <correlations>
+                            <correlation set="CorrelationSetItinerary" initiate="no"/>
+                        </correlations>
+                        <sequence name="Sequence5">
+                            <assign name="Assign12">
+                                <copy>
+                                        <from variable="AddHotelInTG" part="bookingNumber"/>
+                                            <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/bookingNumber</to>
+                                    </copy>
+                                    <copy>
+                                        <from>'unconfirmed'</from>
+                                            <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/status</to>
+                                    </copy>
+                            </assign>
+                            <assign name="Assign13">
+                                <copy>
+                                    <from>stub() + $hotelContainerCount + stub() + 1</from>
+                                    <to variable="hotelContainerCount"/>
+                                </copy>
+                            </assign>
+                            <assign name="Assign14">
+                                <copy>
+                                    <from variable="ItineraryContainer"/>
+                                    <to variable="AddHotelOutTG" part="itineraryContainer"/>
+                                </copy>
+                            </assign>
+                            <reply name="Reply8" partnerLink="TravelGood" operation="addHotel" portType="tns:TravelGoodWSDLPortType" variable="AddHotelOutTG"/>
+                        </sequence>
+                    </onMessage>
+                    <onMessage partnerLink="TravelGood" operation="cancelPlanningItinerary" portType="tns:TravelGoodWSDLPortType" variable="CancelPlanningItineraryInTG">
+                        <correlations>
+                            <correlation set="CorrelationSetItinerary" initiate="no"/>
+                        </correlations>
+                        <sequence name="Sequence7">
+                            <assign name="Assign15">
+                                <copy>
+                                        <from>false()</from>
+                                            <to variable="PlanningItineraryState"/>
+                                    </copy>
+                                    <copy>
+                                        <from>false()</from>
+                                            <to variable="BookingItineraryState"/>
+                                    </copy>
+                            </assign>
+                            <assign name="Assign16">
+                                <copy>
+                                    <from>true() != $BookingItineraryState</from>
+                                    <to variable="CancelPlanningItineraryOutTG" part="status"/>
+                                </copy>
+                            </assign>
+                            <reply name="Reply9" partnerLink="TravelGood" operation="cancelPlanningItinerary" portType="tns:TravelGoodWSDLPortType" variable="CancelPlanningItineraryOutTG"/>
+                        </sequence>
+                    </onMessage>
+                    <onMessage partnerLink="TravelGood" operation="bookItinerary" portType="tns:TravelGoodWSDLPortType" variable="BookItineraryInTG">
+                        <correlations>
+                            <correlation set="CorrelationSetItinerary" initiate="no"/>
+                        </correlations>
+                    </onMessage>
+                </pick>
+            </while>
+            <if name="If1">
+                <condition>$BookingItineraryState</condition>
+                <sequence name="Sequence6"/>
+            </if>
+        </sequence>
     </sequence>
 </process>
