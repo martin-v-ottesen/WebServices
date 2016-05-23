@@ -933,8 +933,7 @@ public class IntegrationTestTravelGoodREST {
             Logger.getLogger(IntegrationTestTravelGoodREST.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception_Exception ex) {
             Logger.getLogger(IntegrationTestTravelGoodREST.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }        
         
         /**************************
         * Cancel Booked Itinerary * 
