@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:tns="http://service.hotel.webservice.dtu.dk/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.hotel.webservice.dtu.dk/" version="1.0">
+
+  <xs:element name="CreditCardFaultMessage" type="tns:CreditCardFaultMessage"/>
+
+  <xs:element name="Exception" type="tns:Exception"/>
+
+  <xs:element name="bookHotel" type="tns:bookHotel"/>
+
+  <xs:element name="bookHotelResponse" type="tns:bookHotelResponse"/>
+
+  <xs:element name="cancelHotel" type="tns:cancelHotel"/>
+
+  <xs:element name="cancelHotelResponse" type="tns:cancelHotelResponse"/>
+
+  <xs:element name="clearHotelInformations" type="tns:clearHotelInformations"/>
+
+  <xs:element name="clearHotelInformationsResponse" type="tns:clearHotelInformationsResponse"/>
+
+  <xs:element name="getBookedHotelInformations" type="tns:getBookedHotelInformations"/>
+
+  <xs:element name="getBookedHotelInformationsResponse" type="tns:getBookedHotelInformationsResponse"/>
+
+  <xs:element name="getHotels" type="tns:getHotels"/>
+
+  <xs:element name="getHotelsResponse" type="tns:getHotelsResponse"/>
+
+  <xs:element name="setTestHotelInformations" type="tns:setTestHotelInformations"/>
+
+  <xs:element name="setTestHotelInformationsResponse" type="tns:setTestHotelInformationsResponse"/>
+
+  <xs:complexType name="setTestHotelInformations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="hotelInfo" type="tns:hotelInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotelInformation">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="hotel" type="tns:hotel"/>
+      <xs:element name="isCreditCardGuaranteeRequired" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="nameOfHotelReservationService" type="xs:string"/>
+      <xs:element name="price" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="checkInDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="checkOutDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="hotelName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setTestHotelInformationsResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getBookedHotelInformations">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getBookedHotelInformationsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:hotelInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookHotel">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element name="isCreditCardGuaranteeRequired" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="creditCardInfo" type="tns:creditCardInfoType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCardInfoType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="expirationDate" type="tns:expirationDate"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="number" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="expirationDate">
+    <xs:sequence>
+      <xs:element name="month" type="xs:int"/>
+      <xs:element name="year" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookHotelResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CreditCardFaultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="faultInfo" type="tns:creditCardFaultType"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCardFaultType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelHotel">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelHotelResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getHotels">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="arrivalDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="departureDate" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getHotelsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:hotelInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clearHotelInformations">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="clearHotelInformationsResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

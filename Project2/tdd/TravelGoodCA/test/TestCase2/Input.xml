@@ -1,0 +1,10 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trav="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
+  <soapenv:Body>
+    <trav:getFlights>
+      <ItineraryID>59ea8450-20d4-11e6-b67b-9e71128cae77</ItineraryID>
+      <startDestination>Copenhagen</startDestination>
+      <endDestination>Tokyo</endDestination>
+      <startDate>2017-02-01</startDate>
+    </trav:getFlights>
+  </soapenv:Body>
+</soapenv:Envelope>

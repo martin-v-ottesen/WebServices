@@ -1,0 +1,17 @@
+Fordeling af resterende rapport skrivningsarbejde:
+
+Jacob:
+Implementation.DataStructures
+Implementation.LameDuck
+Implementation.NiceView
+
+Martin:
+TravelGood.RESTfulImplementation
+TravelGood.RESTfulTest
+
+Kasper:
+TravelGood.BPEL_Implementation
+TravelGood.BPEL_Test
+
+Kasper & Martin:
+Comparison of REST and BPEL section

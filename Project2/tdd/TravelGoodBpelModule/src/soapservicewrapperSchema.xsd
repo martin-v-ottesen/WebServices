@@ -2,9 +2,98 @@
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="http://service.webservice.dk.dtu/"
-    xmlns:tns="http://service.webservice.dk.dtu/schema/soapservicewrapperSchema"
-    elementFormDefault="qualified">
-    <xsd:include schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2"/>
-    <xsd:include schemaLocation="http://localhost:8080/NiceView/HotelReservationService?xsd=2"/>
+            xmlns:tns="http://service.webservice.dk.dtu/schema/soapservicewrapperSchema"
+            elementFormDefault="qualified">
+    <!--<xsd:include schemaLocation="http://localhost:8080/LameDuck/AirlineReservationService?xsd=2"/>-->
+    <!--<xsd:include schemaLocation="http://localhost:8080/NiceView/HotelReservationService?xsd=2"/>-->
+    <xsd:element name="bookHotel" type="tns:bookHotel"/>
+    <xsd:element name="bookHotelResponse" type="tns:bookHotelResponse"/>
+    <xsd:element name="cancelHotel" type="tns:cancelHotel"/>
+    <xsd:element name="cancelHotelResponse" type="tns:cancelHotelResponse"/>
+    <xsd:element name="clearHotelInformations" type="tns:clearHotelInformations"/>
+    <xsd:element name="clearHotelInformationsResponse" type="tns:clearHotelInformationsResponse"/>
+    <xsd:element name="getBookedHotelInformations" type="tns:getBookedHotelInformations"/>
+    <xsd:element name="getBookedHotelInformationsResponse" type="tns:getBookedHotelInformationsResponse"/>
+    <xsd:element name="getHotels" type="tns:getHotels"/>
+    <xsd:element name="getHotelsResponse" type="tns:getHotelsResponse"/>
+    <xsd:element name="setTestHotelInformations" type="tns:setTestHotelInformations"/>
+    <xsd:element name="setTestHotelInformationsResponse" type="tns:setTestHotelInformationsResponse"/>
+    <xsd:complexType name="cancelHotel">
+        <xsd:sequence>
+            <xsd:element name="bookingNumber" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cancelHotelResponse">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="Exception">
+        <xsd:sequence>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="clearHotelInformations">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="clearHotelInformationsResponse">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="getHotels">
+        <xsd:sequence>
+            <xsd:element name="cityName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="arrivalDate" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="departureDate" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getHotelsResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="tns:hotelInformation" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="hotelInformation">
+        <xsd:sequence>
+            <xsd:element name="bookingNumber" type="xsd:int"/>
+            <xsd:element name="hotel" type="tns:hotel" minOccurs="0"/>
+            <xsd:element name="isCreditCardGuaranteeRequired" type="xsd:boolean"/>
+            <xsd:element name="nameOfHotelReservationService" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="price" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="hotel">
+        <xsd:sequence>
+            <xsd:element name="address" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="checkInDate" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="checkOutDate" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="hotelName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bookHotel">
+        <xsd:sequence>
+            <xsd:element name="bookingNumber" type="xsd:int"/>
+            <xsd:element name="isCreditCardGuaranteeRequired" type="xsd:boolean"/>
+            <xsd:element name="creditCardInfo" type="tns:creditCardInfoType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bookHotelResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="setTestHotelInformations">
+        <xsd:sequence>
+            <xsd:element name="hotelInfo" type="tns:hotelInformation" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="setTestHotelInformationsResponse">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="getBookedHotelInformations">
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="getBookedHotelInformationsResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="tns:hotelInformation" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
 
 </xsd:schema>
