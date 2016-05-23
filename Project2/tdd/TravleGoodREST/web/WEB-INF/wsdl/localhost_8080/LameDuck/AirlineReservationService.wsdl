@@ -16,29 +16,11 @@
 <message name="clearFlightInformationsResponse">
 <part name="parameters" element="tns:clearFlightInformationsResponse"/>
 </message>
-<message name="setTestFlightInformations">
-<part name="parameters" element="tns:setTestFlightInformations"/>
-</message>
-<message name="setTestFlightInformationsResponse">
-<part name="parameters" element="tns:setTestFlightInformationsResponse"/>
-</message>
 <message name="getFlights">
 <part name="parameters" element="tns:getFlights"/>
 </message>
 <message name="getFlightsResponse">
 <part name="parameters" element="tns:getFlightsResponse"/>
-</message>
-<message name="bookFlight">
-<part name="parameters" element="tns:bookFlight"/>
-</message>
-<message name="bookFlightResponse">
-<part name="parameters" element="tns:bookFlightResponse"/>
-</message>
-<message name="CreditCardFaultMessage">
-<part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
-</message>
-<message name="Exception">
-<part name="fault" element="tns:Exception"/>
 </message>
 <message name="cancelFlight">
 <part name="parameters" element="tns:cancelFlight"/>
@@ -46,18 +28,38 @@
 <message name="cancelFlightResponse">
 <part name="parameters" element="tns:cancelFlightResponse"/>
 </message>
+<message name="CreditCardFaultMessage">
+<part xmlns:ns1="http://fastmoney.imm.dtu.dk" name="fault" element="ns1:CreditCardFault"/>
+</message>
+<message name="Exception">
+<part name="fault" element="tns:Exception"/>
+</message>
+<message name="bookFlight">
+<part name="parameters" element="tns:bookFlight"/>
+</message>
+<message name="bookFlightResponse">
+<part name="parameters" element="tns:bookFlightResponse"/>
+</message>
+<message name="setTestFlightInformations">
+<part name="parameters" element="tns:setTestFlightInformations"/>
+</message>
+<message name="setTestFlightInformationsResponse">
+<part name="parameters" element="tns:setTestFlightInformationsResponse"/>
+</message>
 <portType name="AirlineReservationService">
 <operation name="clearFlightInformations">
 <input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/clearFlightInformationsRequest" message="tns:clearFlightInformations"/>
 <output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/clearFlightInformationsResponse" message="tns:clearFlightInformationsResponse"/>
 </operation>
-<operation name="setTestFlightInformations">
-<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsRequest" message="tns:setTestFlightInformations"/>
-<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsResponse" message="tns:setTestFlightInformationsResponse"/>
-</operation>
 <operation name="getFlights">
 <input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/getFlightsRequest" message="tns:getFlights"/>
 <output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/getFlightsResponse" message="tns:getFlightsResponse"/>
+</operation>
+<operation name="cancelFlight">
+<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlightRequest" message="tns:cancelFlight"/>
+<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlightResponse" message="tns:cancelFlightResponse"/>
+<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlight/Fault/CreditCardFaultMessage"/>
+<fault message="tns:Exception" name="Exception" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlight/Fault/Exception"/>
 </operation>
 <operation name="bookFlight">
 <input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/bookFlightRequest" message="tns:bookFlight"/>
@@ -65,11 +67,9 @@
 <fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/bookFlight/Fault/CreditCardFaultMessage"/>
 <fault message="tns:Exception" name="Exception" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/bookFlight/Fault/Exception"/>
 </operation>
-<operation name="cancelFlight">
-<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlightRequest" message="tns:cancelFlight"/>
-<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlightResponse" message="tns:cancelFlightResponse"/>
-<fault message="tns:CreditCardFaultMessage" name="CreditCardFaultMessage" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlight/Fault/CreditCardFaultMessage"/>
-<fault message="tns:Exception" name="Exception" wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/cancelFlight/Fault/Exception"/>
+<operation name="setTestFlightInformations">
+<input wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsRequest" message="tns:setTestFlightInformations"/>
+<output wsam:Action="http://service.airline.webservice.dtu.dk/AirlineReservationService/setTestFlightInformationsResponse" message="tns:setTestFlightInformationsResponse"/>
 </operation>
 </portType>
 <binding name="AirlineReservationServicePortBinding" type="tns:AirlineReservationService">
@@ -83,15 +83,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="setTestFlightInformations">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getFlights">
 <soap:operation soapAction=""/>
 <input>
@@ -100,6 +91,21 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="cancelFlight">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="CreditCardFaultMessage">
+<soap:fault name="CreditCardFaultMessage" use="literal"/>
+</fault>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal"/>
+</fault>
 </operation>
 <operation name="bookFlight">
 <soap:operation soapAction=""/>
@@ -116,7 +122,7 @@
 <soap:fault name="Exception" use="literal"/>
 </fault>
 </operation>
-<operation name="cancelFlight">
+<operation name="setTestFlightInformations">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -124,12 +130,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-<fault name="CreditCardFaultMessage">
-<soap:fault name="CreditCardFaultMessage" use="literal"/>
-</fault>
-<fault name="Exception">
-<soap:fault name="Exception" use="literal"/>
-</fault>
 </operation>
 </binding>
 <service name="AirlineReservationService">

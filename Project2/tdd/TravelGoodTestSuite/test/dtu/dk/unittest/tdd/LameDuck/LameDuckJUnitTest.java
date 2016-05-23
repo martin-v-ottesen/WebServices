@@ -39,22 +39,7 @@ public class LameDuckJUnitTest {
     
     @Before
     public void setUp() {
-        FlightInformation expectedflightInfo = new FlightInformation();
-        Flight flight = new Flight();
-        
-        flight.setStartAirport("Copenhagen");
-        flight.setEndAirport("Thailand");
-        flight.setCarrierOperationTheFlight("SAS");
-        flight.setDateAndTimefForLiftOff("2016-04-16");
-        flight.setDateAndTimefForLanding("2016-04-20");
-        
-        expectedflightInfo.setFlight(flight);
-        
-        expectedflightInfo.setNameOfAirlineReservationService("LameDuck");
-        expectedflightInfo.setBookingNumber(1234567890);
-        expectedflightInfo.setPrice(999);
-
-        setTestFlightInformations(expectedflightInfo);
+        setTestFlightInformations(FlightData.testFlightInformation());
     }
     
     @After
@@ -67,7 +52,9 @@ public class LameDuckJUnitTest {
        //Arrange
        List<FlightInformation> Result;
        //Act
-       Result = getFlights("Copenhagen", "Thailand", "2016-04-16");
+       Result = getFlights(FlightData.startDestination,
+                FlightData.endDestination, 
+                FlightData.startDate);
 
        //Assert
        assertEquals(1, Result.size());
@@ -88,17 +75,12 @@ public class LameDuckJUnitTest {
         //Arrange
         boolean Result;
         List<FlightInformation> expectedFlightInformations;   
-        CreditCardInfoType creditcardInfo = new CreditCardInfoType();
-        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        CreditCardInfoType creditcardInfo = BankData.validCard();
         
-        creditcardInfo.setName("Thor-Jensen Claus");
-        creditcardInfo.setNumber("50408825");
-        
-        expirationDate.setYear(9);
-        expirationDate.setMonth(5);
-        creditcardInfo.setExpirationDate(expirationDate);
         //Act
-        expectedFlightInformations = getFlights("Copenhagen", "Thailand", "2016-04-16");
+        expectedFlightInformations = getFlights(FlightData.startDestination,
+                FlightData.endDestination, 
+                FlightData.startDate);
         FlightInformation expectedFlightInfo = expectedFlightInformations.get(0);
         Result = bookFlight(expectedFlightInfo.getBookingNumber(), creditcardInfo);
         //Assert
@@ -114,17 +96,12 @@ public class LameDuckJUnitTest {
         boolean Result;
         int WrongBookingNumber;
         List<FlightInformation> expectedFlightInformations;   
-        CreditCardInfoType creditcardInfo = new CreditCardInfoType();
-        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
+        CreditCardInfoType creditcardInfo = BankData.validCard();
         
-        creditcardInfo.setName("Thor-Jensen Claus");
-        creditcardInfo.setNumber("50408825");
-        
-        expirationDate.setYear(9);
-        expirationDate.setMonth(5);
-        creditcardInfo.setExpirationDate(expirationDate);
         //Act
-        expectedFlightInformations = getFlights("Copenhagen", "Thailand", "2016-04-16");
+        expectedFlightInformations = getFlights(FlightData.startDestination,
+                FlightData.endDestination, 
+                FlightData.startDate);
         FlightInformation expectedFlightInfo = expectedFlightInformations.get(0);
         
         WrongBookingNumber = 000000;
@@ -140,17 +117,12 @@ public class LameDuckJUnitTest {
         boolean bookedFlightResult;
         boolean cancelFlightResult;
         List<FlightInformation> expectedFlightInformations;   
-        CreditCardInfoType creditcardInfo = new CreditCardInfoType();
-        CreditCardInfoType.ExpirationDate expirationDate = new CreditCardInfoType.ExpirationDate();
-        
-        creditcardInfo.setName("Thor-Jensen Claus");
-        creditcardInfo.setNumber("50408825");
-        
-        expirationDate.setYear(9);
-        expirationDate.setMonth(5);
-        creditcardInfo.setExpirationDate(expirationDate);
+        CreditCardInfoType creditcardInfo = BankData.validCard();
+
         //Act
-        expectedFlightInformations = getFlights("Copenhagen", "Thailand", "2016-04-16");
+        expectedFlightInformations = getFlights(FlightData.startDestination,
+                FlightData.endDestination, 
+                FlightData.startDate);
         FlightInformation expectedFlightInfo = expectedFlightInformations.get(0);
         bookedFlightResult = bookFlight(expectedFlightInfo.getBookingNumber(), creditcardInfo);
         cancelFlightResult = cancelFlight(expectedFlightInfo.getBookingNumber(), creditcardInfo,

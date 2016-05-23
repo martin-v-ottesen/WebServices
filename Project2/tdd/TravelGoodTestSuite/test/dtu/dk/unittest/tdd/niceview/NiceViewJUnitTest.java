@@ -41,59 +41,14 @@ public class NiceViewJUnitTest {
     
     @Before
     public void setUp() {
-        HotelInformation expectedHotelInfo = new HotelInformation();
-        Hotel hotel = new Hotel();
-        
         //Hotel 1: HotelOfBangkok
-        hotel.setCity("Bangkok");
-        hotel.setHotelName("HotelOfBangkok");
-        hotel.setCheckInDate("2016-04-20");
-        hotel.setCheckOutDate("2016-04-27");
-        hotel.setAddress("BangkokMainStreet 2");
-        
-        expectedHotelInfo.setNameOfHotelReservationService("NiceView");
-        expectedHotelInfo.setHotel(hotel);
-        expectedHotelInfo.setBookingNumber(12345);
-        expectedHotelInfo.setPrice(5000);
-        expectedHotelInfo.setIsCreditCardGuaranteeRequired(true);
-        
-        setTestHotelInformations(expectedHotelInfo);
+        setTestHotelInformations(HotelData.testHotelInformation1());
         
         //Hotel 2: BLUE
-        HotelInformation hotel2Info = new HotelInformation();
-        Hotel hotel2 = new Hotel();
-        
-        hotel2.setCity("Bangkok");
-        hotel2.setHotelName("BLUE");
-        hotel2.setCheckInDate("2016-04-20");
-        hotel2.setCheckOutDate("2016-04-27");
-        hotel2.setAddress("BangkokMainStreet 100");
-        
-        hotel2Info.setNameOfHotelReservationService("NiceView");
-        hotel2Info.setHotel(hotel2);
-        hotel2Info.setBookingNumber(567);
-        hotel2Info.setPrice(10000);
-        hotel2Info.setIsCreditCardGuaranteeRequired(false);
-        
-        setTestHotelInformations(hotel2Info);
+        setTestHotelInformations(HotelData.testHotelInformation2());
         
         //Hotel 3: RADISON
-        expectedHotelInfo = new HotelInformation();
-        hotel = new Hotel();
-        
-        hotel.setCity("Bangkok");
-        hotel.setHotelName("RADISON");
-        hotel.setCheckInDate("2016-04-21");
-        hotel.setCheckOutDate("2016-04-28");
-        hotel.setAddress("BangkokMainStreet 3");
-
-        expectedHotelInfo.setNameOfHotelReservationService("NiceView");
-        expectedHotelInfo.setHotel(hotel);
-        expectedHotelInfo.setBookingNumber(876);
-        expectedHotelInfo.setPrice(3000);
-        expectedHotelInfo.setIsCreditCardGuaranteeRequired(false);
-        
-        setTestHotelInformations(expectedHotelInfo);
+        setTestHotelInformations(HotelData.testHotelInformation3());
     }
     
     @After
@@ -101,31 +56,20 @@ public class NiceViewJUnitTest {
         clearHotelInformations();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
      @Test
      public void getHotels_GetSingleHotel_ReturnExpectedHotelInformation() {        
          //Arrange
          List<HotelInformation> Result;
-         Hotel expectedHotel;
+         HotelInformation expected = HotelData.testHotelInformation1();
          
-         expectedHotel = new Hotel();
-        
-         expectedHotel.setCity("Bangkok");
-         expectedHotel.setHotelName("HotelOfBangkok");
-         expectedHotel.setCheckInDate("2016-04-20");
-         expectedHotel.setCheckOutDate("2016-04-27");
-         expectedHotel.setAddress("BangkokMainStreet 2");
-         
-         int expectedBookingNumber = 12345;
-         int expectedPrice = 5000;
          //Act
-         Result = getHotels(expectedHotel.getCity(), expectedHotel.getCheckInDate(), expectedHotel.getCheckOutDate());
+         Result = getHotels(expected.getHotel().getCity(),
+                 expected.getHotel().getCheckInDate(),
+                 expected.getHotel().getCheckOutDate());
          //Assert
-         assertEquals(expectedBookingNumber, Result.get(0).getBookingNumber());
-         assertEquals(expectedPrice, Result.get(0).getPrice());
-         assertEquals(expectedHotel.getHotelName(), Result.get(0).getHotel().getHotelName());
+         assertEquals(expected.getBookingNumber(), Result.get(0).getBookingNumber());
+         assertEquals(expected.getPrice(), Result.get(0).getPrice());
+         assertEquals(expected.getHotel().getHotelName(), Result.get(0).getHotel().getHotelName());
      }
      @Test
      public void getHotels_GetMultipleHotels_ReturnTwoHotels() {
