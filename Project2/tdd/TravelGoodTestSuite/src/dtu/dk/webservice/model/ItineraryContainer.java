@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dtu.dk.unittest.tdd.travelgood.rest;
+package dtu.dk.webservice.model;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import java.util.ArrayList;
@@ -11,9 +11,6 @@ import java.util.List;
 import dk.dtu.webservice.airline.service.FlightInformation;
 import dk.dtu.webservice.hotel.service.HotelInformation;
 import java.sql.Date;
-import java.util.GregorianCalendar;
-import sun.util.BuddhistCalendar;
-import sun.util.calendar.Gregorian;
 
 /**
  *
@@ -26,7 +23,7 @@ public class ItineraryContainer {
     private ItineraryState itineraryState;
     private CreditCardInfoType creditCard;
     private int price;
-    private Date startDate = Date.valueOf("2001-01-01");
+    private Date startDate = Date.valueOf("2100-01-01");
     
     public class HotelObject {
         private HotelInformation hotel;
@@ -69,11 +66,9 @@ public class ItineraryContainer {
         public FlightInformation getFlight(){
             return flight;
         }
-    }
-    
+    }   
     
     public enum ItineraryState {
-
         UNCONFIRMED, CONFIRMED, CANCELED;
     }
 

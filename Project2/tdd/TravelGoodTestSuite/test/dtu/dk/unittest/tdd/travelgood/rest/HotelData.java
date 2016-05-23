@@ -58,8 +58,8 @@ public class HotelData {
         //Hotel 1: HotelOfBangkok
         hotel.setCity("Bangkok");
         hotel.setHotelName("HotelOfBangkok");
-        hotel.setCheckInDate("2016-04-20");
-        hotel.setCheckOutDate("2016-04-27");
+        hotel.setCheckInDate("2016-08-20");
+        hotel.setCheckOutDate("2016-08-27");
         hotel.setAddress("BangkokMainStreet 2");
 
         return hotel;
@@ -70,8 +70,8 @@ public class HotelData {
         //Hotel 2: BLUE
         hotel.setCity("Bangkok");
         hotel.setHotelName("BLUE");
-        hotel.setCheckInDate("2016-04-20");
-        hotel.setCheckOutDate("2016-04-27");
+        hotel.setCheckInDate("2016-08-20");
+        hotel.setCheckOutDate("2016-08-27");
         hotel.setAddress("BangkokMainStreet 100");
 
         return hotel;
@@ -82,8 +82,8 @@ public class HotelData {
         //Hotel 3: RADISON
         hotel.setCity("Bangkok");
         hotel.setHotelName("RADISON");
-        hotel.setCheckInDate("2016-04-21");
-        hotel.setCheckOutDate("2016-04-28");
+        hotel.setCheckInDate("2016-08-21");
+        hotel.setCheckOutDate("2016-08-28");
         hotel.setAddress("BangkokMainStreet 3");
 
         return hotel;

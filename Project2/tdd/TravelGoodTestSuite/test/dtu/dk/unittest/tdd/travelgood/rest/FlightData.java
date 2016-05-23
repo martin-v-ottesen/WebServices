@@ -31,8 +31,8 @@ public class FlightData {
         flight.setStartAirport("Copenhagen");
         flight.setEndAirport("Thailand");
         flight.setCarrierOperationTheFlight("SAS");
-        flight.setDateAndTimefForLiftOff("2016-04-16");
-        flight.setDateAndTimefForLanding("2016-04-20");
+        flight.setDateAndTimefForLiftOff("2016-08-16");
+        flight.setDateAndTimefForLanding("2016-08-20");
         
         return flight;
     }

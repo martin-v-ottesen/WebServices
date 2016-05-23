@@ -5,12 +5,13 @@
  */
 package dtu.dk.unittest.tdd.travelgood.rest;
 
+import dtu.dk.webservice.model.ItineraryContainer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import dk.dtu.webservice.airline.service.*;
 import dk.dtu.webservice.hotel.service.*;
-import dtu.dk.unittest.tdd.travelgood.rest.ItineraryContainer.ItineraryState;
+import dtu.dk.webservice.model.ItineraryContainer.ItineraryState;
 import java.io.IOException;
 import java.util.List;
 import javax.ws.rs.client.Client;
