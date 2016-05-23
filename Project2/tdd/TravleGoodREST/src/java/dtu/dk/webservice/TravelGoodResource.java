@@ -20,12 +20,17 @@ import javax.ws.rs.Path;
 import dk.dtu.webservice.airline.service.FlightInformation;
 import dk.dtu.webservice.hotel.service.HotelInformation;
 import dtu.dk.webservice.model.ItineraryContainer;
+import dtu.dk.webservice.model.ItineraryContainer.FlightObject;
+import dtu.dk.webservice.model.ItineraryContainer.HotelObject;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.Response;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * REST Web Service
@@ -89,13 +94,18 @@ public class TravelGoodResource {
             String bookingNumber) {
         try {
             ItineraryContainer itenerary = (ItineraryContainer) context.getAttribute(itineraryId);
-            try {
-                FlightInformation flight = (FlightInformation) context.getAttribute("f" + bookingNumber);
-                itenerary.addFlight(flight);
+            if (itenerary.getItineraryState() == ItineraryContainer.ItineraryState.UNCONFIRMED) {
+                try {
+                    FlightInformation flight = (FlightInformation) context.getAttribute("f" + bookingNumber);
+                    itenerary.addFlight(flight);
+                    context.setAttribute(itineraryId, itenerary);
+                    return Response.status(Response.Status.OK).build();
+                } catch (Exception e) {
+                    return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
+                }
+            } else {
                 context.setAttribute(itineraryId, itenerary);
-                return Response.status(Response.Status.OK).build();
-            } catch (Exception e) {
-                return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
+                return Response.status(Response.Status.CONFLICT).entity("Itinerary Already Locked").build();
             }
         } catch (Exception e) {
             return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
@@ -108,13 +118,18 @@ public class TravelGoodResource {
             String bookingNumber) {
         try {
             ItineraryContainer itenerary = (ItineraryContainer) context.getAttribute(itineraryId);
-            try {
-                HotelInformation hotel = (HotelInformation) context.getAttribute("h" + bookingNumber);
-                itenerary.addHotel(hotel);
+            if (itenerary.getItineraryState() == ItineraryContainer.ItineraryState.UNCONFIRMED) {
+                try {
+                    HotelInformation hotel = (HotelInformation) context.getAttribute("h" + bookingNumber);
+                    itenerary.addHotel(hotel);
+                    context.setAttribute(itineraryId, itenerary);
+                    return Response.status(Response.Status.OK).build();
+                } catch (Exception e) {
+                    return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
+                }
+            } else {
                 context.setAttribute(itineraryId, itenerary);
-                return Response.status(Response.Status.OK).build();
-            } catch (Exception e) {
-                return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
+                return Response.status(Response.Status.CONFLICT).entity("Itinerary Already Locked").build();
             }
         } catch (Exception e) {
             return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
@@ -138,49 +153,85 @@ public class TravelGoodResource {
     public Response bookItinerary(@PathParam("itineraryId") String itineraryId,
             String creditCardInfo) {
         CreditCardInfoType creditCard = gson.fromJson(creditCardInfo, CreditCardInfoType.class);
+        System.err.println(itineraryId);
+
+        ItineraryContainer itenerary;
 
         try {
-            ItineraryContainer itenerary = (ItineraryContainer) context.getAttribute(itineraryId);
+            itenerary = (ItineraryContainer) context.getAttribute(itineraryId);
+            System.err.println(itenerary.getItineraryState());
+        } catch (Exception e) {
+            return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
+        }
+        try {
             if (validateCreditCard(1, creditCard, itenerary.getPrice())) {
                 itenerary.setCreditCard(creditCard);
-                for (FlightInformation flight : itenerary.getFlights()) {
-                    bookFlight(flight.getBookingNumber(), creditCard);
+                try {
+                    for (FlightObject flight : itenerary.getFlights()) {
+                        bookFlight(flight.getFlight().getBookingNumber(), creditCard);
+                        flight.setState(ItineraryContainer.ItineraryState.CONFIRMED);
+                    }
+                    for (HotelObject hotel : itenerary.getHotels()) {
+                        bookHotel(hotel.getHotel().getBookingNumber(), hotel.getHotel().isIsCreditCardGuaranteeRequired(), creditCard);
+                        hotel.setState(ItineraryContainer.ItineraryState.CONFIRMED);
+                    }
+                    itenerary.setItineraryState(ItineraryContainer.ItineraryState.CONFIRMED);
+                } catch (Exception e) {
+                    for (FlightObject flight : itenerary.getFlights()) {
+                        if (flight.getState() == ItineraryContainer.ItineraryState.CONFIRMED) {
+                            cancelFlight(flight.getFlight().getBookingNumber(), itenerary.getCreditCard(), flight.getFlight().getPrice());
+                            flight.setState(ItineraryContainer.ItineraryState.CANCELED);
+                        }
+                    }
+                    for (HotelObject hotel : itenerary.getHotels()) {
+                        if (hotel.getState() == ItineraryContainer.ItineraryState.CONFIRMED) {
+                            cancelHotel(hotel.getHotel().getBookingNumber());
+                            hotel.setState(ItineraryContainer.ItineraryState.CANCELED);
+                        }
+                    }
+                    itenerary.setItineraryState(ItineraryContainer.ItineraryState.CANCELED);
+                    context.setAttribute(itineraryId, itenerary);
+                    return Response.status(Response.Status.BAD_REQUEST).build();
                 }
-                for (HotelInformation hotel : itenerary.getHotels()) {
-                    bookHotel(hotel.getBookingNumber(), hotel.isIsCreditCardGuaranteeRequired(), creditCard);
-                }                
-                itenerary.setState(ItineraryContainer.ItineraryState.CONFIRMED);
                 context.setAttribute(itineraryId, itenerary);
                 return Response.status(Response.Status.ACCEPTED).build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).entity("Insufficient Funds").build();
             }
         } catch (Exception e) {
-            return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
     }
 
     @DELETE
-    @Path("/itinerary/{itineraryId}/cancel")
-    public Response canclePlan(@PathParam("itineraryId") String itineraryId) {
+    @Path("/itinerary/{itineraryId}")
+    public Response cancelePlan(@PathParam("itineraryId") String itineraryId) {
         try {
             ItineraryContainer itenerary = (ItineraryContainer) context.getAttribute(itineraryId);
-            switch (itenerary.getState()) {
-                case UNCONFERMED:
+            System.out.println(itenerary.getItineraryState());
+            switch (itenerary.getItineraryState()) {
+                case UNCONFIRMED:
                     context.removeAttribute(itineraryId);
                     return Response.status(Response.Status.OK).build();
                 case CONFIRMED:
-                    for (FlightInformation flight : itenerary.getFlights()) {
-                        cancelFlight(flight.getBookingNumber(), itenerary.getCreditCard(),flight.getPrice());
+                    Date today = new Date();
+                    if (today.before(today)) {
+                        for (FlightObject flight : itenerary.getFlights()) {
+                            cancelFlight(flight.getFlight().getBookingNumber(), itenerary.getCreditCard(), flight.getFlight().getPrice());
+                            flight.setState(ItineraryContainer.ItineraryState.CANCELED);
+                        }
+                        for (HotelObject hotel : itenerary.getHotels()) {
+                            cancelHotel(hotel.getHotel().getBookingNumber());
+                            hotel.setState(ItineraryContainer.ItineraryState.CANCELED);
+                        }
+                        itenerary.setItineraryState(ItineraryContainer.ItineraryState.CANCELED);
+                        context.setAttribute(itineraryId, itenerary);
+                        return Response.status(Response.Status.OK).build();
+                    } else {
+                        return Response.status(Response.Status.CONFLICT).entity("Trip Already Started").build();
                     }
-                    for (HotelInformation hotel : itenerary.getHotels()) {
-                        cancelHotel(hotel.getBookingNumber());
-                    }
-                    itenerary.setState(ItineraryContainer.ItineraryState.CANCELED);
-                    context.setAttribute(itineraryId, itenerary);
-                    return Response.status(Response.Status.OK).build();
                 default:
-                    return Response.status(Response.Status.CONFLICT).entity("Plan Already Cancled").build();
+                    return Response.status(Response.Status.CONFLICT).entity("Plan Already Canceled").build();
             }
         } catch (Exception e) {
             return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();

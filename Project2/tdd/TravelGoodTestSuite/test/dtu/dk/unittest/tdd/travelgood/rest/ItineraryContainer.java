@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dtu.dk.webservice.model;
+package dtu.dk.unittest.tdd.travelgood.rest;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import java.util.ArrayList;

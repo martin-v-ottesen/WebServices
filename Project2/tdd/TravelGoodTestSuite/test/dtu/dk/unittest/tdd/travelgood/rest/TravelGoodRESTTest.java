@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import dk.dtu.webservice.airline.service.*;
 import dk.dtu.webservice.hotel.service.*;
+import dtu.dk.unittest.tdd.travelgood.rest.ItineraryContainer.ItineraryState;
 import java.io.IOException;
 import java.util.List;
 import javax.ws.rs.client.Client;
@@ -37,12 +38,12 @@ public class TravelGoodRESTTest {
 //    static String id;
 
     public TravelGoodRESTTest() {
-        
+
     }
 
     @Before
-    public void setUp() {   
-       
+    public void setUp() {
+
         setTestFlightInformations(FlightData.testFlightInformation());
 
         //Hotel 1: HotelOfBangkok
@@ -60,9 +61,9 @@ public class TravelGoodRESTTest {
         clearFlightInformations();
         clearHotelInformations();
     }
-    
+
     @Test
-    public void newIteneraryTest(){
+    public void newIteneraryTest() {
         Response result = target.path("/itinerary/new")
                 .request().get();
         assertEquals(200, result.getStatus());
@@ -79,16 +80,16 @@ public class TravelGoodRESTTest {
         assertEquals(200, result.getStatus());
         List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
                 new TypeToken<List<FlightInformation>>() {
-        }.getType());
+                }.getType());
         assertEquals(1, flights.size());
         assertEquals(FlightData.testFlightInformation().getBookingNumber(),
                 flights.get(0).getBookingNumber());
     }
-   
+
     @Test
     public void getHotelTest() {
         HotelInformation hotelInfo = null;
-        
+
         Response result = target.path("hotel/"
                 + HotelData.testHotel1().getCity() + "/"
                 + HotelData.testHotel1().getCheckInDate() + "/"
@@ -96,19 +97,20 @@ public class TravelGoodRESTTest {
                 .request().get();
         assertEquals(200, result.getStatus());
         List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
-                new TypeToken<List<HotelInformation>>() {}.getType());
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
         assertEquals(2, hotels.size());
         assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
                 hotels.get(0).getBookingNumber());
     }
-    
+
     @Test
-    public void addFlightTest(){
+    public void addFlightTest() {
         Response result = target.path("/itinerary/new")
                 .request().get();
         assertEquals(200, result.getStatus());
         String id = result.readEntity(String.class);
-        
+
         result = target.path("flight/"
                 + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
                 + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
@@ -117,25 +119,25 @@ public class TravelGoodRESTTest {
         assertEquals(200, result.getStatus());
         List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
                 new TypeToken<List<FlightInformation>>() {
-        }.getType());
-        
+                }.getType());
+
         assertEquals(FlightData.testFlightInformation().getBookingNumber(),
                 flights.get(0).getBookingNumber());
-        
-        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber()+"", MediaType.TEXT_PLAIN_TYPE));
-        if(result.getStatus()== 409){
+
+        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
             System.out.println(result.readEntity(String.class));
         }
-        assertEquals(200, result.getStatus());        
+        assertEquals(200, result.getStatus());
     }
-    
+
     @Test
-    public void addHotelTest(){
+    public void addHotelTest() {
         Response result = target.path("/itinerary/new")
                 .request().get();
         assertEquals(200, result.getStatus());
         String id = result.readEntity(String.class);
-        
+
         result = target.path("hotel/"
                 + HotelData.testHotel1().getCity() + "/"
                 + HotelData.testHotel1().getCheckInDate() + "/"
@@ -143,24 +145,25 @@ public class TravelGoodRESTTest {
                 .request().get();
         assertEquals(200, result.getStatus());
         List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
-                new TypeToken<List<HotelInformation>>() {}.getType());
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
         assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
                 hotels.get(0).getBookingNumber());
-        
-        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber()+"", MediaType.TEXT_PLAIN_TYPE));
-        if(result.getStatus()== 409){
+
+        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
             System.out.println(result.readEntity(String.class));
         }
-        assertEquals(200, result.getStatus());        
+        assertEquals(200, result.getStatus());
     }
-    
+
     @Test
-    public void getItineraryTest(){
+    public void getItineraryTest() {
         Response result = target.path("/itinerary/new")
                 .request().get();
         assertEquals(200, result.getStatus());
         String id = result.readEntity(String.class);
-        
+
         result = target.path("flight/"
                 + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
                 + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
@@ -169,17 +172,17 @@ public class TravelGoodRESTTest {
         assertEquals(200, result.getStatus());
         List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
                 new TypeToken<List<FlightInformation>>() {
-        }.getType());
-        
+                }.getType());
+
         assertEquals(FlightData.testFlightInformation().getBookingNumber(),
                 flights.get(0).getBookingNumber());
-        
-        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber()+"", MediaType.TEXT_PLAIN_TYPE));
-        if(result.getStatus()== 409){
+
+        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
             System.out.println(result.readEntity(String.class));
         }
         assertEquals(200, result.getStatus());
-        
+
         result = target.path("hotel/"
                 + HotelData.testHotel1().getCity() + "/"
                 + HotelData.testHotel1().getCheckInDate() + "/"
@@ -187,28 +190,210 @@ public class TravelGoodRESTTest {
                 .request().get();
         assertEquals(200, result.getStatus());
         List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
-                new TypeToken<List<HotelInformation>>() {}.getType());
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
         assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
                 hotels.get(0).getBookingNumber());
-        
-        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber()+"", MediaType.TEXT_PLAIN_TYPE));
-        if(result.getStatus()== 409){
+
+        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
             System.out.println(result.readEntity(String.class));
         }
         assertEquals(200, result.getStatus());
-        
+
         result = target.path("itinerary/" + id).request().get();
         assertEquals(200, result.getStatus());
-        System.out.println(result.readEntity(String.class));
-      
+        
+        ItineraryContainer contence = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<ItineraryContainer>() {
+        }.getType());
+        assertEquals(ItineraryState.UNCONFIRMED,contence.getItineraryState());
+
     }
-    
+
     @Test
-    public void postBookItineraryTest(){
-        int id = 1;
-        Response result = target.path("/itinerary/"+ id).request().post(Entity.entity(BankData.validCard(), MediaType.WILDCARD_TYPE));
+    public void deleteItineraryTest() {
+        Response result = target.path("/itinerary/new")
+                .request().get();
+        assertEquals(200, result.getStatus());
+        String id = result.readEntity(String.class);
+
+        result = target.path("flight/"
+                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getDateAndTimefForLiftOff())
+                .request().get();
+        assertEquals(200, result.getStatus());
+        List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<FlightInformation>>() {
+                }.getType());
+
+        assertEquals(FlightData.testFlightInformation().getBookingNumber(),
+                flights.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
+            System.out.println(result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("hotel/"
+                + HotelData.testHotel1().getCity() + "/"
+                + HotelData.testHotel1().getCheckInDate() + "/"
+                + HotelData.testHotel1().getCheckOutDate())
+                .request().get();
+        assertEquals(200, result.getStatus());
+        List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
+        assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
+                hotels.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
+            System.out.println(result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("/itinerary/" + id).request().delete();
+        assertEquals(200, result.getStatus());
     }
-    
+
+    @Test
+    public void postBookItineraryTest() {
+        Response result = target.path("/itinerary/new")
+                .request().get();
+        assertEquals(200, result.getStatus());
+        final String id = result.readEntity(String.class);
+
+        result = target.path("flight/"
+                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getDateAndTimefForLiftOff())
+                .request().get();
+        assertEquals(200, result.getStatus());
+        List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<FlightInformation>>() {
+                }.getType());
+
+        assertEquals(FlightData.testFlightInformation().getBookingNumber(),
+                flights.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
+            System.out.println(result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("hotel/"
+                + HotelData.testHotel1().getCity() + "/"
+                + HotelData.testHotel1().getCheckInDate() + "/"
+                + HotelData.testHotel1().getCheckOutDate())
+                .request().get();
+        assertEquals(200, result.getStatus());
+        List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
+        assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
+                hotels.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("/itinerary/" + id).request().post(Entity.entity(gson.toJson(BankData.validCard()), MediaType.WILDCARD_TYPE));
+        if (result.getStatus() != 202) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(202, result.getStatus());
+
+        result = target.path("itinerary/" + id).request().get();
+        assertEquals(200, result.getStatus());
+        ItineraryContainer contence = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<ItineraryContainer>() {
+                }.getType());
+        assertEquals(ItineraryState.CONFIRMED, contence.getItineraryState());
+    }
+
+    @Test
+    public void deleteBookedItineraryTest() {
+        Response result = target.path("/itinerary/new")
+                .request().get();
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+        String id = result.readEntity(String.class);
+
+        result = target.path("flight/"
+                + FlightData.testFlightInformation().getFlight().getStartAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getEndAirport() + "/"
+                + FlightData.testFlightInformation().getFlight().getDateAndTimefForLiftOff())
+                .request().get();
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+        List<FlightInformation> flights = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<FlightInformation>>() {
+                }.getType());
+
+        assertEquals(FlightData.testFlightInformation().getBookingNumber(),
+                flights.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/flight").request().put(Entity.entity(flights.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() == 409) {
+            System.out.println(result.readEntity(String.class));
+        }
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("hotel/"
+                + HotelData.testHotel1().getCity() + "/"
+                + HotelData.testHotel1().getCheckInDate() + "/"
+                + HotelData.testHotel1().getCheckOutDate())
+                .request().get();
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+        List<HotelInformation> hotels = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<List<HotelInformation>>() {
+                }.getType());
+        assertEquals(HotelData.testHotelInformation1().getBookingNumber(),
+                hotels.get(0).getBookingNumber());
+
+        result = target.path("itinerary/" + id + "/hotel").request().put(Entity.entity(hotels.get(0).getBookingNumber() + "", MediaType.TEXT_PLAIN_TYPE));
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("/itinerary/" + id).request().post(Entity.entity(gson.toJson(BankData.validCard()), MediaType.WILDCARD_TYPE));
+        if (result.getStatus() != 202) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(202, result.getStatus());
+
+        result = target.path("/itinerary/" + id).request().delete();
+        if (result.getStatus() != 200) {
+            System.err.println(result.getStatus() + " - " + result.readEntity(String.class));
+        }
+        assertEquals(200, result.getStatus());
+
+        result = target.path("itinerary/" + id).request().get();
+        assertEquals(200, result.getStatus());
+        ItineraryContainer contence = gson.fromJson(result.readEntity(String.class),
+                new TypeToken<ItineraryContainer>() {
+        }.getType());        
+        assertEquals(ItineraryState.CANCELED,contence.getItineraryState());
+
+    }
+
     private static void setTestFlightInformations(dk.dtu.webservice.airline.service.FlightInformation flightInfo) {
         dk.dtu.webservice.airline.service.AirlineReservationService_Service service = new dk.dtu.webservice.airline.service.AirlineReservationService_Service();
         dk.dtu.webservice.airline.service.AirlineReservationService port = service.getAirlineReservationServicePort();
