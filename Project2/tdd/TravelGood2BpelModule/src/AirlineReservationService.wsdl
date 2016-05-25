@@ -73,52 +73,52 @@
     <operation name="getFlights">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="cancelFlight">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </output>
       <fault name="CreditCardFaultMessage">
-        <soap:fault name="CreditCardFaultMessage" use="literal"/>
+        <soap:fault name="CreditCardFaultMessage" use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </fault>
       <fault name="Exception">
-        <soap:fault name="Exception" use="literal"/>
+        <soap:fault name="Exception" use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </fault>
     </operation>
     <operation name="setTestFlightInformations">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="clearFlightInformations">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="bookFlight">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.airline.webservice.dtu.dk/"/>
       </output>
       <fault name="CreditCardFaultMessage">
         <soap:fault name="CreditCardFaultMessage" use="literal"/>

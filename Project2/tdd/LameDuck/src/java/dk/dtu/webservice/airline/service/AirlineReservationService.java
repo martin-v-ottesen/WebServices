@@ -44,6 +44,57 @@ public class AirlineReservationService {
         flightInfo.setPrice(35813);
     
         flightInformationContainer.add(flightInfo);
+        
+        //Flight 1
+        flight = new Flight();
+        flightInfo = new flightInformation();
+        flight.setStartAirport("Copenhagen");
+        flight.setEndAirport("Sydney");
+        flight.setCarrierOperationTheFlight("SAS");
+        flight.setDateAndTimefForLiftOff("2017-02-01");
+        flight.setDateAndTimefForLanding("2017-02-02");
+
+        flightInfo.setFlight(flight);
+
+        flightInfo.setNameOfAirlineReservationService("LameDuck");
+        flightInfo.setBookingNumber(11111);
+        flightInfo.setPrice(2500);
+
+        flightInformationContainer.add(flightInfo);
+
+        //Flight 2
+        flight = new Flight();
+        flightInfo = new flightInformation();
+        flight.setStartAirport("Sydney");
+        flight.setEndAirport("Thailand");
+        flight.setCarrierOperationTheFlight("Thai");
+        flight.setDateAndTimefForLiftOff("2017-02-10");
+        flight.setDateAndTimefForLanding("2017-02-10");
+
+        flightInfo.setFlight(flight);
+
+        flightInfo.setNameOfAirlineReservationService("LameDuck");
+        flightInfo.setBookingNumber(22222);
+        flightInfo.setPrice(1500);
+
+        flightInformationContainer.add(flightInfo);
+
+        //Flight 3
+        flight = new Flight();
+        flightInfo = new flightInformation();
+        flight.setStartAirport("Thailand");
+        flight.setEndAirport("Tokyo");
+        flight.setCarrierOperationTheFlight("ANA");
+        flight.setDateAndTimefForLiftOff("2017-02-10");
+        flight.setDateAndTimefForLanding("2017-02-11");
+
+        flightInfo.setFlight(flight);
+
+        flightInfo.setNameOfAirlineReservationService("LameDuck");
+        flightInfo.setBookingNumber(33333);
+        flightInfo.setPrice(1200);
+
+        flightInformationContainer.add(flightInfo);
     }
     
     

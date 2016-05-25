@@ -21,6 +21,13 @@
         <partnerLink name="TravelGood" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" partnerLinkType="tns:TravelGoodWSDL" myRole="TravelGoodWSDLPortTypeRole"/>
     </partnerLinks>
     <variables>
+        <variable name="BookItineraryOutTG" messageType="ns0:TravelGoodWSDLOperationResponseBookItinerary"/>
+        <variable name="CancelHotelOutNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:cancelHotelResponse"/>
+        <variable name="CancelHotelInNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:cancelHotel"/>
+        <variable name="isBookingHotelErrorCaught" type="xs:boolean"/>
+        <variable name="isBookingFlightErrorCaught" type="xs:boolean"/>
+        <variable name="PlanningItineraryState" type="xs:boolean"/>
+        <variable name="BookingItineraryState" type="xs:boolean"/>
         <variable name="BookItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestBookItinerary"/>
         <variable name="CancelPlanningItineraryOutTG" messageType="ns0:TravelGoodWSDLOperationResponseCancelPlanningItinerary"/>
         <variable name="CancelPlanningItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestCancelPlanningItinerary"/>
@@ -41,8 +48,6 @@
         <variable name="GetFlightsInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:getFlights"/>
         <variable name="GetFlightsInTG" messageType="ns0:TravelGoodWSDLOperationRequestGetFlights"/>
         <variable name="CreateItineraryInTG" messageType="ns0:TravelGoodWSDLOperationRequestCreateItinerary"/>
-        <variable name="PlanningItineraryState" type="xs:boolean"/>
-        <variable name="BookingItineraryState" type="xs:boolean"/>
     </variables>
     <correlationSets>
         <correlationSet name="CorrelationSetItinerary" properties="ns0:ItineraryID"/>
@@ -71,12 +76,20 @@
                 <to variable="hotelContainerCount"/>
             </copy>
             <copy>
-                <from variable="CreateItineraryInTG" part="ItineraryID"/>
-                <to>$ItineraryContainer/ItineraryID</to>
+                <from>false()</from>
+                <to variable="BookingItineraryState"/>
             </copy>
             <copy>
                 <from>false()</from>
-                <to variable="BookingItineraryState"/>
+                <to variable="isBookingHotelErrorCaught"/>
+            </copy>
+            <copy>
+                <from>false()</from>
+                <to variable="isBookingFlightErrorCaught"/>
+            </copy>
+            <copy>
+                <from>sxxf:getGUID()</from>
+                <to>$ItineraryContainer/ItineraryID</to>
             </copy>
         </assign>
         <assign name="Assign8">
@@ -140,10 +153,10 @@
                                     </assign>
                                         <invoke name="Invoke2" partnerLink="NiceView" operation="getHotels" xmlns:tns="http://service.hotel.webservice.dtu.dk/" portType="tns:HotelReservationService" inputVariable="GetHotelsInNV" outputVariable="GetHotelsOutNV"/>
                                         <assign name="Assign7">
-                                            <copy>
-                                                <from variable="GetHotelsOutTG" part="hotels"/>
-                                                <to variable="GetHotelsOutTG" part="hotels"/>
-                                            </copy>
+                                             <copy>
+                                                  <from variable="GetHotelsOutNV" part="parameters"/>
+                                                  <to variable="GetHotelsOutTG" part="hotels"/>
+                                             </copy>
                                         </assign>
                                         <reply name="Reply4" partnerLink="TravelGood" operation="getHotels" portType="tns:TravelGoodWSDLPortType" variable="GetHotelsOutTG"/>
                                 </sequence>
@@ -156,11 +169,27 @@
                             <assign name="Assign9">
                                 <copy>
                                     <from variable="AddFlightInTG" part="bookingNumber"/>
-                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/bookingNumber</to>
+                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/bookingNumber
+                                        <sxed:editor>
+                                            <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]" source="to"/>
+                                        </sxed:editor>
+                                    </to>
                                 </copy>
                                 <copy>
                                     <from>'unconfirmed'</from>
-                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/status</to>
+                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/status
+                                        <sxed:editor>
+                                            <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]" source="to"/>
+                                        </sxed:editor>
+                                    </to>
+                                </copy>
+                                <copy>
+                                    <from variable="AddFlightInTG" part="price"/>
+                                    <to>$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]/price
+                                        <sxed:editor>
+                                            <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$flightContainerCount + 1]" source="to"/>
+                                        </sxed:editor>
+                                    </to>
                                 </copy>
                             </assign>
                             <assign name="Assign11">
@@ -185,17 +214,25 @@
                         <sequence name="Sequence5">
                             <assign name="Assign12">
                                 <copy>
-                                        <from variable="AddHotelInTG" part="bookingNumber"/>
-                                            <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/bookingNumber</to>
-                                    </copy>
+                                    <from variable="AddHotelInTG" part="bookingNumber"/>
+                                    <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/bookingNumber
+                                        <sxed:editor>
+                                            <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]" source="to"/>
+                                        </sxed:editor>
+                                    </to>
+                                </copy>
                                     <copy>
                                         <from>'unconfirmed'</from>
-                                            <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/status</to>
+                                        <to>$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]/status
+                                            <sxed:editor>
+                                                <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$hotelContainerCount + 1]" source="to"/>
+                                            </sxed:editor>
+                                        </to>
                                     </copy>
                             </assign>
                             <assign name="Assign13">
                                 <copy>
-                                    <from>stub() + $hotelContainerCount + stub() + 1</from>
+                                    <from>$hotelContainerCount + 1</from>
                                     <to variable="hotelContainerCount"/>
                                 </copy>
                             </assign>
@@ -230,19 +267,245 @@
                                 </copy>
                             </assign>
                             <reply name="Reply9" partnerLink="TravelGood" operation="cancelPlanningItinerary" portType="tns:TravelGoodWSDLPortType" variable="CancelPlanningItineraryOutTG"/>
+                            <exit name="Exit1"/>
                         </sequence>
                     </onMessage>
                     <onMessage partnerLink="TravelGood" operation="bookItinerary" portType="tns:TravelGoodWSDLPortType" variable="BookItineraryInTG">
                         <correlations>
                             <correlation set="CorrelationSetItinerary" initiate="no"/>
                         </correlations>
+                        <sequence name="Sequence8">
+                            <flow name="Flow1">
+                                <sequence name="Sequence9">
+                                    <forEach name="ForEach1" parallel="no" counterName="ForEach1Counter">
+                                        <startCounterValue>1</startCounterValue>
+                                        <finalCounterValue>$flightContainerCount</finalCounterValue>
+                                        <scope name="Scope1">
+                                            <variables>
+                                                <variable name="BookItineraryOutTG" messageType="tns:TravelGoodWSDLOperationResponseBookItinerary"/>
+                                                <variable name="BookFlightOutLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:bookFlightResponse"/>
+                                                <variable name="BookFlightInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:bookFlight"/>
+                                            </variables>
+                                            <faultHandlers>
+                                                <catchAll>
+                                                    <assign name="Assign18">
+                                                        <copy>
+                                                            <from>'cancelled'</from>
+                                                            <to>$ItineraryContainer/hotelReservationContainer[$ForEach1Counter]/status
+                                                                <sxed:editor>
+                                                                    <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach1Counter]" source="to"/>
+                                                                </sxed:editor>
+                                                            </to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>true()</from>
+                                                            <to variable="isBookingFlightErrorCaught"/>
+                                                        </copy>
+                                                    </assign>
+                                                </catchAll>
+                                            </faultHandlers>
+                                            <sequence name="Sequence11">
+                                                <assign name="Assign17">
+                                                    <copy>
+                                                        <from>$ItineraryContainer/flightReservationContainer[$ForEach1Counter]/bookingNumber
+                                                            <sxed:editor>
+                                                                <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$ForEach1Counter]" source="from"/>
+                                                            </sxed:editor>
+                                                        </from>
+                                                        <to>$BookFlightInLD.parameters/bookingNumber</to>
+                                                    </copy>
+                                                    <copy>
+                                                        <from variable="BookItineraryInTG" part="creditCardInfo"/>
+                                                        <to>$BookFlightInLD.parameters/creditCardInfo</to>
+                                                    </copy>
+                                                </assign>
+                                                <invoke name="Invoke3" partnerLink="LameDuck" operation="bookFlight" xmlns:tns="http://service.airline.webservice.dtu.dk/" portType="tns:AirlineReservationService" inputVariable="BookFlightInLD" outputVariable="BookFlightOutLD"/>
+                                                <assign name="Assign21">
+                                                    <copy>
+                                                        <from>'confirmed'</from>
+                                                        <to>$ItineraryContainer/flightReservationContainer[$ForEach1Counter]/status
+                                                            <sxed:editor>
+                                                                <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$ForEach1Counter]" source="to"/>
+                                                            </sxed:editor>
+                                                        </to>
+                                                    </copy>
+                                                </assign>
+                                            </sequence>
+                                        </scope>
+                                    </forEach>
+                                    <if name="If2">
+                                        <condition>$isBookingFlightErrorCaught</condition>
+                                        <forEach name="ForEach3" parallel="no" counterName="ForEach3Counter">
+                                            <startCounterValue>1</startCounterValue>
+                                            <finalCounterValue>$flightContainerCount</finalCounterValue>
+                                            <scope name="Scope2">
+                                                <variables>
+                                                    <variable name="CancelFlightOutLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:cancelFlightResponse"/>
+                                                    <variable name="CancelFlightInLD" xmlns:tns="http://service.airline.webservice.dtu.dk/" messageType="tns:cancelFlight"/>
+                                                </variables>
+                                                <sequence name="Sequence12">
+                                                    <assign name="Assign19">
+                                                        <copy>
+                                                            <from>$ItineraryContainer/flightReservationContainer[$ForEach3Counter]/bookingNumber
+                                                                <sxed:editor>
+                                                                    <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$ForEach3Counter]" source="from"/>
+                                                                </sxed:editor>
+                                                            </from>
+                                                            <to>$CancelFlightInLD.parameters/bookingNumber</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from variable="BookItineraryInTG" part="creditCardInfo"/>
+                                                            <to>$CancelFlightInLD.parameters/creditCardInfo</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$ItineraryContainer/flightReservationContainer[$ForEach3Counter]/price
+                                                                <sxed:editor>
+                                                                    <sxed:predicate path="$ItineraryContainer/flightReservationContainer[$ForEach3Counter]" source="from"/>
+                                                                </sxed:editor>
+                                                            </from>
+                                                            <to>$CancelFlightInLD.parameters/price</to>
+                                                        </copy>
+                                                    </assign>
+                                                    <invoke name="Invoke4" partnerLink="LameDuck" operation="cancelFlight" xmlns:tns="http://service.airline.webservice.dtu.dk/" portType="tns:AirlineReservationService" inputVariable="CancelFlightInLD" outputVariable="CancelFlightOutLD"/>
+                                                    <assign name="Assign25">
+                                                        <copy>
+                                                            <from>'cancelled'</from>
+                                                            <to>$ItineraryContainer/tns:ItineraryState</to>
+                                                        </copy>
+                                                    </assign>
+                                                </sequence>
+                                            </scope>
+                                        </forEach>
+                                    </if>
+                                </sequence>
+                                <sequence name="Sequence10">
+                                    <forEach name="ForEach2" parallel="no" counterName="ForEach2Counter">
+                                        <startCounterValue>1</startCounterValue>
+                                        <finalCounterValue>$hotelContainerCount</finalCounterValue>
+                                        <scope name="Scope3">
+                                            <variables>
+                                                <variable name="BookHotelOutNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:bookHotelResponse"/>
+                                                <variable name="BookHotelInNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:bookHotel"/>
+                                            </variables>
+                                            <faultHandlers>
+                                                <catchAll>
+                                                    <assign name="Assign22">
+                                                        <copy>
+                                                            <from>true()</from>
+                                                            <to variable="isBookingHotelErrorCaught"/>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>'cancelled'</from>
+                                                            <to>$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]/status
+                                                                <sxed:editor>
+                                                                    <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]" source="to"/>
+                                                                </sxed:editor>
+                                                            </to>
+                                                        </copy>
+                                                    </assign>
+                                                </catchAll>
+                                            </faultHandlers>
+                                            <sequence name="Sequence13">
+                                                <assign name="Assign20">
+                                                    <copy>
+                                                         <from>$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]/isCreditCardGuaranteeRequired
+                                                              <sxed:editor>
+                                                                   <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]" source="from"/>
+                                                              </sxed:editor>
+                                                         </from>
+                                                         <to>$BookHotelInNV.parameters/isCreditCardGuaranteeRequired</to>
+                                                    </copy>
+                                                    <copy>
+                                                         <from>$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]/bookingNumber
+                                                              <sxed:editor>
+                                                                   <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]" source="from"/>
+                                                              </sxed:editor>
+                                                         </from>
+                                                         <to>$BookHotelInNV.parameters/bookingNumber</to>
+                                                    </copy>
+                                                    <copy>
+                                                        <from variable="BookItineraryInTG" part="creditCardInfo"/>
+                                                        <to>$BookHotelInNV.parameters/creditCardInfo</to>
+                                                    </copy>
+                                                </assign>
+                                                <invoke name="Invoke5" partnerLink="NiceView" operation="bookHotel" xmlns:tns="http://service.hotel.webservice.dtu.dk/" portType="tns:HotelReservationService" inputVariable="BookHotelInNV" outputVariable="BookHotelOutNV"/>
+                                                <assign name="Assign23">
+                                                    <copy>
+                                                        <from>'confimed'</from>
+                                                        <to>$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]/status
+                                                            <sxed:editor>
+                                                                <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach2Counter]" source="to"/>
+                                                            </sxed:editor>
+                                                        </to>
+                                                    </copy>
+                                                </assign>
+                                            </sequence>
+                                        </scope>
+                                    </forEach>
+                                    <if name="If3">
+                                        <condition>$isBookingHotelErrorCaught</condition>
+                                        <sequence name="Sequence14">
+                                            <forEach name="ForEach4" parallel="no" counterName="ForEach4Counter">
+                                                <startCounterValue>1</startCounterValue>
+                                                <finalCounterValue>$hotelContainerCount</finalCounterValue>
+                                                <scope name="Scope4">
+                                                    <variables>
+                                                        <variable name="CancelHotelOutNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:cancelHotelResponse"/>
+                                                        <variable name="CancelHotelInNV" xmlns:tns="http://service.hotel.webservice.dtu.dk/" messageType="tns:cancelHotel"/>
+                                                    </variables>
+                                                    <sequence name="Sequence15">
+                                                        <assign name="Assign24">
+                                                            <copy>
+                                                                <from>$ItineraryContainer/hotelReservationContainer[$ForEach4Counter]/bookingNumber
+                                                                    <sxed:editor>
+                                                                        <sxed:predicate path="$ItineraryContainer/hotelReservationContainer[$ForEach4Counter]" source="from"/>
+                                                                    </sxed:editor>
+                                                                </from>
+                                                                <to>$CancelHotelInNV.parameters/bookingNumber</to>
+                                                            </copy>
+                                                        </assign>
+                                                        <invoke name="Invoke6" partnerLink="NiceView" operation="cancelHotel" xmlns:tns="http://service.hotel.webservice.dtu.dk/" portType="tns:HotelReservationService" inputVariable="CancelHotelInNV" outputVariable="CancelHotelOutNV"/>
+                                                        <assign name="Assign26">
+                                                            <copy>
+                                                                <from>'cancelled'</from>
+                                                                <to>$ItineraryContainer/tns:ItineraryState</to>
+                                                            </copy>
+                                                        </assign>
+                                                    </sequence>
+                                                </scope>
+                                            </forEach>
+                                        </sequence>
+                                    </if>
+                                </sequence>
+                            </flow>
+                            <if name="If4">
+                                <condition>$isBookingHotelErrorCaught or $isBookingFlightErrorCaught</condition>
+                                <assign name="Assign28">
+                                    <copy>
+                                        <from>'cancelled'</from>
+                                        <to>$ItineraryContainer/tns:ItineraryState</to>
+                                    </copy>
+                                </assign>
+                                <else>
+                                    <assign name="Assign29">
+                                        <copy>
+                                            <from>'confirmed'</from>
+                                            <to>$ItineraryContainer/tns:ItineraryState</to>
+                                        </copy>
+                                    </assign>
+                                </else>
+                            </if>
+                            <assign name="Assign27">
+                                <copy>
+                                    <from>$ItineraryContainer/tns:ItineraryState</from>
+                                    <to variable="BookItineraryOutTG" part="status"/>
+                                </copy>
+                            </assign>
+                            <reply name="Reply10" partnerLink="TravelGood" operation="bookItinerary" portType="tns:TravelGoodWSDLPortType" variable="BookItineraryOutTG"/>
+                        </sequence>
                     </onMessage>
                 </pick>
             </while>
-            <if name="If1">
-                <condition>$BookingItineraryState</condition>
-                <sequence name="Sequence6"/>
-            </if>
         </sequence>
     </sequence>
 </process>

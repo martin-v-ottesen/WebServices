@@ -7,6 +7,7 @@ package dk.dtu.webservice.hotel.service;
 
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import dk.dtu.webservice.hotel.model.Hotel;
 import dk.dtu.webservice.hotel.model.hotelInformation;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,56 @@ public class HotelReservationService {
     List<hotelInformation> bookedHotelInformationContainer = new ArrayList<>();
     
     Bank bankService = new Bank();
+    Hotel hotelTest = new Hotel();
+    hotelInformation hotelInfoTest = new hotelInformation();
+    
+    public HotelReservationService() {
+
+     //Hotel 1
+     hotelTest.setCity("Sydney");
+     hotelTest.setHotelName("Backpacker In Sydney");
+     hotelTest.setCheckInDate("2017-02-02");
+     hotelTest.setCheckOutDate("2017-02-10");
+     hotelTest.setAddress("Sydney Mainstreet 01");
+     
+     hotelInfoTest.setNameOfHotelReservationService("NiceView");
+     hotelInfoTest.setHotel(hotelTest);
+     hotelInfoTest.setBookingNumber(99999);
+     hotelInfoTest.setPrice(900);
+     hotelInfoTest.setIsCreditCardGuaranteeRequired(false);
+     
+     hotelInformationContainer.add(hotelInfoTest);
+     
+     //Hotel 2
+     hotelInfoTest = new hotelInformation();
+     hotelTest = new Hotel();
+     
+     hotelTest.setCity("Tokyo");
+     hotelTest.setHotelName("Backpacker In Tokyo");
+     hotelTest.setCheckInDate("2017-02-11");
+     hotelTest.setCheckOutDate("2017-02-20");
+     hotelTest.setAddress("Akihabara Mainstreet 01");
+     
+     hotelInfoTest.setNameOfHotelReservationService("NiceView");
+     hotelInfoTest.setHotel(hotelTest);
+     hotelInfoTest.setBookingNumber(88888);
+     hotelInfoTest.setPrice(10000);
+     hotelInfoTest.setIsCreditCardGuaranteeRequired(false);
+     
+     hotelInformationContainer.add(hotelInfoTest);
+     
+     //Hotel 3
+//        hotelInfoTest = new hotelInformation();
+//        hotelTest = new Hotel();
+//        
+//        hotelInfoTest.setNameOfHotelReservationService("NiceView");
+//        hotelInfoTest.setHotel(hotelTest);
+//        hotelInfoTest.setBookingNumber(567);
+//        hotelInfoTest.setPrice(10000);
+//        hotelInfoTest.setIsCreditCardGuaranteeRequired(false);
+//        
+//        hotelInformationContainer.add(hotelInfoTest);
+ }
     
     /**
      * Web service operation

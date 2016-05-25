@@ -82,10 +82,10 @@
     <operation name="cancelHotel">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
       <fault name="Exception">
         <soap:fault name="Exception" use="literal"/>
@@ -94,28 +94,28 @@
     <operation name="getBookedHotelInformations">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="getHotels">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="bookHotel">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
       <fault name="CreditCardFaultMessage">
         <soap:fault name="CreditCardFaultMessage" use="literal"/>
@@ -127,19 +127,19 @@
     <operation name="clearHotelInformations">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
     </operation>
     <operation name="setTestHotelInformations">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://service.hotel.webservice.dtu.dk/"/>
       </output>
     </operation>
   </binding>

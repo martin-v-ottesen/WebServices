@@ -5,9 +5,13 @@
   <SOAP-ENV:Body>
     <createItineraryResponse xmlns:msgns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
       <itineraryContainer>
-        <ItineraryID>59ea8450-20d4-11e6-b67b-9e71128cae77</ItineraryID>
+        <ItineraryID>6687</ItineraryID>
         <ItineraryState xmlns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">unconfirmed</ItineraryState>
       </itineraryContainer>
     </createItineraryResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
+
+
+
+

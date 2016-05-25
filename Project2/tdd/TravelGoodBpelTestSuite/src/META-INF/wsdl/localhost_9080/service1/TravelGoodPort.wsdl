@@ -2,11 +2,11 @@
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://service.airline.webservice.dtu.dk/" xmlns:ns0="http://service.hotel.webservice.dtu.dk/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TravelGoodWSDL" targetNamespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
   <types>
     <xsd:schema xmlns:ns0="http://service.airline.webservice.dtu.dk/" xmlns:ns1="http://service.hotel.webservice.dtu.dk/" targetNamespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL">
-            <xsd:import namespace="http://service.airline.webservice.dtu.dk/" schemaLocation="http://192.168.1.64:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd"/>
-            <xsd:import namespace="http://service.hotel.webservice.dtu.dk/" schemaLocation="http://192.168.1.64:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd"/>
+            <xsd:import namespace="http://service.airline.webservice.dtu.dk/" schemaLocation="http://10.16.135.132:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/AirlineReservationService_schema1.xsd"/>
+            <xsd:import namespace="http://service.hotel.webservice.dtu.dk/" schemaLocation="http://10.16.135.132:9080/TravelGoodCA-sun-http-binding/TravelGood2BpelModule/HotelReservationService_schema1.xsd"/>
             <xsd:complexType name="itineraryContainerType">
                 <xsd:sequence>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
                     <xsd:element ref="tns:ItineraryState"/>
                     <xsd:element maxOccurs="unbounded" minOccurs="0" name="hotelReservationContainer" type="tns:hotelReservationType"/>
                     <xsd:element maxOccurs="unbounded" minOccurs="0" name="flightReservationContainer" type="tns:flightReservationType"/>
@@ -14,7 +14,7 @@
             </xsd:complexType>
             <xsd:complexType name="createItineraryRequestType">
                 <xsd:sequence>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
                     <xsd:element name="status" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -32,13 +32,14 @@
             <xsd:complexType name="addHotelType">
                 <xsd:sequence>
                     <xsd:element ref="ns1:bookHotel"/>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
+                    <xsd:element name="price" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="addFlightType">
                 <xsd:sequence>
                     <xsd:element ref="ns0:bookFlight"/>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:simpleType name="ItineraryIDType">
@@ -47,13 +48,13 @@
             <xsd:complexType name="getFlightsRequestType">
                 <xsd:sequence>
                     <xsd:element ref="ns0:getFlights"/>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="getFlightsResponseType">
                 <xsd:sequence>
                     <xsd:element ref="ns0:getFlightsResponse"/>
-                    <xsd:element name="ItineraryID" type="tns:ItineraryIDType"/>
+                    <xsd:element name="ItineraryID" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="flightReservationType">
@@ -91,9 +92,11 @@
     </part>
   </message>
   <message name="TravelGoodWSDLOperationRequestAddHotel">
-    <part name="ItineraryID" type="tns:ItineraryIDType">
+    <part name="ItineraryID" type="xsd:string">
     </part>
     <part name="bookingNumber" type="xsd:int">
+    </part>
+    <part name="price" type="xsd:int">
     </part>
   </message>
   <message name="TravelGoodWSDLOperationRequestAddFlight">
@@ -101,13 +104,15 @@
     </part>
     <part name="bookingNumber" type="xsd:int">
     </part>
+    <part name="price" type="xsd:int">
+    </part>
   </message>
   <message name="TravelGoodWSDLOperationResponseAddHotel">
     <part name="itineraryContainer" type="tns:itineraryContainerType">
     </part>
   </message>
   <message name="TravelGoodWSDLOperationRequestGetHotels">
-    <part name="ItineraryID" type="tns:ItineraryIDType">
+    <part name="ItineraryID" type="xsd:string">
     </part>
     <part name="arrivalDate" type="xsd:string">
     </part>
@@ -125,7 +130,7 @@
     </part>
   </message>
   <message name="TravelGoodWSDLOperationRequestCreateItinerary">
-    <part name="ItineraryID" type="tns:ItineraryIDType">
+    <part name="ItineraryID" type="xsd:string">
     </part>
   </message>
   <message name="TravelGoodWSDLOperationResponseGetItinerary">
@@ -140,12 +145,8 @@
     <part name="hotels" type="ns0:getHotelsResponse">
     </part>
   </message>
-  <message name="TravelGoodWSDLOperationFaultBookItinerary">
-    <part name="part1" type="xsd:string">
-    </part>
-  </message>
   <message name="TravelGoodWSDLOperationRequestGetFlights">
-    <part name="ItineraryID" type="tns:ItineraryIDType">
+    <part name="ItineraryID" type="xsd:string">
     </part>
     <part name="startDestination" type="xsd:string">
     </part>
@@ -155,7 +156,7 @@
     </part>
   </message>
   <message name="TravelGoodWSDLOperationRequestBookItinerary">
-    <part name="ItineraryID" type="tns:ItineraryIDType">
+    <part name="ItineraryID" type="xsd:string">
     </part>
     <part name="creditCardInfo" type="ns:creditCardInfoType">
     </part>
@@ -216,8 +217,6 @@
     </input>
       <output message="tns:TravelGoodWSDLOperationResponseBookItinerary" name="output8">
     </output>
-      <fault message="tns:TravelGoodWSDLOperationFaultBookItinerary" name="fault1">
-    </fault>
     </operation>
   </portType>
   <binding name="TravelGoodWSDLPortTypeBinding" type="tns:TravelGoodWSDLPortType">
@@ -225,82 +224,79 @@
     <operation name="getFlights">
       <soap:operation/>
       <input name="input1">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output1">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="getHotels">
       <soap:operation/>
       <input name="input2">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output2">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="createItinerary">
       <soap:operation/>
       <input name="input3">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output3">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="addHotel">
       <soap:operation/>
       <input name="input4">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output4">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="addFlight">
       <soap:operation/>
       <input name="input5">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output5">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="getItinerary">
       <soap:operation/>
       <input name="input6">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output6">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="cancelPlanningItinerary">
       <soap:operation/>
       <input name="input7">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output7">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
     </operation>
     <operation name="bookItinerary">
       <soap:operation/>
       <input name="input8">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </input>
       <output name="output8">
-        <soap:body use="literal"/>
+        <soap:body namespace="http://service.bpel.travelagency.webservice.dtu.dk/wsdl/TravelGood2BpelModule/src/TravelGoodWSDL" use="literal"/>
       </output>
-      <fault name="fault1">
-        <soap:fault name="fault1" use="literal"/>
-      </fault>
     </operation>
   </binding>
   <service name="TravelGoodWSDLService">
     <port binding="tns:TravelGoodWSDLPortTypeBinding" name="TravelGoodWSDLPortTypeBindingPort">
-      <soap:address location="http://192.168.1.64:9080/service"/>
+      <soap:address location="http://10.16.135.132:9080/service"/>
     </port>
   </service>
     <plnk:partnerLinkType name="TravelGoodWSDL">
