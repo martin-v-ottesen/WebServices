@@ -57,6 +57,10 @@ public class TravelGoodResource {
 
     }
 
+    /**
+     * @author Kasper
+     * @return
+     */
     @GET
     @Path("/itinerary/new")
     public Response getSession() {
@@ -65,7 +69,14 @@ public class TravelGoodResource {
         context.setAttribute(uuid.toString(), new ItineraryContainer());
         return Response.status(Response.Status.OK).entity(uuid.toString()).build();
     }
-
+    
+    /**
+     * @author Martin
+     * @param startDestination
+     * @param endDestination
+     * @param startDate
+     * @return
+     */
     @GET
     @Path("/flight/{startDestination}/{endDestination}/{startDate}")
     public Response getFlightsToJSON(@PathParam("startDestination") String startDestination,
@@ -79,6 +90,13 @@ public class TravelGoodResource {
         return Response.status(Response.Status.OK).entity(gson.toJson(flights)).build();
     }
 
+    /**
+     * @author Martin
+     * @param city
+     * @param arrivalDate
+     * @param departureDate
+     * @return
+     */
     @GET
     @Path("/hotel/{cityName}/{arrivalDate}/{departureDate}")
     public Response getHotelsToJSON(@PathParam("cityName") String city,
@@ -91,6 +109,12 @@ public class TravelGoodResource {
         return Response.status(Response.Status.OK).entity(gson.toJson(hotels)).build();
     }
 
+    /**
+     * @author Jacob
+     * @param itineraryId
+     * @param bookingNumber
+     * @return
+     */
     @PUT
     @Path("/itinerary/{itineraryId}/flight")
     public Response addFlight(@PathParam("itineraryId") String itineraryId,
@@ -101,14 +125,14 @@ public class TravelGoodResource {
             return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
         }
         if (itenerary.getItineraryState() == ItineraryContainer.ItineraryState.UNCONFIRMED) {
-            try {
-                FlightInformation flight = (FlightInformation) context.getAttribute("f" + bookingNumber);
-                itenerary.addFlight(flight);
-                context.setAttribute(itineraryId, itenerary);
-                return Response.status(Response.Status.OK).build();
-            } catch (Exception e) {
+            FlightInformation flight = (FlightInformation) context.getAttribute("f" + bookingNumber);
+            if (flight == null) {
                 return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
             }
+            itenerary.addFlight(flight);
+            context.setAttribute(itineraryId, itenerary);
+            return Response.status(Response.Status.OK).build();
+
         } else {
             context.setAttribute(itineraryId, itenerary);
             return Response.status(Response.Status.CONFLICT).entity("Itinerary Already Locked").build();
@@ -116,6 +140,12 @@ public class TravelGoodResource {
 
     }
 
+    /**
+     * @author Jacob
+     * @param itineraryId
+     * @param bookingNumber
+     * @return
+     */
     @PUT
     @Path("/itinerary/{itineraryId}/hotel")
     public Response addHotel(@PathParam("itineraryId") String itineraryId,
@@ -125,14 +155,13 @@ public class TravelGoodResource {
             return Response.status(Response.Status.CONFLICT).entity("Unknown ID").build();
         }
         if (itenerary.getItineraryState() == ItineraryContainer.ItineraryState.UNCONFIRMED) {
-            try {
-                HotelInformation hotel = (HotelInformation) context.getAttribute("h" + bookingNumber);
-                itenerary.addHotel(hotel);
-                context.setAttribute(itineraryId, itenerary);
-                return Response.status(Response.Status.OK).build();
-            } catch (Exception e) {
+            HotelInformation hotel = (HotelInformation) context.getAttribute("h" + bookingNumber);
+            if (hotel == null) {
                 return Response.status(Response.Status.CONFLICT).entity("Unknown Booking Number").build();
             }
+            itenerary.addHotel(hotel);
+            context.setAttribute(itineraryId, itenerary);
+            return Response.status(Response.Status.OK).build();
         } else {
             context.setAttribute(itineraryId, itenerary);
             return Response.status(Response.Status.CONFLICT).entity("Itinerary Already Locked").build();
@@ -140,6 +169,11 @@ public class TravelGoodResource {
 
     }
 
+    /**
+     * @author Kasper
+     * @param itineraryId
+     * @return
+     */
     @GET
     @Path("/itinerary/{itineraryId}")
     public Response getItinerary(@PathParam("itineraryId") String itineraryId) {
@@ -152,6 +186,12 @@ public class TravelGoodResource {
 
     }
 
+    /**
+     * @author Martin
+     * @param itineraryId
+     * @param creditCardInfo
+     * @return
+     */
     @POST
     @Path("/itinerary/{itineraryId}")
     public Response bookItinerary(@PathParam("itineraryId") String itineraryId,
@@ -222,7 +262,12 @@ public class TravelGoodResource {
             return Response.status(Response.Status.BAD_REQUEST).entity(TravelGoodResource.class.getName() + "" + ex).build();
         }
     }
-
+    
+    /**
+     * @author Kasper
+     * @param itineraryId
+     * @return
+     */
     @DELETE
     @Path("/itinerary/{itineraryId}")
     public Response cancelePlan(@PathParam("itineraryId") String itineraryId) {
@@ -252,7 +297,6 @@ public class TravelGoodResource {
                         } catch (dk.dtu.webservice.airline.service.CreditCardFaultMessage ex) {
                             status = Status.NOT_FOUND;
                             returnSt = returnSt + TravelGoodResource.class.getName() + " - " + ex + ".\n";
-                            Logger.getLogger(TravelGoodResource.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     for (HotelObject hotel : itenerary.getHotels()) {
@@ -262,8 +306,7 @@ public class TravelGoodResource {
                         } catch (dk.dtu.webservice.hotel.service.Exception_Exception ex) {
                             status = Status.NOT_FOUND;
                             returnSt = returnSt + TravelGoodResource.class.getName() + " - " + ex + ".\n";
-                            Logger.getLogger(TravelGoodResource.class.getName()).log(Level.SEVERE, null, ex);
-                        }                        
+                        }
                     }
                     itenerary.setItineraryState(ItineraryContainer.ItineraryState.CANCELED);
                     context.setAttribute(itineraryId, itenerary);

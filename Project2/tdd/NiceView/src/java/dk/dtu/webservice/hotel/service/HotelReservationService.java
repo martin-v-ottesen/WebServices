@@ -16,7 +16,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author dxong
+ * @author Martin
  */
 @WebService(serviceName = "HotelReservationService")
 public class HotelReservationService {
@@ -26,17 +26,30 @@ public class HotelReservationService {
     
     Bank bankService = new Bank();
     
+    /**
+     * Web service operation
+     * @author Martin
+     */
     @WebMethod(operationName = "setTestHotelInformations")
     public void setTestHotelInformations(@WebParam(name = "hotelInfo") hotelInformation hotelInfo){
         hotelInformationContainer.add(hotelInfo);
     }
     
+    /**
+     * Web service operation
+     * @author Martin
+     */
     @WebMethod(operationName = "clearHotelInformations")
     public void clearHotelInformations(){
         hotelInformationContainer.clear();
         bookedHotelInformationContainer.clear();
     }
-
+    
+    
+    /**
+     * Web service operation
+     * @author Martin
+     */
     @WebMethod(operationName = "getBookedHotelInformations")
     public List<hotelInformation> getBookedHotelInformations(){
         return bookedHotelInformationContainer;
@@ -49,6 +62,7 @@ public class HotelReservationService {
 
     /**
      * Web service operation
+     * @author Martin
      * @param city
      * @param arrivalDate
      * @param departureDate
@@ -70,6 +84,7 @@ public class HotelReservationService {
     
     /**
      * Web service operation
+     * @author Kasper
      * @param bookingNumber
      * @param isCreditCardGuaranteeRequired
      * @param creditCardInfo
@@ -108,6 +123,7 @@ public class HotelReservationService {
 
     /**
      * Web service operation
+     * @author Martin
      * @param bookingNumber
      * @throws java.lang.Exception
      */

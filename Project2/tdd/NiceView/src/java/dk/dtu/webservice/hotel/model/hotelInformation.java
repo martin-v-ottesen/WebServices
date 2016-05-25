@@ -7,7 +7,7 @@ package dk.dtu.webservice.hotel.model;
 
 /**
  *
- * @author dxong
+ * @author Martin
  */
 public class hotelInformation {
     int bookingNumber;

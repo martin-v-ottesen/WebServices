@@ -17,7 +17,7 @@ import javax.jws.WebParam;
 
 /**
  *
- * @author dxong
+ * @author Kasper
  */
 @WebService(serviceName = "AirlineReservationService")
 public class AirlineReservationService {
@@ -47,12 +47,20 @@ public class AirlineReservationService {
     }
     
     
-    
+     /**
+     * Web service operation
+     * @author jacob
+     */
 
     @WebMethod(operationName = "setTestFlightInformations")
     public void setFlightInformationsTest(@WebParam(name = "flightInfo") flightInformation flightInfo){
         flightInformationContainer.add(flightInfo);
     }
+    
+    /**
+     * Web service operation
+     * @author jacob
+     */
     
     @WebMethod(operationName = "clearFlightInformations")
     public void clearFlightInformations(){
@@ -62,6 +70,7 @@ public class AirlineReservationService {
     
     /**
      * Web service operation
+     * @author jacob
      * @param startDestination
      * @param endDestination
      * @param startDate
@@ -82,6 +91,7 @@ public class AirlineReservationService {
     
     /**
      * Web service operation
+     * @author Kasper
      * @param bookingNumber
      * @param creditCardInfo
      * @return 
@@ -110,6 +120,7 @@ public class AirlineReservationService {
     
     /**
      * Web service operation
+     * @author Kasper
      * @param bookingNumber
      * @param creditCardInfo
      * @param price
